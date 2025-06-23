@@ -5,9 +5,12 @@
 示例脚本：演示如何使用增强的仓库索引功能
 """
 
+import sys
 import os
 import argparse
 import logging
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
 from moatless_qa.index import CodeIndex
 from moatless_qa.benchmark.swebench import create_repository, create_index
@@ -73,10 +76,12 @@ def main():
         print("\n查询结果:")
         for i, hit in enumerate(results.hits[:5], 1):  # 只显示前5个结果
             print(f"\n{i}. 文件: {hit.file_path}")
-            print(f"   类型: {hit.match_type}")
-            print(f"   相似度: {hit.score:.4f}")
+            # print(f"   类型: {hit.match_type}")
+            # print(f"   相似度: {hit.score:.4f}")
             print(f"   代码片段:")
-            print("   " + "\n   ".join(hit.content.split("\n")[:5]) + "...")  # 只显示前5行
+            for span in hit.spans:
+                print(f"  {span.span_id, span.rank, span.tokens}")
+            # print("   " + "\n   ".join(hit.content.split("\n")[:5]) + "...")  # 只显示前5行
     
     print("\n索引信息:")
     print(f"索引名称: {code_index._index_name}")
@@ -85,4 +90,11 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
-    main() 
+    sys.argv = [
+    'example_repo_index.py',
+    '--repo-path', '/home/stu/Desktop/my_codeqa/djongo',
+    '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
+    '--index-name', 'djongo_index',
+    '--query', '如何使用Django连接MongoDB',
+    ]
+    main()

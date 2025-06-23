@@ -83,7 +83,7 @@ def process_batch_swe(batch, moatless_solve_instance, evaluator, results_file):
     for qa_pair in batch:
         print(f"处理问题: {qa_pair.question}")
         moatless_answer = moatless_solve_instance.moatless_solve(qa_pair.question)
-        moatless_score = evaluator.evaluate_qa(qa_pair, moatless_answer)
+        moatless_score, score_reason = evaluator.evaluate_qa(qa_pair, moatless_answer)
         total_score += moatless_score
         count += 1
         
@@ -109,11 +109,14 @@ def process_batch_swe(batch, moatless_solve_instance, evaluator, results_file):
 def main():
     repo_path = sys.argv[1] if len(sys.argv) > 1 else "./dataset/repos/swe-bench_sphinx-doc__sphinx-8551"
     repo_root = sys.argv[2] if len(sys.argv) > 2 else "./dataset/repos/swe-bench_sphinx-doc__sphinx-8551"
+    # repo_path = sys.argv[1] if len(sys.argv) > 1 else "/home/stu/Desktop/my_codeqa/djongo"
+    # repo_root = sys.argv[2] if len(sys.argv) > 2 else "/home/stu/Desktop/my_codeqa/djongo"
     question_store_dir = sys.argv[3] if len(sys.argv) > 3 else "./dataset/seed_questions"
-    
+    res_store_dir = sys.argv[4] if len(sys.argv) > 4 else "./dataset/generated_qa"
+
     # 设置输入和输出文件路径
     questions_path = os.path.join(question_store_dir, "generated_questions.json")
-    results_file = os.path.join(question_store_dir, "moatless_results.jsonl")
+    results_file = os.path.join(res_store_dir, "moatless_results.jsonl")
     
     # 初始化评估器和模型
     moatless_solve_instance = MoatlessSolve(repo_name=repo_root, repo_path=repo_path)
