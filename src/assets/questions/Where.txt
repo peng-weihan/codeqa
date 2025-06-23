@@ -1,0 +1,30 @@
+Where can I find the `<Class>` in the codebase?
+Where can I find the file that contains the definition of the `<Class>`?
+Where can I find the implementation of the `<Class>` and its methods in the codebase?
+Where can I find the implementation of the `<Class>` and its `<Method>` method in the codebase?
+Where can I find the file or module that defines the `<Class>` in the codebase?
+Where can I find the `<Class>` definition in the codebase?
+Where can I find the file or module that defines the `<Class>` and its `<Attributes>` attributes?
+Where can I find the implementation of the `<Class>` in the codebase?
+Where can I find the implementation of the `<Method>` method in the `<Class>`?
+Where can I find the definition of the `<Class>`.`<Method>` function in the codebase?
+Where is the definition of the class `<Class>`?
+Where can I find the model definitions for the `<Class>` in the codebase?
+Where can I find the implementation of the `<Method>` in the codebase?
+Where is the class `<Class>`?
+Where can I find the file or module that defines `<Class>`?
+Where are the test codes related to `<Class>` stored?
+Where can I find the file or module that defines `<Function>`?
+Where is the method `<Function>`?
+Where is the definition of the function `<Function>`?
+Where can I find the `<Module>` in the codebase?
+Where in the code is `<Variable>` being managed?
+Where is the config of the variable `<Variable>`?
+Where is the main implementation of the `<Logic>` located?
+Where is `<Variable>`'s definition managed?
+Where can I find the definition of the `<Model>` model in the codebase?
+Where can I find the implementation of the `<Method>` method in the codebase?
+Where can I find the code that handles the `<Logic>` in the repository?
+Where can I find the configuration settings for `<Setting Variable>` in the codebase?
+
+

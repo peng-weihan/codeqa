@@ -1,0 +1,22 @@
+What external libraries or modules does `<Context>` depend on?
+Does `<Context>` depend on external libraries or modules?
+How are external dependencies managed or imported in `<File_Name>`?
+How does the `<Function>` handle input data, and what is its role in the transformation process?
+What are the expected inputs and outputs of the `<Function>` function, and how should it behave with nested compound models?
+What are the expected parameters and return values for the `<Function>` function, and how does it interact with the `<Class>`?
+What are the parameters and expected behavior of the `<Function>` function?
+What are the expected input parameters and return values for the `<Method>` methods in the `<Class>`?
+What are the parameters and expected behavior of the `<Method>` method in the `<Class>`?
+What are the expected parameters and return values for the `<Method>` method in the context of `<Class>`?
+What are the parameters and return values of the `<Method>`?
+What are the parameters and expected behavior of the `<Class>` class?
+What are the expected parameters and return values for the `<Function>` function in `<Module>`?
+What are the expected parameters and behavior of the `<Method>` method when used in `<Logic>`?
+Which API or library is responsible for `<Logic>`, and what are its key parameters or methods?
+Which API or function is responsible for `<Logic>`, and what parameters does it accept?
+Which API functions or methods are involved in `<Logic>`, and what are their expected parameters and return values?
+Does the `<Class>` have any dependencies or interactions with external APIs that might be affected by changes to the `<Method>` method?
+Does the `<Class>` have any dependencies or interactions with external APIs?
+Which API or framework is used to render the `<Component>`, and how does it handle `<Attribute>`?
+What are the expected return values and behavior of the `<Method>` method when `<Condition>`?
+What variables are used in `<Context>`, and how are they defined?

@@ -1,0 +1,31 @@
+Is `<Term>` a Function or Class or Method?
+What does the `<Term>` mean in the context of this codebase?
+What is the purpose of the `<Module>`?
+What are the attributes of `<Class>`?
+What methods does class `<Class>` define and what are their roles?
+What is the main purpose of `<Class>`?
+Which Class does `<Class>` inherit from？
+What is the purpose of the `<Method>` in `<Class>`?
+What is the purpose of the `<Field>` field in the `<Class>`?
+What is the purpose of the `<Attribute>` attribute in the `<Class>`, and how is it intended to be used?
+What is the purpose of the `<Attribute>` attribute in the `<Class>`, and how does it affect other features?
+What is the purpose of the `<Attribute>` attribute in the `<Class>`, and how is it typically used?
+What is the purpose of the `<Class>` in `<Module>`?
+What is the purpose of the `<Class>` and how is it typically used in this codebase?
+What is the purpose of the `<Parameter>` parameter in the `<Method>` method?
+What is the purpose of using the `<Function>` function in the `<Class>`?
+What are the key methods and parameters of the `<Class>` that are relevant to `<Logic>`?
+What is the purpose of the `<Method>` in models?
+What is the purpose of the `<Attribute>` attribute in the context of the `<Method>`?
+What is the purpose of the `<Function>` function in `<Module>`?
+What is the purpose of the `<Function>` function in the context of `<Context>`?
+What is the purpose of the `<Module>` module in the context of `<Logic>`?
+What is the purpose of defining the `<Class>` class as a subclass of `<BaseClass>`?
+What is the purpose of the `<Attribute>` attribute in `<Class>`?
+Which parameter does `<Function>` have?
+Which parameter does `<Method>` have?
+Which parameter does `<Class>` have?
+Which Function is responsible for setting `<Variable>`'s properties?
+What functionality does `<Term>` aim to achieve?
+
+
