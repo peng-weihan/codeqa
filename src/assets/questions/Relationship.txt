@@ -1,0 +1,14 @@
+What is the relationship between `<Attribute>` and other attributes or methods within `<Class>`?
+What is the relationship between `<Function>` and other functions in `<Module>`?
+How does `<Class>` interact with other classes in the codebase?
+What is the relationship between the `<Class>` and the objects it contains?
+Does the context `<Context>` rely on specific versions of external libraries or modules?
+What are the file `<File_Name>` highly coupled with?
+What is the filename and module name associated with the `<Context>`?
+Does `<File_Name>` contain any classes or functions?
+Is there any additional metadata or information provided about the `<Context>` that could be relevant for understanding its context?
+How does the `<Context>` fit within the broader context of the module or project it belongs to?
+Has the code context `<Context>` been tested, and if so, what testing methodologies were employed?
+What is the relationship between the `<Class>` and the `<Function>` function? How do they interact?
+What is the relationship between the `<Class>` class and the `<Function>` function?
+What other functions or modules interact with or depend on the `<Function>` function?

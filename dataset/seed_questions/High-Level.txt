@@ -1,0 +1,11 @@
+How is the overall architecture of the repository layered?
+How do the layers interact with each other?
+What is the main design pattern used in the repository’s architecture?
+Which modules are considered core modules, and which ones are auxiliary?
+How are version conflicts or compatibility issues managed with the dependencies?
+Are there any considerations regarding licensing or usage restrictions for the external dependencies?
+How are control structures such as loops and conditional statements written and formatted?
+How is the repository designed? What are its layers?
+Are there any deviations from commonly accepted conventions?
+How are comments utilized within the code?
+Does the code adhere to a specific coding style guide or convention?

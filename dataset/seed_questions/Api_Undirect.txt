@@ -1,0 +1,8 @@
+How are the external dependencies imported within the code?
+Are there any optional dependencies that are conditionally imported based on certain conditions?
+Which API or framework is used to render the `<Component>`, and how does it handle `<Attribute>`?
+What are the expected return values and behavior of the `<Method>` method when `<Condition>`?
+What variables are used in `<Context>`, and how are they defined?
+Which API functions or methods are involved in `<Logic>`, and what are their expected parameters and return values?
+Does the `<Class>` have any dependencies or interactions with external APIs that might be affected by changes to the `<Method>` method?
+Does the `<Class>` have any dependencies or interactions with external APIs?

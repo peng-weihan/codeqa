@@ -1,0 +1,16 @@
+How is `<Class>` designed?
+How is `<Class>`'s `<Variable>` currently defined and what is its default behavior?
+Which Class does `<Class>` inherit from, and how is its Variable defined?
+How is the <Class> typically instantiated and used within the codebase?
+How is the `<Method>` currently being used in the `<Class>`?
+How is the `<Variable>` typically used throughout the codebase?
+How is the `<Function>` function implemented, and what does it do in this context?
+How does `<Attribute>` affect features during `<Context>`?
+How is `<Function>` typically used within this codebase, and are there any existing examples of handling it?
+How is the `<Variable>` constructed or passed to the `<Function>` in the `<Context>`?
+How is the `<Module>` implementated?
+How is the `<Function>` expected to interact with `<Decorator>` in this context?
+How is the `<Object>` constructed within the `<Method>` method?
+How does the class `<Class>` handle `<Logic>`?
+How is the `<Method>` intended to optimize `<Logic>` in this codebase?
+How is the `<Function>` function supposed to handle `<Logic>`?
