@@ -262,6 +262,11 @@ class GroundTruthFeedbackGenerator(FeedbackGenerator):
    • Other node responses
    • Their outcomes (from separate, independent trajectories)
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📤  OUTPUT REQUIREMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You must return **only** the JSON object. Do not include any additional text or commentary outside the JSON.
+
 Remember: Your primary goal is to evaluate whether the response has reliable ground truth support, not whether unit tests pass.
 """
         return system_prompt 

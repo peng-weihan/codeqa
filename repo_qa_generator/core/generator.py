@@ -15,8 +15,8 @@ class BaseGenerator:
     
     def __init__(self, baseurl: str = None, apikey: str = None):
         self.llm_client = OpenAI(
-            base_url=baseurl or os.environ.get("OPENAI_URL"),
-            api_key=apikey or os.environ.get("OPENAI_API_KEY")
+            base_url="https://api.deepseek.com/v1",
+            api_key=apikey or os.environ.get("DEEPSEEK_API_KEY")
         )
 
     def _call_llm(self, system_prompt: str, user_prompt: str) -> str:
@@ -36,7 +36,7 @@ class BaseGenerator:
         try:
             # 调用LLM
             response = self.llm_client.chat.completions.create(
-                model=os.environ.get("OPENAI_MODEL"),
+                model="deepseek-chat",
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}

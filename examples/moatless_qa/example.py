@@ -43,10 +43,12 @@ completion_model = CompletionModel(
 completion_model.response_format = LLMResponseFormat.TOOLS
 
 repository = create_repository(instance, repo_base_dir=repo_base_dir)
+# repository = create_repository(repo_path="/home/stu/Desktop/my_codeqa/codeqa", repo_base_dir=repo_base_dir)
 
 code_index = CodeIndex.from_index_name(
     instance["instance_id"], index_store_dir=index_store_dir, file_repo=repository
 )
+# code_index = CodeIndex.from_repository(repo_path="/home/stu/Desktop/my_codeqa/codeqa", index_store_dir=index_store_dir, file_repo=repository)
 
 file_context = FileContext(repo=repository)
 
@@ -68,7 +70,9 @@ agent = CodeQAAgent.create(repository=repository, completion_model=completion_mo
 agent.actions = actions
 feedback_generator = GroundTruthFeedbackGenerator(completion_model=agent.completion, instance_dir=instance_path)
 search_tree = CodeQASearchTree.create(
-    message="Where can I find the `HeadersDumperHandler` in the codebase?",
+    # message="Where can I find the `HeadersDumperHandler` in the codebase?",
+    # message="Where can I find the `create_repository` function in the codebase?",
+    message="Where can I find the implementation of the `DatabaseSchemaEditor` and its `_is_changing_type_of_indexed_text_column` method in the codebase?",
     agent=agent,
     file_context=file_context,
     selector=selector,

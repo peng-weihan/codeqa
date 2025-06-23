@@ -1,0 +1,6 @@
+.venv4codeqa
+all-MiniLM-L6-v2/
+dataset/
+dataset/seed_questions/
+data/
+examples/moatless_qa/tmp/

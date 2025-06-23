@@ -11,10 +11,10 @@ from repo_qa_generator.analyzers.code_analyzer import CodeAnalyzer
 
 import argparse
 def main():
-
     parser = argparse.ArgumentParser(description="提取代码仓库中的所有代码节点")
-    parser.add_argument("--repo_path","-r",default="/Users/xinyun/Programs/django/django/core", help="代码仓库的路径")
-    parser.add_argument("--output-dir", "-o", default="code_nodes", help="输出目录")
+    # parser.add_argument("--repo_path","-r",default="/Users/xinyun/Programs/django/django/core", help="代码仓库的路径")
+    parser.add_argument("--repo_path", "-r",default="/home/stu/Desktop/my_codeqa/codeqa/moatless_qa", help="代码仓库的路径")
+    parser.add_argument("--output-dir", "-o", default="/home/stu/Desktop/my_codeqa/codeqa/dataset/seed_questions", help="输出目录")
     parser.add_argument("--batch-size", "-b", type=int, default=100, help="每批写入的问题数量")
     
     args = parser.parse_args()
@@ -24,13 +24,14 @@ def main():
 
     # 确保输出目录存在
     os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, "generated_questions_new.json")
+    output_path = os.path.join(output_dir, "generated_questions_moatless.json")
 
+    # 分析代码仓库
     analyzer = CodeAnalyzer()
-    repo = analyzer.analyze_repository(path, project_root)
+    repo = analyzer.analyze_repository(path, project_root) 
+
+    # 获取具体的问题
     qa_generator = DirectQAGenerator()
-    
-    # 使用生成器模式获取问题
     qa_pairs = qa_generator.generate_questions(repo.structure)
     
     # 分批写入文件

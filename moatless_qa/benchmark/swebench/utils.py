@@ -281,7 +281,8 @@ def create_repository(
         fcntl.flock(lock_file, fcntl.LOCK_EX)
         if not os.path.exists(local_repo_path):
             # 如果本地仓库不存在，从GitHub克隆
-            github_url = f"https://github.com/swe-bench/{repo_dir_name}.git"
+            # github_url = f"https://github.com/swe-bench/{repo_dir_name}.git"
+            github_url = f"git@github.com:swe-bench/{repo_dir_name}.git"
             try:
                 retry_clone(github_url, local_repo_path)
                 logging.info(f"已克隆 {github_url} 到 {local_repo_path}")
