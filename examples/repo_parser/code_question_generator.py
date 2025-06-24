@@ -6,7 +6,8 @@ from pathlib import Path
 current_dir = Path(__file__).parent
 project_root = current_dir.parent.parent
 sys.path.append(str(project_root))
-from repo_qa_generator.question_generators.direct_qa_generator import DirectQAGenerator
+from repo_qa_generator.question_generators.direct_qa_generator_v2 import DirectQAGeneratorV2
+from repo_qa_generator.question_generators.qa_generate_agent_v2 import AgentQAGeneratorV2
 from repo_qa_generator.analyzers.code_analyzer import CodeAnalyzer
 
 import argparse
@@ -14,8 +15,8 @@ def main():
     parser = argparse.ArgumentParser(description="提取代码仓库中的所有代码节点")
     # parser.add_argument("--repo_path","-r",default="/Users/xinyun/Programs/django/django/core", help="代码仓库的路径")
     parser.add_argument("--repo_path", "-r",default="/home/stu/Desktop/my_codeqa/codeqa/moatless_qa", help="代码仓库的路径")
-    parser.add_argument("--output-dir", "-o", default="/home/stu/Desktop/my_codeqa/codeqa/dataset/seed_questions", help="输出目录")
-    parser.add_argument("--batch-size", "-b", type=int, default=100, help="每批写入的问题数量")
+    parser.add_argument("--output-dir", "-o", default="/home/stu/Desktop/my_codeqa/codeqa/dataset/concrete_questions", help="输出目录")
+    parser.add_argument("--batch-size", "-b", type=int, default=20, help="每批写入的问题数量")
     
     args = parser.parse_args()
     path = args.repo_path
@@ -24,22 +25,22 @@ def main():
 
     # 确保输出目录存在
     os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, "generated_questions_moatless.json")
-
+    output_path_direct = os.path.join(output_dir, "generated_questions_moatless_direct.json")
+    output_path_agent = os.path.join(output_dir, "generated_questions_moatless_agent.jsonl")
     # 分析代码仓库
     analyzer = CodeAnalyzer()
     repo = analyzer.analyze_repository(path, project_root) 
 
     # 获取具体的问题
-    qa_generator = DirectQAGenerator()
+    qa_generator = DirectQAGeneratorV2()
     qa_pairs = qa_generator.generate_questions(repo.structure)
-    
+  
     # 分批写入文件
     batch_count = 0
     qa_batch = []
     
     # 打开文件一次，使用列表方式写入JSON
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(output_path_direct, 'w', encoding='utf-8') as f:
         # 写入JSON数组开始
         f.write("[\n")
         
@@ -71,8 +72,13 @@ def main():
         # 写入JSON数组结束
         f.write("\n]")
     
-    print(f"问题生成完成，已保存到 {output_path}")
+    print(f"基于规则的问题生成完成，已保存到 {output_path_direct}")
 
+    qa_agent = AgentQAGeneratorV2()
 
+    qa_pairs_llm = qa_agent.generate_questions(repo.structure)
+
+    print(f"基于LLM的问题生成完成，已保存到 {output_path_agent}")
+    
 if __name__ == "__main__":
     main()
