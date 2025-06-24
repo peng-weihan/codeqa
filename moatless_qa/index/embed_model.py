@@ -51,18 +51,8 @@ def get_embed_model(model_name: str) -> "BaseEmbedding":
             "VOYAGE_API_KEY environment variable is not set. Please set it to your Voyage API key."
         )
     return VoyageEmbeddingWithRetry(
-        model_name="voyage-3",
+        model_name="voyage-code-2",
         voyage_api_key=os.environ.get("VOYAGE_API_KEY"),
         truncation=True,
         embed_batch_size=80,
     )
-
-# def get_embed_model(model_name: str) -> "BaseEmbedding":
-#     try:
-#         from sentence_transformers import SentenceTransformer
-#     except ImportError:
-#         raise ImportError(
-#             "请先安装 sentence-transformers 和 llama-index 的相关依赖: pip install sentence-transformers llama-index"
-#         )
-#     # model_name 示例：'st-all-MiniLM-L6-v2' 或 'sentence-transformers/all-MiniLM-L6-v2'
-#     return SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')

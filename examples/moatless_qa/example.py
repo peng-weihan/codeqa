@@ -70,9 +70,9 @@ agent = CodeQAAgent.create(repository=repository, completion_model=completion_mo
 agent.actions = actions
 feedback_generator = GroundTruthFeedbackGenerator(completion_model=agent.completion, instance_dir=instance_path)
 search_tree = CodeQASearchTree.create(
-    # message="Where can I find the `HeadersDumperHandler` in the codebase?",
+    message="Where can I find the `HeadersDumperHandler` in the codebase?",
     # message="Where can I find the `create_repository` function in the codebase?",
-    message="Where can I find the implementation of the `DatabaseSchemaEditor` and its `_is_changing_type_of_indexed_text_column` method in the codebase?",
+    # message="Where can I find the implementation of the `DatabaseSchemaEditor` and its `_is_changing_type_of_indexed_text_column` method in the codebase?",
     agent=agent,
     file_context=file_context,
     selector=selector,

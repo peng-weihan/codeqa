@@ -4,6 +4,7 @@ import mimetypes
 import os
 import shutil
 import tempfile
+import networkx as nx
 from typing import Optional, TYPE_CHECKING
 
 import requests
@@ -40,7 +41,7 @@ def default_vector_store(settings: IndexSettings):
         ) from e
 
     # faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(settings.dimensions))
-    faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(1024))
+    faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(1536))
     return SimpleFaissVectorStore(faiss_index)
 
 
@@ -1000,7 +1001,6 @@ class CodeIndex:
 
         with open(os.path.join(persist_dir, "blocks_by_function_name.json"), "w") as f:
             f.write(json.dumps(self._blocks_by_function_name, indent=2))
-
 
 def _rerank_files(file_paths: list[str], file_pattern: str):
     if len(file_paths) < 2:
