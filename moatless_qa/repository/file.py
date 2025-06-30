@@ -89,7 +89,7 @@ class CodeFile(BaseModel):
     @property
     def module(self) -> Module | None:
         if self._module is None or self.has_been_modified() and self.content.strip():
-            parser = get_parser_by_path(self.file_path)
+            parser = get_parser_by_path(self.file_path) #得到python或者java类型的解析器
             if parser:
                 self._module = parser.parse(self.content)
             else:

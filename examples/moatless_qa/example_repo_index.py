@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--repo-dir', help='仓库基础目录')
     parser.add_argument('--force-rebuild', action='store_true', help='强制重建索引')
     parser.add_argument('--query', help='执行语义搜索的查询')
-    
+    parser.add_argument('--flag',help='索引是否已经存在')
     args = parser.parse_args()
     
     # 设置环境变量
@@ -46,6 +46,14 @@ def main():
         os.environ['REPO_DIR'] = args.repo_dir
     
     # 确定索引方法
+    if args.flag == 'True' and args.index_name and args.index_dir:
+        # 如果索引已经存在，直接加载索引
+        print(f"从本地索引目录 {args.index_dir} 加载索引 {args.index_name}")
+        code_index = CodeIndex.from_index_name(
+            index_name=args.index_name,
+            index_store_dir=args.index_dir,
+            file_repo=create_repository(repo_path=args.repo_path)
+        )
     if args.instance_id:
         # 使用SWE-bench实例ID
         print(f"从SWE-bench实例 {args.instance_id} 创建索引")
@@ -71,17 +79,19 @@ def main():
     # 如果提供了查询，执行语义搜索
     if args.query:
         print(f"执行查询: {args.query}")
-        results = code_index.semantic_search(query=args.query)
-        
+        # results = code_index.find_by_name(args.query)
+        # results = code_index.find_class(class_name=args.query)
+        results = code_index.find_function(function_name=args.query)
         print("\n查询结果:")
-        for i, hit in enumerate(results.hits[:5], 1):  # 只显示前5个结果
-            print(f"\n{i}. 文件: {hit.file_path}")
-            # print(f"   类型: {hit.match_type}")
-            # print(f"   相似度: {hit.score:.4f}")
-            print(f"   代码片段:")
-            for span in hit.spans:
-                print(f"  {span.span_id, span.rank, span.tokens}")
-            # print("   " + "\n   ".join(hit.content.split("\n")[:5]) + "...")  # 只显示前5行
+        print(results)
+        # for i, hit in enumerate(results.hits[:5], 1):  # 只显示前5个结果
+        #     print(f"\n{i}. 文件: {hit.file_path}")
+        #     # print(f"   类型: {hit.match_type}")
+        #     # print(f"   相似度: {hit.score:.4f}")
+        #     print(f"   代码片段:")
+        #     for span in hit.spans:
+        #         print(f"  {span.span_id, span.rank, span.tokens}")
+        #     # print("   " + "\n   ".join(hit.content.split("\n")[:5]) + "...")  # 只显示前5行
     
     print("\n索引信息:")
     print(f"索引名称: {code_index._index_name}")
@@ -90,11 +100,19 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
+    # sys.argv = [
+    # 'example_repo_index.py',
+    # '--repo-path', '/home/stu/Desktop/my_codeqa/djongo',
+    # '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
+    # '--index-name', 'djongo_index',
+    # '--query', 'NotSupportedError',
+    # ]
     sys.argv = [
     'example_repo_index.py',
-    '--repo-path', '/home/stu/Desktop/my_codeqa/djongo',
     '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
-    '--index-name', 'djongo_index',
-    '--query', '如何使用Django连接MongoDB',
+    '--index-name', 'sphinx-doc__sphinx-8551',
+    '--repo-path', '/home/stu/Desktop/my_codeqa/codeqa/dataset/repos/swe-bench_sphinx-doc__sphinx-8551',
+    '--flag', 'True',
+    '--query', 'verify_needs_extensions',
     ]
     main()

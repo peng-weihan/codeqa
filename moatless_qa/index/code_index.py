@@ -208,13 +208,13 @@ class CodeIndex:
         if not index_store_dir:
             index_store_dir = os.getenv("MOATLESS_INDEX_DIR", "/tmp/index_store")
         
-        # 确定索引名称
+        # 确定索引名称，从repo_name或者repo_url派生（如果有commit号，则添加后缀）
         if not index_name:
             if repo_path:
                 # 从仓库路径派生索引名称
                 repo_name = os.path.basename(repo_path)
                 if commit:
-                    index_name = f"{repo_name}_{commit[:7]}"
+                    index_name = f"{repo_name}_{commit[:7]}" # 如果是repo_commit格式
                 else:
                     index_name = repo_name
             elif repo_url:

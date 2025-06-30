@@ -336,8 +336,8 @@ def create_index(
     返回:
         CodeIndex: 代码索引对象
     """
-    if not index_store_dir:
-        index_store_dir = os.getenv("MOATLESS_INDEX_DIR", "/tmp/index_store")
+    if not index_store_dir: # 默认的索引存储目录
+        index_store_dir = os.getenv("MOATLESS_INDEX_DIR", "/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store")
     
     # 确保索引存储目录存在
     os.makedirs(index_store_dir, exist_ok=True)
@@ -390,7 +390,7 @@ def create_index(
         except Exception as e:
             logger.warning(f"加载已存在索引失败: {e}，将尝试从远程下载或重建")
     
-    # 如果索引不存在或强制重建，尝试从远程下载
+    # 如果索引不存在或强制重建，且远程索引url存在，尝试从远程下载
     if not force_rebuild and os.getenv("INDEX_STORE_URL"):
         index_store_url = os.getenv("INDEX_STORE_URL")
         store_url = os.path.join(index_store_url, f"{index_name}.zip")

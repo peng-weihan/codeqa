@@ -7,7 +7,7 @@ from typing_extensions import deprecated
 
 from moatless_qa.codeblocks.parser.comment import get_comment_symbol
 from moatless_qa.utils.colors import Colors
-
+from rapidfuzz import fuzz
 BlockPath = list[str]
 
 
@@ -1019,6 +1019,15 @@ class CodeBlock:
         for child in self.children:
             child.add_indentation(indentation)
 
+    def is_fuzzy_match(self, identifier: str, target: str, threshold: int = 50) -> bool:
+        """
+        判断 identifier 与 target 是否足够相似（模糊匹配）
+        可根据阈值控制匹配精度
+        """
+        if not identifier or not target:
+            return False
+        return fuzz.partial_ratio(identifier.lower(), target.lower()) >= threshold
+    
     def find_by_path(self, path: list[str]) -> Optional["CodeBlock"]:
         if path is None:
             return None
@@ -1027,7 +1036,8 @@ class CodeBlock:
             return self
 
         for child in self.children:
-            if child.identifier == path[0]:
+            # if child.identifier == path[0]:
+            if self.is_fuzzy_match(child.identifier, path[0]):
                 if len(path) == 1:
                     return child
                 else:
