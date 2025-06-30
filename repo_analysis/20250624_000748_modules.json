@@ -1,0 +1,248 @@
+[
+  {
+    "name": "exceptions",
+    "is_package": false,
+    "files": [
+      "exceptions.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "expander",
+    "is_package": false,
+    "files": [
+      "expander.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "message_history",
+    "is_package": false,
+    "files": [
+      "message_history.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "node",
+    "is_package": false,
+    "files": [
+      "node.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "file_context",
+    "is_package": false,
+    "files": [
+      "file_context.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "moatless_solve",
+    "is_package": false,
+    "files": [
+      "moatless_solve.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "schema",
+    "is_package": false,
+    "files": [
+      "schema.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "code_qa",
+    "is_package": false,
+    "files": [
+      "search_tree.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "artifacts",
+    "is_package": true,
+    "files": [
+      "__init__.py",
+      "artifact.py",
+      "file.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "benchmark",
+    "is_package": false,
+    "files": [
+      "utils.py"
+    ],
+    "sub_modules": [
+      {
+        "name": "swebench",
+        "is_package": true,
+        "files": [
+          "__init__.py",
+          "utils.py"
+        ],
+        "sub_modules": []
+      }
+    ]
+  },
+  {
+    "name": "index",
+    "is_package": true,
+    "files": [
+      "simple_faiss.py",
+      "__init__.py",
+      "types.py",
+      "code_index.py",
+      "embed_model.py",
+      "settings.py",
+      "epic_split.py",
+      "code_node.py",
+      "retry_voyage_embedding.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "actions",
+    "is_package": true,
+    "files": [
+      "find_code_snippet.py",
+      "find_class.py",
+      "search_base.py",
+      "finish.py",
+      "__init__.py",
+      "reject.py",
+      "model.py",
+      "further_view_code.py",
+      "view_code.py",
+      "action.py",
+      "find_called_objects.py",
+      "list_files.py",
+      "identify_mixin.py",
+      "semantic_search.py",
+      "find_function.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "agent",
+    "is_package": false,
+    "files": [
+      "code_qa_agent.py",
+      "settings.py",
+      "code_qa_prompts.py",
+      "agent.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "selector",
+    "is_package": true,
+    "files": [
+      "__init__.py",
+      "selector.py",
+      "prompt.py",
+      "similarity.py",
+      "feedback_selector.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "completion",
+    "is_package": true,
+    "files": [
+      "__init__.py",
+      "model.py",
+      "completion.py",
+      "anthropic.py",
+      "react.py",
+      "tool_call.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "value_function",
+    "is_package": true,
+    "files": [
+      "terminal.py",
+      "__init__.py",
+      "model.py",
+      "coding.py",
+      "base.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "repository",
+    "is_package": true,
+    "files": [
+      "git.py",
+      "__init__.py",
+      "repository.py",
+      "file.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "codeblocks",
+    "is_package": true,
+    "files": [
+      "__init__.py",
+      "module.py",
+      "codeblocks.py"
+    ],
+    "sub_modules": [
+      {
+        "name": "parser",
+        "is_package": true,
+        "files": [
+          "__init__.py",
+          "java.py",
+          "python.py",
+          "create.py",
+          "comment.py",
+          "parser.py"
+        ],
+        "sub_modules": [
+          {
+            "name": "queries",
+            "is_package": true,
+            "files": [
+              "__init__.py"
+            ],
+            "sub_modules": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "feedback",
+    "is_package": true,
+    "files": [
+      "__init__.py",
+      "feedback_agent.py",
+      "feedback.py",
+      "ground_truth_feedback.py"
+    ],
+    "sub_modules": []
+  },
+  {
+    "name": "utils",
+    "is_package": true,
+    "files": [
+      "repo.py",
+      "__init__.py",
+      "colors.py",
+      "parse.py",
+      "file.py",
+      "tokenizer.py"
+    ],
+    "sub_modules": []
+  }
+]
