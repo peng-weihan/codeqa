@@ -100,19 +100,19 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
-    # sys.argv = [
-    # 'example_repo_index.py',
-    # '--repo-path', '/home/stu/Desktop/my_codeqa/djongo',
-    # '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
-    # '--index-name', 'djongo_index',
-    # '--query', 'NotSupportedError',
-    # ]
     sys.argv = [
     'example_repo_index.py',
+    '--repo-path', '/home/stu/Desktop/my_codeqa/codeqa/dataset/repos/swe-bench_sphinx-doc__sphinx',
     '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
-    '--index-name', 'sphinx-doc__sphinx-8551',
-    '--repo-path', '/home/stu/Desktop/my_codeqa/codeqa/dataset/repos/swe-bench_sphinx-doc__sphinx-8551',
-    '--flag', 'True',
+    '--index-name', 'sphinx',
     '--query', 'verify_needs_extensions',
     ]
+    # sys.argv = [
+    # 'example_repo_index.py',
+    # '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
+    # '--index-name', 'sphinx-doc__sphinx-8551',
+    # '--repo-path', '/home/stu/Desktop/my_codeqa/codeqa/dataset/repos/swe-bench_sphinx-doc__sphinx-8551',
+    # '--flag', 'True',
+    # '--query', 'verify_needs_extensions',
+    # ]
     main()
