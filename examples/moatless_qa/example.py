@@ -5,6 +5,9 @@ import os
 
 # 添加项目根目录到Python路径
 project_root = os.path.abspath(os.path.join(os.getcwd(), ''))
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
     print(f"已添加 {project_root} 到Python路径")
@@ -70,7 +73,7 @@ agent = CodeQAAgent.create(repository=repository, completion_model=completion_mo
 agent.actions = actions
 feedback_generator = GroundTruthFeedbackGenerator(completion_model=agent.completion, instance_dir=instance_path)
 search_tree = CodeQASearchTree.create(
-    message="Where can I find the `HeadersDumperHandler` in the codebase?",
+    message="What does the function `verify_needs_extensions` do in the code base?",
     # message="Where can I find the `create_repository` function in the codebase?",
     # message="Where can I find the implementation of the `DatabaseSchemaEditor` and its `_is_changing_type_of_indexed_text_column` method in the codebase?",
     agent=agent,
