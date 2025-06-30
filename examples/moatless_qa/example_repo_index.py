@@ -80,8 +80,8 @@ def main():
     if args.query:
         print(f"执行查询: {args.query}")
         # results = code_index.find_by_name(args.query)
-        # results = code_index.find_class(class_name=args.query)
-        results = code_index.find_function(function_name=args.query)
+        results = code_index.find_class(class_name=args.query)
+        # results = code_index.find_function(function_name=args.query)
         print("\n查询结果:")
         print(results)
         # for i, hit in enumerate(results.hits[:5], 1):  # 只显示前5个结果
@@ -102,10 +102,10 @@ if __name__ == "__main__":
     setup_logging()
     sys.argv = [
     'example_repo_index.py',
-    '--repo-path', '/home/stu/Desktop/my_codeqa/codeqa/dataset/repos/swe-bench_sphinx-doc__sphinx',
+    '--repo-path', '/home/stu/Desktop/my_codeqa/djongo',
     '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
-    '--index-name', 'sphinx',
-    '--query', 'verify_needs_extensions',
+    '--index-name', 'djongo',
+    '--query', 'ModelAdmin',
     ]
     # sys.argv = [
     # 'example_repo_index.py',
