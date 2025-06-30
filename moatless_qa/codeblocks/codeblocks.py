@@ -1036,8 +1036,8 @@ class CodeBlock:
             return self
 
         for child in self.children:
-            # if child.identifier == path[0]:
-            if self.is_fuzzy_match(child.identifier, path[0]):
+            if child.identifier == path[0]:
+            # if self.is_fuzzy_match(child.identifier, path[0]):
                 if len(path) == 1:
                     return child
                 else:

@@ -481,9 +481,16 @@ class CodeParser:
         self, node: Node, query, label: str, capture_from_parent: bool = False
     ) -> NodeMatch | None:
         if capture_from_parent:
-            captures = query.captures(node.parent)
+            # captures = query.captures(node.parent)
+            raw_captures = query.captures(node.parent)
         else:
-            captures = query.captures(node)
+            # captures = query.captures(node)
+            raw_captures = query.captures(node)
+
+        captures = []
+        for tag, nodes in raw_captures.items():
+            for n in nodes:
+              captures.append((tag, n))
 
         node_match = NodeMatch()
 
@@ -495,7 +502,7 @@ class CodeParser:
         for capture in captures:
             # 安全地解包捕获结果，确保即使格式变化也能正常工作
             if len(capture) >= 2:
-                found_node, tag = capture[0], capture[1]
+                tag, found_node = capture[0], capture[1]
             else:
                 continue  # 跳过不符合预期格式的捕获结果
                 
