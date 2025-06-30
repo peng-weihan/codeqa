@@ -4,6 +4,7 @@ import mimetypes
 import os
 import shutil
 import tempfile
+import networkx as nx
 from typing import Optional, TYPE_CHECKING
 
 import requests
@@ -39,7 +40,8 @@ def default_vector_store(settings: IndexSettings):
             "faiss needs to be installed to set up a default index for CodeIndex. Run 'pip install faiss-cpu'"
         ) from e
 
-    faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(settings.dimensions))
+    # faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(settings.dimensions))
+    faiss_index = faiss.IndexIDMap(faiss.IndexFlatL2(1536))
     return SimpleFaissVectorStore(faiss_index)
 
 
@@ -970,6 +972,7 @@ class CodeIndex:
         embedded_nodes = embed_pipeline.run(
             nodes=list(prepared_nodes), show_progress=True, num_workers=num_workers
         )
+        
         embedded_tokens = sum(
             [
                 count_tokens(node.get_content(), self._settings.embed_model)
@@ -988,7 +991,8 @@ class CodeIndex:
     def persist(self, persist_dir: str):
         self._vector_store.persist(persist_dir)
         self._docstore.persist(
-            os.path.join(persist_dir, docstore.types.DEFAULT_PERSIST_FNAME)
+            # os.path.join(persist_dir, self._docstore.types.DEFAULT_PERSIST_FNAME)
+            os.path.join(persist_dir, "docstore.json")
         )
         self._settings.persist(persist_dir)
 
@@ -997,7 +1001,6 @@ class CodeIndex:
 
         with open(os.path.join(persist_dir, "blocks_by_function_name.json"), "w") as f:
             f.write(json.dumps(self._blocks_by_function_name, indent=2))
-
 
 def _rerank_files(file_paths: list[str], file_pattern: str):
     if len(file_paths) < 2:

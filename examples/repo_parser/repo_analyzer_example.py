@@ -213,13 +213,13 @@ def _print_module(module, indent=""):
 def main():
     # 设置命令行参数
     parser = argparse.ArgumentParser(description="分析代码仓库结构")
-    parser.add_argument("--repo_path","-r",default="/Users/xinyun/Programs/django/django/core", help="代码仓库的路径")
+    parser.add_argument("--repo_path","-r",default="/home/stu/Desktop/my_codeqa/codeqa/moatless_qa", help="代码仓库的路径")
     parser.add_argument("--output-dir", "-o", default="repo_analysis", help="输出目录")
     
     args = parser.parse_args()
     
     # 分析仓库
-    repository = analyze_repository(repo_path=args.repo_path,repo_root="/Users/xinyun/Programs/django/")
+    repository = analyze_repository(repo_path=args.repo_path,repo_root="/home/stu/Desktop/my_codeqa/codeqa/moatless_qa")
     
     # 打印摘要
     print_repository_summary(repository)

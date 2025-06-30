@@ -189,11 +189,12 @@ class CompletionModel(BaseModel):
             completion_response = None
     
             try:
+                print(f'completion.py:_do_completion: messages {messages}\n')
                 completion_response = self._litellm_base_completion(
                     messages=messages, response_format={"type": "json_object"}
                 )
         
-                # print(f'completion_response {completion_response}')
+                print(f'completion_response {completion_response}')
                 if not completion_response or not completion_response.choices:
                     raise CompletionRuntimeError(
                         "No completion response or choices returned"

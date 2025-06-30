@@ -59,6 +59,7 @@ class ToolCallCompletionModel(CompletionModel):
                 else:
                     tool_choice = "auto"
 
+                print(f"tool_call.py:_do_completion: Calling LLM with messages: {messages}\n")
                 llm_completion_response = self._litellm_base_completion(
                     messages=messages, tools=tools, tool_choice=tool_choice,response_format={"type": "json_object"}
                 )

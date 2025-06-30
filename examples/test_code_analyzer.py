@@ -1,18 +1,20 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from repo_qa_generator.analyzers.code_analyzer import CodeAnalyzer
 
 def main():
     analyzer = CodeAnalyzer()
-    
     # 分析文件
-    test_file = "src/examples/test_code.py"
-    file_node = analyzer.analyze_file(test_file)
+    test_file = "/home/stu/Desktop/my_codeqa/codeqa/examples/test_code_analyzer.py"
+    file_node = analyzer.analyze_file(test_file, repo_root="/home/stu/Desktop/my_codeqa/codeqa")
     
     print("文件分析结果:")
     print(f"文件名: {file_node.file_name}")
     print(f"路径: {file_node.upper_path}")
     print(f"模块: {file_node.module}")
     print(f"定义的类: {file_node.define_class}")
-    print(f"导入: {file_node.file_imports}")
+    # print(f"导入: {file_node.file_imports}")
     
     print("\n代码节点分析:")
     code_nodes = analyzer.extract_code_nodes(test_file)

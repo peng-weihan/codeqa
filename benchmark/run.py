@@ -61,10 +61,11 @@ async def main():
         
         for qa_pair in batch:
             print(f"处理问题: {qa_pair.question}")
+            # 从qa_pair中提取问题(或者其他必要信息)获得三者方式的答案
             moatless_answer = moatless_solve_instance.moatless_solve(qa_pair.question)
             atom_answer = await atom_solve(qa_pair)
             rag_answer = rag.process_qa_pair(qa_pair)
-
+            # 评估每个答案
             moatless_score = evaluator.evaluate_qa(qa_pair, moatless_answer)
             atom_score = evaluator.evaluate_qa(qa_pair, atom_answer)
             rag_score = evaluator.evaluate_qa(qa_pair, rag_answer)
