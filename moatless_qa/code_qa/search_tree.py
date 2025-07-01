@@ -140,7 +140,7 @@ class CodeQASearchTree(BaseModel):
 
         if not len(self.get_finished_nodes()):
             print(
-                f"Search completed with no finished nodes. {len(self.root.get_all_nodes())} nodes created.",
+                f"Search completed with no finished nodes. {len(self.root.get_all_nodes())} nodes created.\n\n",
             )
         else:
             print(
@@ -240,16 +240,16 @@ class CodeQASearchTree(BaseModel):
                 node.completions["value_function"] = completion_response
 
                 print(
-                    f"Node{node.node_id}: The value function returned a reward of {node.reward.value}.",
+                    f"Node{node.node_id}: The value function returned a reward of {node.reward.value}.\n",
                 )
             except RejectError as e:
                 print(
-                    f"Node{node.node_id}: Value function rejected: {e.message}",
+                    f"Node{node.node_id}: Value function rejected: {e.message}\n",
                 )
                 node.reward = None
             except RuntimeError as e:
                 print(
-                    f"Node{node.node_id}: Value function runtime error: {e.message}",
+                    f"Node{node.node_id}: Value function runtime error: {e.message}\n",
                 )
                 raise  # Re-raise to abort the entire search
 
