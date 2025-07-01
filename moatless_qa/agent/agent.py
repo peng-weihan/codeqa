@@ -116,7 +116,7 @@ class ActionAgent(BaseModel):
             completion_response = self._completion.create_completion(
                 messages, system_prompt=system_prompt, response_model=action_args
             )
-            print('Response Structured Output: \n', completion_response.structured_outputs,'\n')
+            print('\nRecommended Action: \n', completion_response.structured_outputs,'\n')
 
             if completion_response.structured_outputs:
                 node.action_steps = [
