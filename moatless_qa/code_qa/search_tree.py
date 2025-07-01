@@ -146,6 +146,13 @@ class CodeQASearchTree(BaseModel):
             print(
                 f"Search completed with {len(self.get_finished_nodes())} finished nodes. {len(self.root.get_all_nodes())} nodes created.",
             )
+            nodes = self.get_finished_nodes()
+            for node in nodes:
+                while node != self.root:
+                    print(
+                        f"Node {node.node_id} with action steps: {node.action_steps[0]}\n"
+                    )
+                    node = node.parent
 
         return self.get_all_trajectory()
         
