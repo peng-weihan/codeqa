@@ -269,6 +269,7 @@ class DirectQAGeneratorV2:
         question_types = ['where', 'what', 'how', "why"]
         for question_type in question_types:
             for template in self.template_questions.get(question_type, []):#template此处是单个问题模板，类型是str
+                print(f"Processing template: {template}")
                 self._handle_tag_replacement_questions(template, repo_structure, questions)
         return questions
     

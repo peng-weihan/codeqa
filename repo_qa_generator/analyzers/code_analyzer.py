@@ -5,6 +5,10 @@ from typing import List, Dict, Optional, Set, Tuple, Any
 import re
 import os
 from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm.contrib.concurrent import process_map
+from tqdm import tqdm
 from repo_qa_generator.models.data_models import (
     FileNode, CodeNode, ClassDefinition, FunctionDefinition, 
     ClassAttribute, RepositoryStructure, Repository, 
@@ -17,9 +21,14 @@ class CodeAnalyzer:
         self.repository_structure = RepositoryStructure()
         self.current_content = ""  # 存储当前分析的文件内容
         self.relationships = []  # 存储代码元素间的关系
+        self._file_cache: dict[str, FileNode | None] = {}  # 缓存文件分析结果，避免重复分析
         
     def analyze_file(self, file_path: str, repo_root: str) -> Optional[FileNode]:
         """Analyze a single file to extract import relationships and class definitions"""
+        if file_path in self._file_cache:
+            return self._file_cache[file_path]
+        
+        print(f"开始分析文件: {file_path}")
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -38,13 +47,15 @@ class CodeAnalyzer:
             else:
                 upper_path = os.path.dirname(file_path)
                 
-            return FileNode(
+            node = FileNode(
                 file_name=os.path.basename(file_path),
                 upper_path=os.path.dirname(file_path),
                 module=os.path.basename(os.path.dirname(file_path)),
                 define_class=classes,
                 imports=imports
             )
+            self._file_cache[file_path] = node
+            return node
         except SyntaxError:
             print(f"警告：文件 {file_path} 存在语法错误，已跳过")
         except UnicodeDecodeError:
@@ -329,29 +340,36 @@ class CodeAnalyzer:
         
         # 获取仓库中的所有Python文件
         python_files = self._get_python_files(root_path)
-        
+        print(f"找到 {len(python_files)} 个Python文件\n")
+
         # 分析文件结构并构建模块树
         root_modules = self._build_module_tree(root_path, python_files,repo_root)
         self.repository_structure.root_modules = root_modules
-        
+        print(f"模块树结构已构建\n")
+
         # 分析每个文件的代码结构
         for file_path in python_files:
             self._analyze_file_for_structure(file_path,repo_root)
         
         # 构建代码依赖图
         self.build_dependency_graph(python_files,repo_root)
-        
+        print(f"代码依赖图已构建，共有 {len(self.repository_structure.dependency_graph)} 个模块\n")
+
         # 分析代码元素间的关系
-        self._extract_code_relationships()        
+        self._extract_code_relationships()      
+        print(f"代码元素间的关系已提取，共有 {len(self.repository_structure.relationships)} 个关系\n")  
         
         # 链接类属性与函数
         self._link_attributes_to_functions()
+        print(f"类属性与函数的关系已链接，共有 {len(self.repository_structure.attributes)} 个属性\n")
 
         # 链接变量与引用它们的函数
         self._link_variables_to_references()
+        print(f"变量与引用它们的函数的关系已链接，共有 {len(self.repository_structure.variables)} 个变量\n")
         
         # 生成仓库核心功能概述
         self._summarize_core_functionality()
+        print(f"仓库核心功能概述已生成\n")
         
         # 将仓库结构添加到仓库对象中
         repository.structure = self.repository_structure
@@ -407,7 +425,6 @@ class CodeAnalyzer:
         finally:
             self.current_content = ""  # 清空当前内容
 
-    
     def _extract_class_definition(self, node: ast.ClassDef, file_path: str, content: str,repo_root: str):
         """提取类定义信息"""
         docstring = ast.get_docstring(node) or ''
@@ -827,16 +844,40 @@ class CodeAnalyzer:
         
         self.repository_structure.variables.append(var_def)
 
+        
+    def process_variable(self, index: int) :
+        """处理单个变量，查找引用它的函数"""
+        functions = self.repository_structure.functions
+        for func in functions:
+            if not func.relative_code or not func.relative_code.code:
+                continue
+
+            pattern = r'\b' + re.escape(self.repository_structure.variables[index].name) + r'\b'
+            if re.search(pattern, func.relative_code.code):
+                self.repository_structure.variables[index].references.append(func.name)
+
     def _link_variables_to_references(self):
         """链接变量与引用它们的函数"""
         # 为每个变量查找引用它的函数
-        for var in self.repository_structure.variables:
-            for func in self.repository_structure.functions:
-                if not func.relative_code or not func.relative_code.code:
-                    continue
+        # 输出变量数和函数数
+        variable_num = len(self.repository_structure.variables)
+        print(f"链接变量与引用它们的函数，共有 { variable_num } 个变量，{len(self.repository_structure.functions)} 个函数")
+
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = [executor.submit(self.process_variable, idx) for idx in range(variable_num)]
+            for future in tqdm(as_completed(futures), total=len(futures), desc="变量引用链接", unit="var"):
+                try:
+                    _ = future.result()
+                except Exception as e:
+                    print(f"[ERROR] 任务异常：{e}")
+
+        # for var in self.repository_structure.variables:
+        #     for func in self.repository_structure.functions:
+        #         if not func.relative_code or not func.relative_code.code:
+        #             continue
                 
-                # 查找变量名在函数代码中的出现
-                # 使用正则表达式匹配整个单词
-                pattern = r'\b' + re.escape(var.name) + r'\b'
-                if re.search(pattern, func.relative_code.code):
-                    var.references.append(func.name)
+        #         # 查找变量名在函数代码中的出现
+        #         # 使用正则表达式匹配整个单词
+        #         pattern = r'\b' + re.escape(var.name) + r'\b'
+        #         if re.search(pattern, func.relative_code.code):
+        #             var.references.append(func.name)
