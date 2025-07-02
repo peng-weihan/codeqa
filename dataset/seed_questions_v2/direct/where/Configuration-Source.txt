@@ -1,0 +1,16 @@
+//环境与全局配置（14）
+
+//单一实体
+Where are the related configurations set in <Module> module?
+Where are the related configurations set in <Function> function?
+Where are the related configurations set in <Class> class?
+
+//无实体
+Where is the application’s main configuration file?
+Where can I find the database connection settings if it has?
+Where is the database migration tool configuration if it has?
+Where can I modify the connection pool parameters if it has?
+Where can I modify the logging levels for different packages or modules if it has?
+Where is the log output format and appender (console、file) configured if it has?
+Where can I find the metrics/monitoring configuration for the application if it has?
+Where are the external service endpoints configured if it has?

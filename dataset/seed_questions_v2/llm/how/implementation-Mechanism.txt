@@ -1,0 +1,39 @@
+How is <Feature> implemented in <Module>?
+How to implement <Feature> in <Module>?
+How to implement <Feature> using <Tech>?
+How to implement <Feature> to optimize <Process> in <Scenario>?
+How does <Feature> work for <Component> in this implementation?
+How does <Function> handle <Exception> if it occurs?
+How does <Feature> handle <Condition> in <Scenario>?
+How does <Component> handle <Specific Condition> in <Scenario>?
+How does the system handle <Feature> communication during <Scenario>?
+How does <FunctionA> coordinate with <FunctionB> to implement <Feature>?
+How do multiple <Function>s within <Module> coordinate to implement <Feature>?
+How do asynchronous <Function>s in <Module> coordinate to complete <Feature> workflow?
+How do callback-based <Function>s coordinate to handle <Event> in <Scenario>?
+How does <Function> invoke and handle results from <HelperFunction> when implementing <Feature>?
+How does <Function> coordinate with <Function> to implement <Feature>?
+How do public and private <Function>s within <Class> interact to execute <Feature>?
+How does <Function> within <Class> collaborate with other methods to fulfill <Feature>?
+How do multiple <Function>s within <Class> coordinate to realize <Feature>?
+How do <ClassA> and <ClassB> within <Module> collaborate to implement <Feature>?
+How do plugin modules coordinate with core <Module> to extend <Feature>?
+How does <ModuleA> coordinate with <ModuleB> to implement cross-cutting <Feature>?
+How does <Module> coordinate with other modules to implement <Feature>?
+How do API and service <Module>s coordinate to handle <Request> and <Response>?
+How does the orchestration module coordinate with worker modules to execute <Feature>?
+How is <Variable> initialized and validated in <Function>?
+How is <Variable> assigned default values in <Function>?
+How is <Variable> transformed or sanitized before use in <Function>?
+How is <Condition> evaluated and handled in <Function>?
+How does <Function> manage edge-case <Condition>s without throwing errors?
+How does <Function> implement guard clauses to simplify <Condition> logic?
+How does <Function> prioritize multiple <Condition>s in <Module>?
+How does <Function> handle <Parameter> in <Scenario>?
+How does <Component> respond to specific <Condition> in <Scenario>?
+How does <Component> handle <Operation> during <Scenario>?
+How does <File> handle <Process> during <Scenario> when implementing <Feature>?
+How does <Function> handle <Condition> in <Module>?
+How does <File> handle <Variable> in <Function>?
+How do getter and setter <Function>s coordinate to enforce invariants in <Class>?
+How do feature-specific <Module>s interact to deliver end-to-end functionality?

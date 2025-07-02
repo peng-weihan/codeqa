@@ -1,0 +1,46 @@
+Why does <Function> behave differently when <Parameter> is undefined or null?
+Why does <Function> mutate its inputs unexpectedly during <Process>?
+Why does <Function> unexpectedly return undefined in edge cases of <Scenario>?
+Why does invoking <Function> inside <Component> cause an infinite loop under certain <Scenario>?
+Why does <Function> fail in <Situation> involving high concurrency?
+Why does <Function> only throw an error in production but not in development?
+Why does <Function> return different results when called in a loop versus a single call?
+Why does <Function> not respect the default value of <Parameter> under <Scenario>?
+Why does <Function> ignore async/await behavior when called within <Module>?
+Why does <Function> lose context (this) during <Process>?
+Why does <Feature> work when tested independently but break when integrated into <Module>?
+Why does <Module> behave inconsistently when imported in different parts of the system?
+Why does <Module> return different outputs for the same inputs under seemingly identical <Scenario>?
+Why does <Component> crash only when used in a specific <Scenario>?
+Why does <Module> fail to load properly when bundled with <Tool>?
+Why does <Component> only fail when rendered as a child of <Parent>?
+Why does <Module> not share state properly across instances under <Scenario>?
+Why does <Component> not reflect updated props in <Scenario>?
+Why does <Module> conflict with <Library> only after updating <Dependency>?
+Why does <Algorithm> unexpectedly skip certain inputs when executed in <Scenario>?
+Why does <Algorithm> fail to terminate under certain input sequences?
+Why does <Algorithm> produce duplicate outputs in <Scenario>?
+Why does <Algorithm> behave differently when input is sorted versus unsorted?
+Why does <Algorithm> incorrectly detect edge cases of <Data>?
+Why does <Algorithm> generate inconsistent results under floating-point precision?
+Why does <Parameter> mutate during <Process> even though it is passed as a constant reference?
+Why does <Variable> change value unexpectedly between two invocations of <Function>?
+Why does <Object> lose nested properties during <Serialization/Deserialization>?
+Why does <Parameter> retain previous value after reassignment in <Function>?
+Why does <Array> reference change even though it wasn’t explicitly reassigned?
+Why does <Object> prototype unexpectedly mutate during <Execution>?
+Why does the state persist between runs of <Function> even though it should reset?
+Why does <Config> introduce unexpected behavior in <Module>?
+Why does <Component> crash only when used in a specific <Scenario>?
+Why does enabling <Flag> silently disables another feature in <Component>?
+Why does <Module> behave differently in test vs. staging environment?
+Why does <Feature> break after toggling <Setting> in <Config>?
+Why does <Framework> default configuration conflict with custom settings in <Scenario>?
+Why does switching to <Build Tool> causes side effects in <Module>?
+Why does <Function> fail in <Situation> involving high concurrency?
+Why does <Variable> change value unexpectedly between two invocations of <Function>?
+Why does <Lock> not prevent race condition under <Scenario>?
+Why does <Task> execute out of order in <Workflow>?
+Why does <Promise> never resolve under a high load in <Scenario>?
+Why does shared state in <Module> become inconsistent during concurrent access?
+

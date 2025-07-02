@@ -1,0 +1,17 @@
+What is the data transformation process within the <Component>?
+What stages does data go through in <Component> before reaching its final output?
+What is the data propagation path from <ModuleA> to <ModuleB>?
+What intermediate components participate in the dataflow from <ComponentA> to <ComponentB>?
+What transformations are applied to data when flowing between <ModuleA> and <ModuleB>?
+What abstraction layers mediate the dataflow from <Component> to the database?
+What is the data validation or cleansing strategy used in <Component>?
+What happens when dataflow in <Component> encounters invalid or missing data?
+What are the main control branches in <Component> and what triggers them?
+What sequence of operations does <Component> follow upon receiving a request?
+What is the control propagation path from <ModuleA> to <ModuleB>?
+What components coordinate together to determine execution flow in <Feature>?
+What role does <Class> play in directing controlflow for <Feature>?
+What fallback strategies are applied when <Component> encounters runtime exceptions?
+What data-driven conditions trigger control transitions in <Component>?
+What are the output data variants under different control paths in <Component>?
+What design patterns are used to separate control responsibilities from data operations in <Component>?

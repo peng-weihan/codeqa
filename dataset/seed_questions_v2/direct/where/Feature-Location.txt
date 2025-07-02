@@ -1,0 +1,21 @@
+//单一实体
+//Module
+Where can I find the core logic of implementing its functionality in the <Module> module?
+Where are the key classes or methods in <Module> that drive this functionality?
+
+//Class
+Where can I find the core logic of implementing its feature in the <Class> class?
+Where within <Class> are the algorithms or state changes for this feature performed?
+
+//Function
+Where can I find the core logic or algorithm of the <Function> function?
+Where is the catch block or error handler for <Function> located?
+Where do we log or recover from errors raised by <Function>?
+Where can I find the code that handles the error thrown from <Function> function?
+
+//无实体
+Where can I find the logic responsible for authenticating or authorizing if it has?
+Where does the authorization policy get applied before each request if it has?
+Where does the system apply security checks or permission validations if it has?
+Where can I find the logic responsible for loading configuration files at startup if it has?
+Where can I find the logic responsible for connecting to the database if it has?

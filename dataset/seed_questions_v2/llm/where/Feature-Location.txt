@@ -1,0 +1,25 @@
+Where can I find the code responsible for handling <Functionality> in the codebase?
+Where should I look to see who calls or orchestrates <Functionality>?
+Where contains the core entry point for <Feature> feature?
+Where can I locate the main class or method that launches <Feature>?
+Where can I find the core implementation for <Feature> feature in the codebase?
+Where can I locate the source files in <Module> that define <feature>?
+Where is the code that implements the <feature> in <Module>?
+Where does <function> function handle the <parameter> parameter?
+Where in <function> is <parameter> validated or transformed?
+Where in the codepath of <function> does it branch on <parameter>?
+Where can I find the core algorithm of implementing <Feature> in the codebase?
+Where in the repository are the algorithmic steps for <Feature> coded?
+Where does the implementation of <Feature>’s main loop or recursion reside?
+Where can I find the code that handles the <logic> logic in the repository?
+Where are the rules or conditions for <logic> evaluated in code?
+Where can I see the entrypoint that invokes <logic> processing?
+Where can I find the implementation of the <System> checks, specifically the one that raises <Error>?
+Where in the codebase does the check trigger and throw <Error>?
+Where is <Error> generated in the code snippet if it occurs?
+Where in the exception-handling path is <Error> instantiated?
+Where can I see the code that throws <Error> under these conditions?
+Where can I find the code section that generates the error message with the incorrect hint about <Issue>?
+Where can I find the implementation of the <Warning> in the codebase?
+Where can I find the logic that determines the assignment of <Variable>?
+Where in the data flow does <Variable> get its value calculated?

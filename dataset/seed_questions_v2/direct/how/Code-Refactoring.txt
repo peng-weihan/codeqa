@@ -1,0 +1,39 @@
+//Module、Class、Function
+//单一实体
+How to improve the internal structure of <Module> to enhance testability and modularity?
+How to modularize <Module> to reduce the cognitive load for future developers?
+How to apply consistent layering or architectural conventions within <Module>?
+How to replace duplicate blocks in <Module> with a strategy-based approach?
+How to simplify <Module> logic by deferring non-critical operations or introducing caching?
+
+How to rename member variables in <Class> to improve clarity?
+How to simplify the implementation of <Class>?
+How to simplify the implementation of <Class> by eliminating unnecessary dependencies?
+How to improve the data structure of <Class> to reduce complexity?
+
+How to refactor <Function> into two sub functions to improve readability and maintainability?
+How to refactor function <Function> to improve readability, maintainability, and error handling?
+How to restructure function <Function> to improve its logical clarity and error resilience?
+How to refactor <Function> to reduce complexity and eliminate deeply nested logic?
+How to simplify nested conditions and loops in <Function>?
+How to simplify control flow in <Function> by break/continue/early return statements?
+How to extract responsibility-specific blocks from <Function> into smaller helper functions?
+How to split <Function> into multiple functions to improve readability?
+How to remove duplication in <Function> by introducing reusable function?
+How to extract a piece of code from <Function> into a tool function?
+How to extract common logic from multiple branches in <Function> to improve maintainability?
+How to modularize shared behavior in <Function> into a decorator or middleware?
+How to rename <Function> to better reflect its purpose?
+How to remove inline duplication in <Function> through parameterized utilities?
+How to isolate logic from <Function> to follow the Single Responsibility Principle?
+
+//混合实体
+How to rename <Parameter> in <Function> to better reflect its purpose?
+How to remove redundant <Parameter> in <Function>?
+How is `<Class>` designed?
+Which Class does `<Class>` inherit from, and how is its Variable defined?
+How is the <Class> typically instantiated and used within the codebase?
+How is the `<Method>` currently being used in the `<Class>`?
+How is the `<Function>` function implemented, and what does it do in this context?
+How is `<Function>` typically used within this codebase, and are there any existing examples of handling it?
+How is the `<Module>` implementated?

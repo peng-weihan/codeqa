@@ -1,0 +1,45 @@
+//询问模块、类、函数、代码段、变量等的功能或设计目的
+//单一实体
+//Module
+What is the purpose of the <Module> module?
+What problem does the <Module> module aim to solve?
+What was the motivation for introducing the <Module> module?
+What services does the <Module> module offer to other components?
+What part does the <Module> module play in the overall architecture?
+
+//Class
+What is the purpose of the <Class> class?
+What functionality does the <Class> class provide?
+What role does the <Class> class play in the overall design?
+What services does the <Class> class offer to other components?
+What methods are implemented in the <Class> class and what do they do?
+What limitations does the <Class> class have?
+What context is required for the <Class> class to function correctly?
+
+//Function
+What is the purpose of the <Function> function?
+What functionality is the <Function> function designed to offer?
+What issue or challenge motivated the creation of the <Function> function?
+What problem does the <Function> function aim to solve?
+What is the intended outcome of the <Function> function?
+What does the <Function> function aim to produce or modify?
+What is the desired state after the <Function> function completes?
+What condition is the <Function> function designed to satisfy?
+What responsibility does the <Function> function fulfill in the system?
+What is the significance of the <Function> function in the context of the application?
+What is the specific role of the <Function> function in data processing or control flow?
+What part of the data transformation pipeline does the <Function> function contribute to?
+What layer of logic does the <Function> function represent (e.g., business, utility, controller)?
+What would be the consequences of removing or disabling the <Function> function from the application?
+What kind of processing is the <Function> function responsible for?
+What kind of side effects (if any) does the <Function> function introduce?
+What changes are expected in the system after calling the <Function> function?
+What do the arguments to the <Function> function represent semantically?
+What information does the return value of the <Function> function convey?
+What result does the <Function> function return, and what does it signify?
+What does the name of the <Function> function suggest about its behavior?
+What expectations does the name of the <Function> function set for its implementation?
+What design intent is captured in the name of the <Function> function?
+
+//混合实体
+What is the main responsibility of the <Function> function within the <Module> module?

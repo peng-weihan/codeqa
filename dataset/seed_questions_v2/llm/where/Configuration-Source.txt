@@ -1,0 +1,3 @@
+Where can I find the environment variable definitions and default values for <EnvVar>?
+Where can I find the API keys and secrets for external services <service>?
+Where can I find the configuration for third-party api <API>?

@@ -1,0 +1,22 @@
+//直接定义在代码中的，可以直接找到答案并回答的问题
+//单一实体
+//Module
+What classes are defined in the <Module> module?
+What functions are included in the <Module> module?
+What variables are declared in the <Module> module?
+//Class
+What methods are implemented in the <Class> class?
+What functions are included in the <Class> class?
+What member variables are defined in the <Class> class?
+//Function
+What variables are associated with the <Function> function?
+What parameters are accepted by the <Function> function?
+What are the expected inputs and outputs of the <Function> function, and how should it behave with nested compound models?
+What are the expected input and output types for the <Function> function used in the code snippet?
+What are the expected input parameters and return values for the <Function> function, especially when dealing with empty lists or arrays?
+What are the expected parameters and expected behavior of the <Function> function when used in the file upload process?
+What are the expected parameters and return values for the <Function> function used in the query?
+
+//混合实体
+What are the expected parameters and return values for the <Function> function in the <Module> module?
+What are the expected parameters and return values for the <Function> function used in the <Module> module?

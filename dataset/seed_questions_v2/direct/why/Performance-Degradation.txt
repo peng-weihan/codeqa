@@ -1,0 +1,13 @@
+//单一实体
+
+//Module
+Why does <Module> fail to scale efficiently in high-concurrency environments?
+
+//Class
+Why does repeated instantiation of <Class> cause memory and performance issues?
+Why is <Class> method invocation slower than expected in production workloads?
+
+//Function
+Why does <Function> degrade in performance after code refactoring?
+
+

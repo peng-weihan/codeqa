@@ -1,0 +1,28 @@
+Why was <Tech> selected for <Module>?
+Why was <Tech> preferred over <Alternative_tech> in <Component>?
+Why was <Tech> adopted in <Scenario> instead of <Alternative_tech>?
+Why was <Algorithm> selected for <Function> instead of other options?
+Why was <Database> selected to store data instead of other options?
+Why was <Tech> considered unsuitable for <Scenario>?
+Why was <Tech> chosen despite its limited community support?
+Why was <Tech> adopted despite its known limitations in <Component>?
+Why was a custom solution developed instead of using <Existing_tech>?
+Why was <Legacy_tech> replaced with <Tech> in <Module>?
+Why was <Tech> migration necessary for <Component>?
+Why did the team transition from <Tech> to <New_tech> after <Observation>?
+Why was <Tech> chosen to modernize the infrastructure in <Scenario>?
+Why was <Architecture> chosen for <Module> module?
+Why was <Pattern> (e.g., MVC, CQRS) adopted for <Module> module?
+Why was synchronous communication chosen for <Service> instead of asynchronous?
+Why was event-driven architecture avoided for <Module>?
+Why was caching chosen for <Module / Class / Function> instead of real-time processing?
+Why was <Tech> introduced to support <Feature>?
+Why was lazy loading implemented for data load in <Function> function?
+Why does <Algorithm> sacrifice accuracy for speed in <Function>?
+Why does <Tech> improve performance in <Scenario>?
+Why does the use of <Tech> lead to simpler <Process>?
+Why does <Design> rely on <Tech> to fulfill <Feature>?
+Why was <Tech> integrated into <Module> to realize <Design>?
+Why does <Component> depend on <Tech> to achieve modularity?
+Why was <Tech> used in <Service> to enable <Design_goal>?
+Why is <Tech> considered more maintainable than <Legacy_tech> in <Module>?

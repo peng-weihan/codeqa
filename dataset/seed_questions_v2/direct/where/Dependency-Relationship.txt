@@ -1,0 +1,27 @@
+//单一实体
+//Module
+Where can I find the bootstrap or loader logic that initializes the dependent module <Module>?
+Where in the build or manifest files can I see which modules <Module> pulls in?
+Where can I find all modules that import or reference <Module>?
+Where does <Module> register its plugin or extension points used by other modules?
+Where is the dependency graph defined for <Module> in the project configuration?
+Where can I locate the code that wires <Module> into the application startup sequence?
+Where can I find the conditional logic that enables or disables <Module> at runtime?
+
+//Class
+Where can I find which classes instantiate or extend <Class>?
+Where in the code does <Class> reference utility or helper classes?
+Where are the factory or builder classes for <Class> declared and used?
+Where can I find the adapter or decorator class that wraps <Class>?
+Where is the inheritance hierarchy for <Class> declared or documented?
+Where does <Class> register itself with the dependency-injection container or service locator?
+Where can I find the extension points where <Class> is subclassed by plugins?
+
+//Function
+Where can I find the core logic or algorithm of the <Function> function?
+Where in the codebase is <Function> invoked by other functions or controllers?
+Where can I find all callers of <Function> across the repository?
+Where is the callback or hook that <Function> uses to extend behavior?
+Where does <Function> import or rely on shared utility functions?
+Where are the unit tests or mocks for <Function> defined, indicating its dependencies?
+Where does <Function> delegate to lower-level helper functions?

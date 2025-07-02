@@ -1,0 +1,18 @@
+Where are the dependency declarations between <ModuleA> and <ModuleB> defined?
+Where in the code does <ModuleA> reference or invoke <ModuleB>?
+Where can I locate the composition code that binds <ClassA> to <ClassB>?
+Where does <Class> rely on <HelperClass> for its core operations?
+Where can I locate the code that injects <DependencyClass> into <ConsumerClass>?
+Where does <Function> handle the <parameter> parameter, and where is it validated or transformed?
+Where can I see that <ModuleA> delegates work to <ClassB>?
+Where in the startup sequence does <ModuleA> invoke <FunctionA>?
+Where does <ClassA> pass data into <FunctionB> and handle its results?
+Where can I find the integration code linking <FunctionA> back to <ModuleB>?
+Where is the orchestration layer that coordinates <ClassA> and <ClassB>?
+Where can I locate the configuration or annotation that binds <ClassA> to <ModuleA>?
+Where in the API layer does <FunctionA> map HTTP requests into <ClassB> methods?
+Where does the event bus or message broker connect <ModuleA> with <ModuleB>?
+Where can I find the chain of responsibility that passes through <FunctionA> → <ClassB> → <ModuleC>?
+Where can I see the event-handler registration that links <FunctionA> to <ClassB>?
+Where is the caching layer injected between <FunctionA> and <FunctionB>?
+Where does the retry/fallback logic for <FunctionA> → <ModuleB> reside?
