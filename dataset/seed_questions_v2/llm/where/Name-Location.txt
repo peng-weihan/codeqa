@@ -1,0 +1,6 @@
+Where can I find the definition or documentation for the <Variable> variable?
+Where can I find the assignment of the <Variable> variable in the codebase?
+Where can I find the logic that determines the assignment of <Variable>?
+Where can I find the modification of the <Variable> variable in the codebase?
+Where can I find the definition of the <Variable> variable in the <Module> module?
+Where can I find the definition of the <Variable> variable in the <Class> class?

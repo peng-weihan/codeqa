@@ -1,0 +1,10 @@
+//询问代码设计原理（33）
+
+
+//单一实体
+Why does module <Module> consist of its multiple classes?
+Why does <Function> function select current algorithm?
+
+//混合实体
+Why does <Module> contain <Class>?
+Why is <Function> designed to be part of <Class>?

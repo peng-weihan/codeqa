@@ -1,0 +1,6 @@
+What purpose does the <Module> module serve in the context of <Feature>?
+What responsibility does the <Method> method in the <Class> class handle?
+What is the role of the <Parameter> parameter in the <Function> function?
+What is the member variable <Variable> in the <Class> class used for?
+What is the role of the <Method> method in the <Class> class?
+What does the <Variable> variable in the <Function> function represent?

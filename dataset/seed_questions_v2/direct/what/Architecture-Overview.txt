@@ -1,0 +1,19 @@
+// 询问系统架构的相关问题（偏high-level的问题）（36）
+// 单一实体
+What is the architecture of the <Module> in this system?
+What is the layered structure of the <Module>?
+What are the core layers and their responsibilities in the <Module> architecture?
+What architectural style (e.g., hexagonal, layered) is adopted in the <Module>?
+What subsystems constitute the <Module> and how do they interact?
+What are the public interfaces exposed by <Module> to other parts of the system?
+What design patterns are used in <Module> module and how are they implemented?
+What patterns does <Module> use for handling state, dependencies, or control flow?
+What common design principles (e.g., SOLID) are applied in <Module>?
+What is the communication pattern between <Module> and external APIs?
+What protocol (e.g., REST, gRPC, message queue) is used between <Module> and external APIs?
+What fault-tolerance or retry strategy is adopted by <Module> in external calls?
+What interface abstraction isolates <Module> from external API changes?
+
+What design patterns are used in <Class> class and how are they implemented?
+What implementation patterns does <Class> use to support extensibility or reusability?
+What common design principles (e.g., SOLID) are applied in <Class>?

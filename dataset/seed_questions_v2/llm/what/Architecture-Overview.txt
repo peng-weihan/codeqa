@@ -1,0 +1,21 @@
+What architectural principles govern the interaction of <ModuleA> and <ModuleB>?
+What is the architecture of the <Component> in this system?
+What is the coordination strategy for <ComponentA> and <ComponentB>?
+What contracts or protocols govern the interaction between <ComponentA> and <ComponentB>?
+What is the lifecycle management strategy of <Component>?
+What interaction model (e.g., event-driven, request-response) is used between <ComponentA> and <ComponentB>?
+What is the overall approach to implementing <Feature> in this system?
+What is the main method used to implement <Feature> in this architecture?
+What is the design-level approach to integrating <Feature> into this system?
+What mechanisms are employed to realize <Feature> in the overall system design?
+What modules collaborate to achieve <Feature> in this system?
+What are the architectural trade-offs made when integrating <Feature>?
+What abstraction layers isolate <Feature> logic from the rest of the system?
+What role does <Class>/<Component> play in delivering <Feature>'s functionality?
+What are the stages or steps in realizing <Feature> from input to output?
+What technologies support the scalability of <Component>?
+What caching or batching mechanisms enhance <Component>'s performance under load?
+What tech stack enables <Component> to scale with user growth?
+What monitoring and autoscaling tools are integrated with <Component>?
+What architectural strategies are adopted to ensure <Component> handles peak traffic?
+What observability and telemetry tools are used to monitor <Component>'s behavior?

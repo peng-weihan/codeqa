@@ -1,0 +1,29 @@
+Why is <Deployment_strategy> adopted for <Feature>?
+Why is <Component> excluded from <Interface> in <Design> to reduce clutter?
+Why is <Design> adopted for <Component> in comparison to <Alternative_approach>?
+Why is <Design> adopted to address <Observation>?
+Why is <Design> adopted for <Component> in <Scenario>?
+Why is <Design> adopted for <Feature> in <Component> to support <Scenario>?
+Why is <Design> adopted for <Scenario>?
+Why is <Pattern/architecture> selected for <System>?
+Why is <Function> function relevant to <Feature> feature?
+Why does <Function> function retry <Operation> multiple times?
+Why is <Parameter> not sized to <Configuration> in <Design>?
+Why does <Module> include redundant <Config> checks?
+Why is <Component> designed with <Config> for runtime settings management?
+Why is <Parameter> passed into <Function> instead of defining a different approach for <Scenario>?
+Why is <Parameter> validated in <Function> for <Scenario>, and what impact does this have on <Observation>?
+Why does <Component> handle <Error> differently in <Scenario>?
+Why does <Module> include <Error> handling mechanism?
+Why is <Function> designed to throw <Error> when <Condition>?
+Why does function <Function> return <Value> when <Condition>?
+Why does function <Function> consider different <Condition>s?
+Why is <Algorithm> chosen in function <Function>?
+Why is <Component> designed to be modular and decoupled in <Service>?
+Why is <Module> designed in this way to fulfill the functional requirements of <Feature>?
+Why does <Module> follow <Design pattern> to fulfill the requirements of <Scenario>?
+Why does the current <Design> encourage the use of global variables in <Scenario>?
+Why are major changes needed to align <Component> with <Component> after <Process>?
+Why does <Feature> rely on <Behavior> that is specific to <Scenario>?
+Why is <Design> adopted to ensure <Observation> in <Scenario>?
+Why is <Function> designed to be part of <Module>?

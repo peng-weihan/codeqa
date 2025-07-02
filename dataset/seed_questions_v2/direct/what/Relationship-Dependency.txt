@@ -1,0 +1,77 @@
+// 询问代码的依赖关系和变更影响分析
+//单一实体
+//Module
+What modules does the <Module> module depend on?
+What external modules does the <Module> module depend on?
+What internal modules or components within the system does the <Module> module rely on?
+What dependencies does the <Module> module introduce in terms of system resources or hardware?
+What modules depend on the <Module> module?
+What modules will be affected by changes in the <Module> module?
+What downstream modules depend on the <Module> module?
+What other modules depend on specific features or functionalities provided by the <Module> module?
+What is the relationship between the <Module> module and database transactions?
+What modules will be affected by changes in the <Module> module?
+What is the cascading effect of an update to the <Module> module on other modules?
+//Class
+What other classes does the <Class> class depend on?
+What modules or components does the <Class> class rely on for its functionality?
+What external libraries or frameworks are required for the <Class> class to operate correctly?
+What configuration settings or parameters does the <Class> class depend on?
+What base classes or mixins does the <Class> class inherit from?
+What services or data sources must be available for the <Class> class to work as intended?
+What constraints or assumptions underlie the <Class> class’s design?
+What utility functions or helpers are required by the <Class> class?
+What other classes depend on the <Class> class?
+What subclasses or derived types are built from the <Class> class?
+What modules or functions directly use or instantiate the <Class> class?
+What test cases or fixtures are tightly coupled to the <Class> class?
+What parts of the system break if the <Class> class is removed or refactored?
+What APIs expose the behavior of the <Class> class to external consumers?
+What is the relationship between <Class> and individual models when computing a specific matrix?
+How does the <Class> class interact with a database model or ORM layer?
+What is the relationship between the <Class> class and its methods in terms of state management?
+How does the <Class> class relate to configuration or environment settings?
+What role does the <Class> class play in a layered or modular architecture?
+How does the <Class> class interact with exceptions and error-handling flows?
+What is the relationship between the <Class> class and form or UI generation components?
+How does the <Class> class interact with serializers, validators, or adapters?
+How do different attributes or methods within the <Class> class relate to each other logically or functionally?
+What classes or modules would be affected by changes in the <Class> class?
+What is the cascading effect of modifying a method in the <Class> class?
+What parts of the codebase need to be updated if the <Class> class changes its interface?
+How would a change to the initialization logic of the <Class> class affect its consumers?
+What downstream services or components would fail if the <Class> class is incorrectly modified?
+What test cases need to be revalidated after changes to the <Class> class?
+//Function
+What utility functions does <Function> rely on?
+What variables or attributes does the <Function> function depend on?
+What parameters are required by the <Function> function, and how are they used?
+What global state or configuration does the <Function> function rely on?
+What classes or objects are instantiated or invoked within the <Function> function?
+What external modules or libraries does the <Function> function depend on?
+What database queries or API calls are triggered by the <Function> function?
+What context or environment is necessary for the <Function> function to run successfully?
+What other functions or methods call the <Function> function?
+What modules or classes use the <Function> function directly?
+What tests, hooks, or signals are triggered by or bound to the <Function> function?
+What templates, endpoints, or routes depend on the <Function> function?
+What features or behaviors in the system break if the <Function> function is modified or removed?
+What command-line tools or scripts rely on the <Function> function?
+What is the relationship between the <Function> function and global variables in the module?
+How do helper functions or inner functions contribute to the logic of the <Function> function?
+How does the <Function> function relate to error-handling or logging mechanisms?
+What role does the <Function> function play in a transaction or business logic pipeline?
+How does the <Function> function relate to a form submission or request-handling process?
+How does the <Function> function interact with decorators, hooks, or middleware?
+How are return values of the <Function> function used elsewhere in the system?
+What functions or components would break if the signature of the <Function> function changes?
+What is the impact of modifying the return value of the <Function> function?
+What downstream behavior is affected by logic changes in the <Function> function?
+How would a performance regression in the <Function> function impact the user experience?
+What test cases or documentation need updates if the <Function> function changes?
+What is the cascading effect of replacing or deprecating the <Function> function?
+
+//混合实体
+What is the relationship between the <Module> module and the <Class> class?
+What is the relationship between the <Module> module and the <Function> function?
+How does the <Function> function interact with the <Class> class?

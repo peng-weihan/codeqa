@@ -1,0 +1,19 @@
+
+Why does <Module> experience performance degradation under <Scenario>?
+Why is <Module> slower after enabling <Config>?
+Why does <Module> underperform when handling <Scenario> with large data volume?
+Why does <Module> degrade in performance during <Scenario> on specific platforms?
+Why does <Function> take significantly longer to execute when invoked with large <Parameter>?
+Why is the performance of <Function> inconsistent across different <Scenario>?
+Why does <Function> slow down when invoked with <Parameter> in <Scenario>?
+Why is <Function> not optimized for <Parameter> types used in <Scenario>?
+Why does <Class> fail to maintain performance during <Process> after modifying <Config>?
+Why does <Config> impact <Class> performance in batch <Process>?
+Why does <Component> exhibit performance degradation under <Scenario>?
+Why does adjusting <Config> lead to a performance drop in <Component>?
+Why does <Component> built on <Tech> show higher latency than expected?
+Why is <Component>’s performance worse after migrating to <Tech>?
+Why does <Service> perform poorly in <Scenario> after updating <Config>?
+Why is <Service> response time significantly longer in <Scenario> with custom <Config>?
+Why does <API> degrade in performance when processing <Parameter> with high cardinality?
+Why is <API> call latency increased with optional <Parameter> enabled?

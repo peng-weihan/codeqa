@@ -844,7 +844,6 @@ class CodeAnalyzer:
         
         self.repository_structure.variables.append(var_def)
 
-        
     def process_variable(self, index: int) :
         """处理单个变量，查找引用它的函数"""
         functions = self.repository_structure.functions

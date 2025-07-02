@@ -1,0 +1,21 @@
+//询问如何实现某个功能或模块的代码细节（52）
+//单一实体
+How does <Module> communicate with other modules?
+How do classes in <Module> coordinate with each other to implement module’s functionality?
+
+How does functions in <Class> coordinate with each other to implement class’s functionality?
+How do static and instance functions in <Class> coordinate to implement class-level logic?
+
+How does <Function> handle its parameters?
+How does <Function> construct its return value?
+How does <Function> handle multiple conditions?
+How do constructor and initializer functions coordinate to set up <Class> state?
+//多实体
+How do <Class> and <Function> collaborate?
+How does <Function> validate or sanitize its <Parameter>?
+How does <Function> handle optional <Parameter> when omitted?
+How does <Function> process multiple <Parameter>s to ensure consistency?
+How does <Function> apply default behaviors for missing <Parameter>s?
+
+
+

@@ -1,0 +1,46 @@
+//询问关于数据流和控制流的相关问题
+//单一实体
+//Module
+What is the dataflow structure in the <Module>?
+What are the key data entry and exit points in the <Module>?
+What are the main data producers and consumers within the <Module>?
+What mechanisms are in place to ensure data consistency in <Module>?
+What dataflow-level retry or buffering strategies are implemented in <Module>?
+What is the controlflow structure in the <Module>?
+What conditions govern the transitions between control states in <Module>?
+What controlflow mechanisms are employed to handle failures in <Module>?
+What mechanisms guarantee control recovery after partial failure in <Module>?
+What role does incoming data play in selecting control branches in <Module>?
+What control decisions determine the routing of data in <Module>?
+What architectural abstractions help decouple dataflow and controlflow in <Module>?
+//Class
+What is the dataflow structure inside the <Class>?
+What are the input/output data fields processed by <Class>?
+What are the primary data roles (source/transform/sink) played by <Class>?
+What data integrity mechanisms are implemented in <Class>?
+What control responsibilities are encapsulated in <Class>?
+What are the main control branches or decision points within <Class>?
+What other classes does <Class> delegate control to?
+What part of <Class> initiates external controlflow (e.g. callbacks, events)?
+What classes supply data to <Class> and what classes consume its outputs?
+What dataflow dependencies does <Class> have on other utility or service classes?
+What data-driven conditions lead to control redirection inside <Class>?
+What control logic in <Class> determines the data output pathways?
+What patterns (e.g., Command, Strategy) are used in <Class> to isolate control logic from data handling?
+//Function
+What is the input-output dataflow pattern in <Function>?
+What intermediate variables or transformations exist in <Function>'s data path?
+What data dependencies are introduced within <Function>?
+What upstream functions call <Function> with what data payloads?
+What downstream effects does data returned from <Function> have on the system?
+What are the main data mutation steps within <Function>?
+What input validation and sanitization strategies are used in <Function>?
+What conditional branches exist in <Function> and what do they control?
+What triggers early return or control redirection in <Function>?
+What functions are conditionally invoked by <Function>?
+What is the call graph surrounding <Function> during normal and exceptional execution?
+What runtime data triggers different control branches in <Function>?
+What role do parameter values play in controlflow within <Function>?
+What control decisions in <Function> shape the return value?
+What refactoring could help separate data computation and control branching in <Function>?
+What abstractions or helper methods are used to isolate side effects in <Function>?

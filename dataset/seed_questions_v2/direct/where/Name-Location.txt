@@ -1,0 +1,19 @@
+//单一实体
+//Module
+Where can I find the definition of the <Module> module?
+Where can I find the implementation of the <Module> module in the codebase?
+Where can I find the <Module> module in the codebase?
+Where is the <Module> module defined in the codebase?
+Where can I find the definition of the <Module> module and its Attributes?
+
+//Class
+Where can I find the implementation of the <Class> class in the codebase?
+Where can I find the definition of the <Class> class?
+Where can I find the definition of the <Class> class and its attributes?
+Where in the codebase is the <Class> class defined?
+
+//Function
+Where can I find the definition of the <Function> function?
+Where can I find the implementation of the <Function> function in the codebase?
+Where can I find the <Function> function and its parameters?
+Where in the codebase is the <Function> function defined?

@@ -1,0 +1,26 @@
+What is the relationship between the <Module> module and the <OtherModule> module?
+What is the relationship between the <Class> class and the <OtherClass> class?
+What is the relationship between the <Function> function and the <OtherFunction> function in terms of data flow?
+What variables or constants does the code <CodeSnippet> rely on?
+What functions or methods are invoked within the code <CodeSnippet>?
+What classes or objects are referenced in the code <CodeSnippet>?
+What configuration settings or environment variables does the code <CodeSnippet> depend on?
+What external libraries or modules are required for the code <CodeSnippet> to execute correctly?
+What input data is assumed to exist for the code <CodeSnippet> to work?
+What parts of the program rely on the behavior of the code <CodeSnippet>?
+What functions or methods include the code <CodeSnippet> or call it indirectly?
+What components would fail if the code <CodeSnippet> were modified or removed?
+What downstream computations depend on the result or side effect of the code <CodeSnippet>?
+What test cases are designed specifically to validate the behavior of the code <CodeSnippet>?
+What is the relationship between the code <CodeSnippet> and the enclosing function or method?
+How does the code <CodeSnippet> interact with class attributes or instance variables?
+What is the relationship between the code <CodeSnippet> and error-handling logic in the same block?
+How does the code <CodeSnippet> relate to preceding or succeeding lines in terms of control flow?
+How does the code <CodeSnippet> contribute to the return value or output of the function it resides in?
+What is the relationship between the code <CodeSnippet> and the current loop/branch/try block?
+What would be the impact of removing or modifying the code <CodeSnippet>?
+What changes elsewhere in the codebase would be necessary if the code <CodeSnippet>'s logic changes?
+How would a change in the code <CodeSnippet> affect its enclosing function's correctness?
+What errors or unexpected behavior might arise if the code <CodeSnippet> introduces a logic bug?
+What performance impact might be caused by inefficient operations in the code <CodeSnippet>?
+What is the potential risk of modifying the code <CodeSnippet> without understanding its dependencies?
