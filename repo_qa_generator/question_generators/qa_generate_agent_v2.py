@@ -1,6 +1,7 @@
 import os
 import random
 from typing import List
+import concurrent
 import openai
 from dotenv import load_dotenv
 from typing import List
@@ -117,15 +118,30 @@ class AgentQAGeneratorV2(BaseGenerator):
             
             return []
 
-    def generate_questions(self, repo_structure: RepositoryStructure) -> List[QAPair]:
+    def generate_questions(self, repo_structure: RepositoryStructure, file: str) -> List[QAPair]:
         """Generate questions based on seed questions"""
         print("Starting question generation...")
         questions = []
-        questions.extend(self.generate_questions_by_class(repo_structure))
-        questions.extend(self.generate_questions_by_function(repo_structure))
+        questions.extend(self.generate_questions_by_class_parallel(repo_structure, file))
+        questions.extend(self.generate_questions_by_function_parallel(repo_structure, file))
         return questions
     
-    def generate_questions_by_class(self, repo_structure: RepositoryStructure) -> List[QAPair]:
+    def generate_for_class(self, cls, prompt_template, file) -> List[QAPair]:
+        
+        class_description = f"Class: {cls}\n"
+        question_starts = ["how", "why", "what", "when"]
+        start = random.choice(question_starts)
+        seed_questions = self.random_select_seed_questions_by_category(start, num_questions=10)
+        prompt = prompt_template.format(class_description=class_description, seed_questions="\n".join(seed_questions))
+        result = self._generate_qa_pairs_with_llm(prompt)
+        print(f"Generated {len(result)} questions for class {cls.name}")
+        for q in result:
+            print(f"Question: {q.question}")
+            # 写文件操作，若写同一个文件，建议加锁；这里简化直接写
+        self.write_questions_to_file(result, file)
+        return result
+    
+    def generate_questions_by_class_parallel(self, repo_structure: RepositoryStructure, file: str) -> List[QAPair]:
         prompt_template = """
 You are an expert software research assistant.
 
@@ -134,18 +150,20 @@ Given:
 2. A list of seed questions that are general or vague.
 
 Task:
-1. For each seed question, transform it into one or more specific, concrete, and technically detailed questions that are clearly related to the class/module description.
-   - Do NOT create unrelated or completely new questions.
-   - If the seed question is vague, create clarifying questions to make it actionable.
-   - Maintain the style and intention of the original seed question while making it precise.
+1. Based on the seed questions and the class description, generate **one single question** that is:
+   - As difficult and complex as possible,
+   - Requires multi-hop reasoning or deep technical understanding,
+   - Not answerable by simple retrieval or direct lookup (i.e., not solvable by basic RAG methods),
+   - Clearly related to the class/module description,
+   - Technically precise and detailed,
+   - Reflects the style and intent of the original seed questions but goes significantly deeper.
+   - **Must not be a compound question** (e.g., no use of “and”, “or”, or comma-based subquestions),
+   - **Must be not too long and syntactically simple**
 
-2. For each generated specific question, evaluate its quality based on:
-   - Technical value: Is the question meaningful for understanding or analyzing the code?
-   - Relevance: Is it closely related to the provided class/module context?
-   - Clarity: Is the question clear and unambiguous?
-   - Actionability: Can the question be answered based on the given code context or prompt further useful investigation?
 
-3. Filter out questions that are low quality or not actionable. Only keep those that satisfy the above criteria.
+2. The question should encourage advanced analysis, integration of multiple concepts, or insight beyond surface-level information.
+
+3. Output only the single refined question without additional explanation or commentary.
 
 Input:
 Class Description:
@@ -153,6 +171,52 @@ Class Description:
 
 Seed Questions:
 {seed_questions}
+
+
+"""
+        questions = []
+        sampled_classes = random.sample(repo_structure.classes, k=min(50, len(repo_structure.classes)))
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
+            futures = [
+                executor.submit(self.generate_for_class, cls, prompt_template, file)
+                for cls in sampled_classes
+            ]
+            for future in concurrent.futures.as_completed(futures):
+                questions.extend(future.result())
+
+        return questions
+
+    def generate_questions_by_class(self, repo_structure: RepositoryStructure, file: str) -> List[QAPair]:
+        prompt_template = """
+You are an expert software research assistant.
+
+Given:
+1. A class description extracted from a software repository.
+2. A list of seed questions that are general or vague.
+
+Task:
+1. Based on the seed questions and the class description, generate **one single question** that is:
+   - As difficult and complex as possible,
+   - Requires multi-hop reasoning or deep technical understanding,
+   - Not answerable by simple retrieval or direct lookup (i.e., not solvable by basic RAG methods),
+   - Clearly related to the class/module description,
+   - Technically precise and detailed,
+   - Reflects the style and intent of the original seed questions but goes significantly deeper.
+   - **Must not be a compound question** (e.g., no use of “and”, “or”, or comma-based subquestions),
+   - **Must be not too long and syntactically simple**
+
+2. The question should encourage advanced analysis, integration of multiple concepts, or insight beyond surface-level information.
+
+3. Output only the single refined question without additional explanation or commentary.
+
+Input:
+Class Description:
+{class_description}
+
+Seed Questions:
+{seed_questions}
+
 
 """
         questions = []
@@ -165,10 +229,72 @@ Seed Questions:
             for q in result:
                 print(f"Question: {q.question}")
             questions.extend(result)
-            self.write_questions_to_file(result, "/home/stu/Desktop/my_codeqa/codeqa/dataset/concrete_questions/generated_questions_moatless_agent.jsonl")
+            self.write_questions_to_file(result, file)
         return questions
     
-    def generate_questions_by_function(self, repo_structure: RepositoryStructure) -> List[QAPair]:
+    def generate_for_function(self, func, prompt_template, file) -> List[QAPair]:
+        function_description = f"Function: {func}\n"
+        question_starts = ["how", "why", "what", "when"]
+    
+        start = random.choice(question_starts)
+        seed_questions = self.random_select_seed_questions_by_category(start, num_questions=10)
+        prompt = prompt_template.format(
+            function_description=function_description,
+            seed_questions="\n".join(seed_questions),
+            summary=self.generate_summary_of_repo(self.repo_structure)  # 注意这里self.repo_structure需可用，或者传入
+        )
+        result = self._generate_qa_pairs_with_llm(prompt)
+        # 输出日志
+        print(f"Generated {len(result)} questions for function {func.name} with start word '{start}'")
+        for q in result:
+            print(f"Question: {q.question}")
+        # 写文件操作，线程写同一文件请注意同步或改为不同文件
+        self.write_questions_to_file(result, file)
+        return result
+
+    def generate_questions_by_function_parallel(self, repo_structure: RepositoryStructure, file: str) -> List[QAPair]:
+        prompt_template = """
+You are an expert software research assistant.
+
+Given:
+1. A function description extracted from a software repository.
+2. A list of seed questions that are general or vague.
+
+Task:
+1. Based on the seed questions and the function description, generate **one single question** that is:
+   - As difficult and complex as possible,
+   - Requires multi-hop reasoning or deep technical understanding,
+   - Not answerable by simple retrieval or direct lookup (i.e., not solvable by basic RAG methods),
+   - Clearly related to the function description,
+   - Technically precise and detailed,
+   - Reflects the style and intent of the original seed questions but goes significantly deeper.
+
+2. The question should encourage advanced analysis, integration of multiple concepts, or insight beyond surface-level information.
+
+3. Output only the single refined question without additional explanation or commentary.
+
+Input:
+Function Description:
+{function_description}
+
+Seed Questions:
+{seed_questions}
+
+"""
+        questions = []
+        self.repo_structure = repo_structure  # 方便generate_for_function访问，如果需要，也可改成参数传递
+        sampled_functions = random.sample(repo_structure.functions, k=min(50, len(repo_structure.functions)))
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            futures = [
+                executor.submit(self.generate_for_function, func, prompt_template, file)
+                # for func in repo_structure.functions
+                for func in sampled_functions
+            ]
+            for future in concurrent.futures.as_completed(futures):
+                questions.extend(future.result())
+        return questions
+
+    def generate_questions_by_function(self, repo_structure: RepositoryStructure, file: str) -> List[QAPair]:
         prompt = """
 You are an expert software research assistant.
 
@@ -177,25 +303,25 @@ Given:
 2. A list of seed questions that are general or vague.
 
 Task:
-1. For each seed question, transform it into one or more specific, concrete, and technically detailed questions that are clearly related to the class/module description.
-   - Do NOT create unrelated or completely new questions.
-   - If the seed question is vague, create clarifying questions to make it actionable.
-   - Maintain the style and intention of the original seed question while making it precise.
+1. Based on the seed questions and the function description, generate **one single question** that is:
+   - As difficult and complex as possible,
+   - Requires multi-hop reasoning or deep technical understanding,
+   - Not answerable by simple retrieval or direct lookup (i.e., not solvable by basic RAG methods),
+   - Clearly related to the function description,
+   - Technically precise and detailed,
+   - Reflects the style and intent of the original seed questions but goes significantly deeper.
 
-2. For each generated specific question, evaluate its quality based on:
-   - Technical value: Is the question meaningful for understanding or analyzing the code?
-   - Relevance: Is it closely related to the provided class/module context?
-   - Clarity: Is the question clear and unambiguous?
-   - Actionability: Can the question be answered based on the given code context or prompt further useful investigation?
+2. The question should encourage advanced analysis, integration of multiple concepts, or insight beyond surface-level information.
 
-3. Filter out questions that are low quality or not actionable. Only keep those that satisfy the above criteria.
+3. Output only the single refined question without additional explanation or commentary.
 
 Input:
-Class Description:
+Function Description:
 {function_description}
 
 Seed Questions:
 {seed_questions}
+
 """
         questions = []
         for func in repo_structure.functions:
@@ -204,10 +330,10 @@ Seed Questions:
             prompt.format(function_description=function_description, seed_questions="\n".join(seed_questions), summary=self.generate_summary_of_repo(repo_structure))
             result =self._generate_qa_pairs_with_llm(prompt)
             questions.extend(result)
-            self.write_questions_to_file(result, "/home/stu/Desktop/my_codeqa/codeqa/dataset/concrete_questions/generated_questions_moatless_agent.jsonl")
+            self.write_questions_to_file(result, file)
         return questions
 
-    def random_select_seed_questions(self, num_questions: int = 30) -> List[str]:
+    def random_select_seed_questions(self, num_questions: int = 10) -> List[str]:
         """Randomly select a subset of seed questions for a specific class"""
         what_questions = self.template_questions.get("what", [])
         how_questions = self.template_questions.get("how", [])
@@ -215,6 +341,13 @@ Seed Questions:
         where_questions = self.template_questions.get("where", [])
         seed_questions = what_questions + how_questions + why_questions + where_questions
         return random.sample(seed_questions, min(num_questions, len(seed_questions)))
+
+    def random_select_seed_questions_by_category(self, category: str, num_questions: int = 10) -> List[str]:
+        """Randomly select a subset of seed questions for a specific category"""
+        if category not in self.template_questions:
+            raise ValueError(f"Category '{category}' not found in template questions.")
+        questions = self.template_questions.get(category, [])
+        return random.sample(questions, min(num_questions, len(questions)))
 
     def write_questions_to_file(self, questions: List[QAPair], output_file: str):
         """Append QAPair list to a .jsonl file, one JSON per line."""

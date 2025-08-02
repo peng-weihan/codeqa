@@ -177,8 +177,6 @@ class SimpleFaissVectorStore(BasePydanticVectorStore):
 
         query_embedding = cast(list[float], query.query_embedding)
         query_embedding_np = np.array(query_embedding, dtype="float32")[np.newaxis, :]
-        print("query_embedding 维度:", np.array(query_embedding).shape)  # 一维原始向量
-        print("FAISS index 维度:", self._faiss_index.d)
         dists, indices = self._faiss_index.search(
             query_embedding_np, query.similarity_top_k
         )

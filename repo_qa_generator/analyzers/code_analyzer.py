@@ -324,6 +324,10 @@ class CodeAnalyzer:
         return None
         
     def analyze_repository(self, root_path: str,repo_root: str) -> Repository:
+        
+        def analyze_wrapper(file_path):
+            return self._analyze_file_for_structure(file_path, repo_root)
+        
         """分析整个代码仓库，提取关键结构信息"""
         # 创建仓库对象
         repo_id = f"repo-{uuid.uuid4().hex[:8]}"
@@ -347,9 +351,22 @@ class CodeAnalyzer:
         self.repository_structure.root_modules = root_modules
         print(f"模块树结构已构建\n")
 
-        # 分析每个文件的代码结构
-        for file_path in python_files:
-            self._analyze_file_for_structure(file_path,repo_root)
+        max_workers = min(32, len(python_files))
+
+        # with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        #     # 提交所有任务
+        #     futures = {executor.submit(analyze_wrapper, file_path): file_path for file_path in python_files}
+
+        #     # 使用 tqdm 跟踪进度
+        #     for future in tqdm(as_completed(futures), total=len(futures), desc="Analyzing files (parallel)"):
+        #         try:
+        #             future.result()  # 如果你希望捕捉异常，可以在这里处理
+        #         except Exception as e:
+        #             print(f"Error analyzing {futures[future]}: {e}")
+
+        # # 分析每个文件的代码结构
+        for file_path in tqdm(python_files, desc="Analyzing files"):
+            self._analyze_file_for_structure(file_path, repo_root)
         
         # 构建代码依赖图
         self.build_dependency_graph(python_files,repo_root)
@@ -363,9 +380,9 @@ class CodeAnalyzer:
         self._link_attributes_to_functions()
         print(f"类属性与函数的关系已链接，共有 {len(self.repository_structure.attributes)} 个属性\n")
 
-        # 链接变量与引用它们的函数
-        self._link_variables_to_references()
-        print(f"变量与引用它们的函数的关系已链接，共有 {len(self.repository_structure.variables)} 个变量\n")
+        # # 链接变量与引用它们的函数
+        # self._link_variables_to_references()
+        # print(f"变量与引用它们的函数的关系已链接，共有 {len(self.repository_structure.variables)} 个变量\n")
         
         # 生成仓库核心功能概述
         self._summarize_core_functionality()
@@ -391,6 +408,7 @@ class CodeAnalyzer:
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 self.current_content = f.read()
+                # current_content = f.read()
             
             tree = ast.parse(self.current_content)
             
@@ -401,7 +419,7 @@ class CodeAnalyzer:
                     self._extract_class_definition(node, file_path, self.current_content,repo_root)                    # 处理类中的方法和属性
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
-                            self._extract_function_definition(item, file_path, self.current_content, node,repo_root)
+                            self._extract_function_definition(item, file_path,self.current_content, node,repo_root)
                         elif isinstance(item, ast.Assign):
                             self._extract_class_attributes(item, file_path, node)
                             # 提取类变量
@@ -646,20 +664,20 @@ class CodeAnalyzer:
         relationships = []
         
         # 提取继承关系
-        for cls in self.repository_structure.classes:
+        for cls in tqdm(self.repository_structure.classes, desc="Analyzing class inheritance"):
             # 使用类定义的代码节点中的内容，而不是重新打开文件
             if hasattr(cls, 'relative_code') and cls.relative_code:
                 try:
                     content = cls.relative_code.code
                     tree = ast.parse(content)
-                    
+
                     # 查找类定义节点
                     for node in ast.walk(tree):
                         if isinstance(node, ast.ClassDef) and node.name == cls.name:
                             # 提取父类
                             for base in node.bases:
                                 if isinstance(base, ast.Name):
-                                    # 简单的父类名称
+                                # 简单的父类名称
                                     parent_class = base.id
                                     relationship = CodeRelationship(
                                         source_type="class",
@@ -670,7 +688,7 @@ class CodeAnalyzer:
                                     )
                                     relationships.append(relationship)
                                 elif isinstance(base, ast.Attribute):
-                                    # 复杂的父类引用，如module.Class
+                            # 复杂的父类引用，如 module.Class
                                     parent_class = self._get_attribute_call(base)
                                     relationship = CodeRelationship(
                                         source_type="class",
@@ -682,9 +700,46 @@ class CodeAnalyzer:
                                     relationships.append(relationship)
                 except Exception as e:
                     print(f"提取类 {cls.name} 继承关系时出错: {str(e)}")
+        # for cls in self.repository_structure.classes:
+        #     # 使用类定义的代码节点中的内容，而不是重新打开文件
+        #     if hasattr(cls, 'relative_code') and cls.relative_code:
+        #         try:
+        #             content = cls.relative_code.code
+        #             tree = ast.parse(content)
+                    
+        #             # 查找类定义节点
+        #             for node in ast.walk(tree):
+        #                 if isinstance(node, ast.ClassDef) and node.name == cls.name:
+        #                     # 提取父类
+        #                     for base in node.bases:
+        #                         if isinstance(base, ast.Name):
+        #                             # 简单的父类名称
+        #                             parent_class = base.id
+        #                             relationship = CodeRelationship(
+        #                                 source_type="class",
+        #                                 source_id=cls.name,
+        #                                 target_type="class",
+        #                                 target_id=parent_class,
+        #                                 relationship_type="inherits"
+        #                             )
+        #                             relationships.append(relationship)
+        #                         elif isinstance(base, ast.Attribute):
+        #                             # 复杂的父类引用，如module.Class
+        #                             parent_class = self._get_attribute_call(base)
+        #                             relationship = CodeRelationship(
+        #                                 source_type="class",
+        #                                 source_id=cls.name,
+        #                                 target_type="class",
+        #                                 target_id=parent_class,
+        #                                 relationship_type="inherits"
+        #                             )
+        #                             relationships.append(relationship)
+        #         except Exception as e:
+        #             print(f"提取类 {cls.name} 继承关系时出错: {str(e)}")
                 
         # 提取函数调用关系
-        for func in self.repository_structure.functions:
+        # for func in self.repository_structure.functions:
+        for func in tqdm(self.repository_structure.functions, desc="Analyzing function calls"):
             for call in func.calls:
                 # 查找调用的函数是否在已知函数列表中
                 target_func = next((f for f in self.repository_structure.functions if f.name == call), None)
@@ -700,6 +755,7 @@ class CodeAnalyzer:
                     
         self.repository_structure.relationships = relationships
         return relationships
+    
     def _extract_variables(self, node: ast.Assign, file_path: str, scope: str, class_name: Optional[str], function_name: Optional[str], repo_root: str):
         """提取变量定义信息"""
         file_node = self.analyze_file(file_path, repo_root)

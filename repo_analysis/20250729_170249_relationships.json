@@ -1,0 +1,1892 @@
+[
+  {
+    "source_type": "class",
+    "source_id": "UnexpectedUnicodeError",
+    "target_type": "class",
+    "target_id": "AssertionError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "UnexpectedUnicodeError",
+    "target_type": "class",
+    "target_id": "UnicodeError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "DebugFilesKeyError",
+    "target_type": "class",
+    "target_id": "KeyError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "DebugFilesKeyError",
+    "target_type": "class",
+    "target_id": "AssertionError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "FormDataRoutingRedirect",
+    "target_type": "class",
+    "target_id": "AssertionError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "MethodView",
+    "target_type": "class",
+    "target_id": "View",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "EnvironBuilder",
+    "target_type": "class",
+    "target_id": "werkzeug.test.EnvironBuilder",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "FlaskClient",
+    "target_type": "class",
+    "target_id": "Client",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "FlaskCliRunner",
+    "target_type": "class",
+    "target_id": "CliRunner",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Blueprint",
+    "target_type": "class",
+    "target_id": "SansioBlueprint",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Environment",
+    "target_type": "class",
+    "target_id": "BaseEnvironment",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "DispatchingJinjaLoader",
+    "target_type": "class",
+    "target_id": "BaseLoader",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Flask",
+    "target_type": "class",
+    "target_id": "App",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "SecureCookieSession",
+    "target_type": "class",
+    "target_id": "SessionMixin",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "NullSession",
+    "target_type": "class",
+    "target_id": "SecureCookieSession",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "SecureCookieSessionInterface",
+    "target_type": "class",
+    "target_id": "SessionInterface",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "NoAppException",
+    "target_type": "class",
+    "target_id": "click.UsageError",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "AppGroup",
+    "target_type": "class",
+    "target_id": "click.Group",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "FlaskGroup",
+    "target_type": "class",
+    "target_id": "AppGroup",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "CertParamType",
+    "target_type": "class",
+    "target_id": "click.ParamType",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "SeparatedPathType",
+    "target_type": "class",
+    "target_id": "click.Path",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Config",
+    "target_type": "class",
+    "target_id": "dict",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Request",
+    "target_type": "class",
+    "target_id": "RequestBase",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Response",
+    "target_type": "class",
+    "target_id": "ResponseBase",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "DefaultJSONProvider",
+    "target_type": "class",
+    "target_id": "JSONProvider",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagDict",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "PassDict",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagTuple",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "PassList",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagBytes",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagMarkup",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagUUID",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "TagDateTime",
+    "target_type": "class",
+    "target_id": "JSONTag",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "Blueprint",
+    "target_type": "class",
+    "target_id": "Scaffold",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "App",
+    "target_type": "class",
+    "target_id": "Scaffold",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "FixedOffset",
+    "target_type": "class",
+    "target_id": "datetime.tzinfo",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "AppError",
+    "target_type": "class",
+    "target_id": "Exception",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "BlueprintError",
+    "target_type": "class",
+    "target_id": "Exception",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "AsyncView",
+    "target_type": "class",
+    "target_id": "View",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "AsyncMethodView",
+    "target_type": "class",
+    "target_id": "MethodView",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "StatusJSON",
+    "target_type": "class",
+    "target_id": "t.TypedDict",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "class",
+    "source_id": "RenderTemplateView",
+    "target_type": "class",
+    "target_id": "View",
+    "relationship_type": "inherits"
+  },
+  {
+    "source_type": "function",
+    "source_id": "stream_with_context",
+    "target_type": "function",
+    "target_id": "stream_with_context",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "send_file",
+    "target_type": "function",
+    "target_id": "_prepare_send_file_kwargs",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "send_from_directory",
+    "target_type": "function",
+    "target_id": "_prepare_send_file_kwargs",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_split_blueprint_path",
+    "target_type": "function",
+    "target_id": "_split_blueprint_path",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "attach_enctype_error_multidict",
+    "target_type": "function",
+    "target_id": "__getitem__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "explain_template_loading_attempts",
+    "target_type": "function",
+    "target_id": "_dump_loader_info",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init_subclass__",
+    "target_type": "function",
+    "target_id": "__init_subclass__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "_get_werkzeug_version",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open",
+    "target_type": "function",
+    "target_id": "copy",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open",
+    "target_type": "function",
+    "target_id": "copy",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "invoke",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "send_static_file",
+    "target_type": "function",
+    "target_id": "send_from_directory",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_get_source_explained",
+    "target_type": "function",
+    "target_id": "explain_template_loading_attempts",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "render_template",
+    "target_type": "function",
+    "target_id": "_render",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "render_template_string",
+    "target_type": "function",
+    "target_id": "_render",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_stream",
+    "target_type": "function",
+    "target_id": "stream_with_context",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "stream_template",
+    "target_type": "function",
+    "target_id": "_stream",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "stream_template_string",
+    "target_type": "function",
+    "target_id": "_stream",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create_logger",
+    "target_type": "function",
+    "target_id": "has_level_handler",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "send_static_file",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "send_static_file",
+    "target_type": "function",
+    "target_id": "send_from_directory",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_instance_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "open_instance_resource",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "run",
+    "target_type": "function",
+    "target_id": "get_load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "run",
+    "target_type": "function",
+    "target_id": "get_debug_flag",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "wsgi_app",
+    "target_type": "function",
+    "target_id": "response",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__getitem__",
+    "target_type": "function",
+    "target_id": "__getitem__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "get",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "setdefault",
+    "target_type": "function",
+    "target_id": "setdefault",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "save_session",
+    "target_type": "function",
+    "target_id": "dumps",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "find_best_app",
+    "target_type": "function",
+    "target_id": "_called_with_wrong_args",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "find_app_by_string",
+    "target_type": "function",
+    "target_id": "_called_with_wrong_args",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "locate_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "locate_app",
+    "target_type": "function",
+    "target_id": "find_app_by_string",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "get_load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_app",
+    "target_type": "function",
+    "target_id": "get_debug_flag",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_app",
+    "target_type": "function",
+    "target_id": "prepare_import",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_app",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_app",
+    "target_type": "function",
+    "target_id": "prepare_import",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_app",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "with_appcontext",
+    "target_type": "function",
+    "target_id": "load_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "command",
+    "target_type": "function",
+    "target_id": "with_appcontext",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "command",
+    "target_type": "function",
+    "target_id": "command",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "group",
+    "target_type": "function",
+    "target_id": "group",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_env_file_callback",
+    "target_type": "function",
+    "target_id": "load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "setdefault",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "get_command",
+    "target_type": "function",
+    "target_id": "get_command",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "list_commands",
+    "target_type": "function",
+    "target_id": "list_commands",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "make_context",
+    "target_type": "function",
+    "target_id": "make_context",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "parse_args",
+    "target_type": "function",
+    "target_id": "parse_args",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "run_command",
+    "target_type": "function",
+    "target_id": "get_debug_flag",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "run_command",
+    "target_type": "function",
+    "target_id": "show_server_banner",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "shell_command",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "from_prefixed_env",
+    "target_type": "function",
+    "target_id": "loads",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "from_pyfile",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "from_file",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "from_file",
+    "target_type": "function",
+    "target_id": "load",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "blueprints",
+    "target_type": "function",
+    "target_id": "_split_blueprint_path",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_load_form_data",
+    "target_type": "function",
+    "target_id": "_load_form_data",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "_load_form_data",
+    "target_type": "function",
+    "target_id": "attach_enctype_error_multidict",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "on_json_loading_failed",
+    "target_type": "function",
+    "target_id": "on_json_loading_failed",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "untag",
+    "target_type": "function",
+    "target_id": "to_python",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "dumps",
+    "target_type": "function",
+    "target_id": "dumps",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "loads",
+    "target_type": "function",
+    "target_id": "loads",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "add_url_rule",
+    "target_type": "function",
+    "target_id": "_endpoint_from_view_func",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "__init__",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "logger",
+    "target_type": "function",
+    "target_id": "create_logger",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "make_config",
+    "target_type": "function",
+    "target_id": "get_debug_flag",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "auto_find_instance_path",
+    "target_type": "function",
+    "target_id": "find_package",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "add_url_rule",
+    "target_type": "function",
+    "target_id": "_endpoint_from_view_func",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "inject_url_defaults",
+    "target_type": "function",
+    "target_id": "_split_blueprint_path",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "__init__",
+    "target_type": "function",
+    "target_id": "get_root_path",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "find_package",
+    "target_type": "function",
+    "target_id": "_find_package_path",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "add",
+    "target_type": "function",
+    "target_id": "jsonify",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "init_db",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "init_db_command",
+    "target_type": "function",
+    "target_id": "init_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "get_post",
+    "target_type": "function",
+    "target_id": "abort",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "get_post",
+    "target_type": "function",
+    "target_id": "abort",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "get_post",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create",
+    "target_type": "function",
+    "target_id": "flash",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "get_post",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "flash",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "update",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "delete",
+    "target_type": "function",
+    "target_id": "get_post",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "delete",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "delete",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "delete",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login_required",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login_required",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "load_logged_in_user",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "register",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "register",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "register",
+    "target_type": "function",
+    "target_id": "flash",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "register",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "register",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login",
+    "target_type": "function",
+    "target_id": "flash",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "login",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "logout",
+    "target_type": "function",
+    "target_id": "redirect",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "logout",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_register",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_get_close_db",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_get_close_db",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "app",
+    "target_type": "function",
+    "target_id": "create_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "app",
+    "target_type": "function",
+    "target_id": "init_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "app",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config",
+    "target_type": "function",
+    "target_id": "create_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config",
+    "target_type": "function",
+    "target_id": "create_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_author_required",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_create",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_update",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_delete",
+    "target_type": "function",
+    "target_id": "get_db",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create_app",
+    "target_type": "function",
+    "target_id": "celery_init_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "create_app",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_json_customization",
+    "target_type": "function",
+    "target_id": "loads",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_suppressed_exception_logging",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_json_request_and_response",
+    "target_type": "function",
+    "target_id": "jsonify",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_open_session_with_endpoint",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_context_binding",
+    "target_type": "function",
+    "target_id": "index",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_manual_context_binding",
+    "target_type": "function",
+    "target_id": "index",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_manual_context_binding",
+    "target_type": "function",
+    "target_id": "index",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_greenlet_context_copying",
+    "target_type": "function",
+    "target_id": "run",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_greenlet_context_copying_api",
+    "target_type": "function",
+    "target_id": "run",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_session_error_pops_context",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_session_dynamic_cookie_name",
+    "target_type": "function",
+    "target_id": "get_cookie_name",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_normal_environ_completes",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_pyfile",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_object",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_file_json",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_file_toml",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_mapping",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_mapping",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_mapping",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_mapping",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_class",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_config_from_envvar",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_custom_config_class",
+    "target_type": "function",
+    "target_id": "common_object_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_get_debug_flag",
+    "target_type": "function",
+    "target_id": "get_debug_flag",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_before_render_template",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_request_signals",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_request_exception_signal",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_custom_converters",
+    "target_type": "function",
+    "target_id": "url_for",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_uninstalled_module_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_uninstalled_package_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_uninstalled_namespace_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_uninstalled_namespace_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_installed_module_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_installed_package_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_prefix_package_paths",
+    "target_type": "function",
+    "target_id": "purge_module",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_templates_and_static",
+    "target_type": "function",
+    "target_id": "test_request_context",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_has_level_handler",
+    "target_type": "function",
+    "target_id": "has_level_handler",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_has_level_handler",
+    "target_type": "function",
+    "target_id": "has_level_handler",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_has_level_handler",
+    "target_type": "function",
+    "target_id": "has_level_handler",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_has_level_handler",
+    "target_type": "function",
+    "target_id": "has_level_handler",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_provide_automatic_options_attr",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_provide_automatic_options_attr",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_url_path",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_url_path_with_ending_slash",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_url_empty_path",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_url_empty_path_default",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_folder_with_pathlib_path",
+    "target_type": "function",
+    "target_id": "open",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_static_folder_with_ending_slash",
+    "target_type": "function",
+    "target_id": "get",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_find_best_app",
+    "target_type": "function",
+    "target_id": "find_best_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_prepare_import",
+    "target_type": "function",
+    "target_id": "prepare_import",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_locate_app",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_locate_app_raises",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_locate_app_suppress_raise",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_locate_app_suppress_raise",
+    "target_type": "function",
+    "target_id": "locate_app",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_get_version",
+    "target_type": "function",
+    "target_id": "get_version",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_simple",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_sort",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_sort",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_sort",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_sort",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_sort",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_all_methods",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_all_methods",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_load_dotenv",
+    "target_type": "function",
+    "target_id": "load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_load_dotenv",
+    "target_type": "function",
+    "target_id": "load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_dotenv_path",
+    "target_type": "function",
+    "target_id": "load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_dotenv_optional",
+    "target_type": "function",
+    "target_id": "load_dotenv",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_cli_empty",
+    "target_type": "function",
+    "target_id": "invoke",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_basic_view",
+    "target_type": "function",
+    "target_id": "common_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_method_based_view",
+    "target_type": "function",
+    "target_id": "common_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_view_patching",
+    "target_type": "function",
+    "target_id": "common_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "test_endpoint_override",
+    "target_type": "function",
+    "target_id": "common_test",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "hello_json",
+    "target_type": "function",
+    "target_id": "jsonify",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "return_template",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "return_template_stream",
+    "target_type": "function",
+    "target_id": "stream_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "dispatch_request",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index2",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "index",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  },
+  {
+    "source_type": "function",
+    "source_id": "missing_template",
+    "target_type": "function",
+    "target_id": "render_template",
+    "relationship_type": "calls"
+  }
+]

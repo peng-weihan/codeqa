@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import sys
 import os
 import json
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # 添加项目根目录到Python路径
 project_root = os.path.abspath(os.path.join(os.getcwd(), ''))
 if project_root not in sys.path:
@@ -107,15 +107,15 @@ def process_batch_swe(batch, moatless_solve_instance, evaluator, results_file):
     return processed_batch, total_score, count
 
 def main():
-    repo_path = sys.argv[1] if len(sys.argv) > 1 else "./dataset/repos/swe-bench_sphinx-doc__sphinx-8551"
-    repo_root = sys.argv[2] if len(sys.argv) > 2 else "./dataset/repos/swe-bench_sphinx-doc__sphinx-8551"
+    repo_path = sys.argv[1] if len(sys.argv) > 1 else "/data3/pwh/flask"
+    repo_root = sys.argv[2] if len(sys.argv) > 2 else "/data3/pwh/flask"
     # repo_path = sys.argv[1] if len(sys.argv) > 1 else "/home/stu/Desktop/my_codeqa/djongo"
     # repo_root = sys.argv[2] if len(sys.argv) > 2 else "/home/stu/Desktop/my_codeqa/djongo"
-    question_store_dir = sys.argv[3] if len(sys.argv) > 3 else "./dataset/seed_questions"
-    res_store_dir = sys.argv[4] if len(sys.argv) > 4 else "./dataset/generated_qa"
+    question_store_dir = sys.argv[3] if len(sys.argv) > 3 else "/data3/pwh/codeqa/dataset/generated_questions"
+    res_store_dir = sys.argv[4] if len(sys.argv) > 4 else "/data3/pwh/codeqa/dataset/result"
 
     # 设置输入和输出文件路径
-    questions_path = os.path.join(question_store_dir, "generated_questions.json")
+    questions_path = os.path.join(question_store_dir, "/data3/pwh/codeqa/dataset/generated_questions/generated_questions_moatless_agent_flask.jsonl")
     results_file = os.path.join(res_store_dir, "moatless_results.jsonl")
     
     # 初始化评估器和模型

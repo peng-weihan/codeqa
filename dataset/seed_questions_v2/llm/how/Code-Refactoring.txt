@@ -1,9 +1,7 @@
-How to make <Variable> consistent across <Module>?
-How to refactor <CodeSnippet> to optimize <Performance>?
-How to refactor <Module> to optimize <Performance>?
-How to remove duplication of <Operation> in the <Module>?
-How to eliminate logic duplication across <FunctionA> and <FunctionB> by extracting a shared helper?
-How to decouple <Process> from <Component> in <Module> to reduce coupling and improve modularity?
+How to rename <Variable> to keep consistent in <Function>?
+How to refactor <CodeSnippet> to optimize performance?
+How to remove duplication of <Operation> in the function <Function> ?
+How to extract a helper function from <Function> to isolate and reuse <Logic>?
 How to separate <Responsibility> from <Class> to improve cohesion and maintainability?
 How to extract <Responsibility> from <Function> into a dedicated handler?
 How to split <Function> to separate <BehaviorA> and <BehaviorB> for clearer responsibility?
@@ -19,3 +17,4 @@ How to rename <Variable> in <Function> to improve clarity?
 How to refactor <Variable> use in a safer way?
 How to decouple <Function> from framework-specific <Api> to improve portability?
 How to combine <FunctionA> and <FunctionB> into one function to reduce code duplication?
+

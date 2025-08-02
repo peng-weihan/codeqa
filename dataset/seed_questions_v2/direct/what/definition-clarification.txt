@@ -4,10 +4,12 @@
 What classes are defined in the <Module> module?
 What functions are included in the <Module> module?
 What variables are declared in the <Module> module?
+
 //Class
 What methods are implemented in the <Class> class?
 What functions are included in the <Class> class?
 What member variables are defined in the <Class> class?
+
 //Function
 What variables are associated with the <Function> function?
 What parameters are accepted by the <Function> function?

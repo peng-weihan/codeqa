@@ -11,8 +11,10 @@ from moatless_qa.value_function.base import ValueFunction
 from moatless_qa.completion.completion import LLMResponseFormat
 from moatless_qa.code_qa.search_tree import CodeQASearchTree
 from moatless_qa.benchmark.utils import get_moatless_instance
-
-index_store_dir = "./data/index_store"
+import os
+parent_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(parent_dir)
+index_store_dir = os.path.join(root_dir, "dataset", "index_store")
 repo_base_dir = "./data/repos"
 persist_path = "./data/trajectory.json"
 instance_id = "sphinx-doc__sphinx-8551"
@@ -23,7 +25,6 @@ class MoatlessSolve:
     def __init__(self, repo_name:str, repo_path: str):
         # Global variables are used here as defined above the class:
         # instance, repo_base_dir, index_store_dir, instance_path, persist_path
-    
         completion_model = CompletionModel(model="deepseek/deepseek-chat", temperature=0.7)
         completion_model.response_format = LLMResponseFormat.TOOLS
         repository = create_repository(instance, repo_base_dir=repo_base_dir)

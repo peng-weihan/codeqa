@@ -120,7 +120,7 @@ class CodeIndex:
     @classmethod
     def from_url(cls, url: str, persist_dir: str, file_repo: FileRepository):
         try:
-            # 检查目标目录是否可写
+            # 检查index所在的目录是否可写（index_store)
             if not os.access(os.path.dirname(persist_dir), os.W_OK):
                 alt_dir = os.path.join("/tmp", os.path.basename(persist_dir))
                 logger.warning(f"目标目录 {persist_dir} 不可写，尝试使用替代目录 {alt_dir}")
@@ -164,7 +164,7 @@ class CodeIndex:
             return cls.from_persist_dir(persist_dir, file_repo=file_repo)
         else:
             logger.info(f"No existing index found at {persist_dir}.")
-
+        #本地的由index_name构建的索引不存在，尝试从远程存储下载
         if os.getenv("INDEX_STORE_URL"):
             index_store_url = os.getenv("INDEX_STORE_URL")
         else:

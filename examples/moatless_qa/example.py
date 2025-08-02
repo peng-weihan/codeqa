@@ -32,11 +32,14 @@ from moatless_qa.completion.completion import (
 import litellm
 # 加载环境变量
 load_dotenv()
-index_store_dir = "./dataset/index_store"
-repo_base_dir = "./dataset/repos"
-persist_path = "./dataset/trajectory.json"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(current_dir)
+base_dir = os.path.dirname(base_dir)
+index_store_dir = os.path.join(base_dir, "dataset/index_store")
+repo_base_dir = os.path.join(base_dir, "dataset/repos")
+persist_path = os.path.join(base_dir, "dataset/trajectory.json")
 instance_id = "sphinx-doc__sphinx-8551"
-instance_path = f'./dataset/trajectory/{instance_id}/'
+instance_path = os.path.join(base_dir, f"dataset/trajectory/{instance_id}/")
 instance = get_moatless_instance(instance_id)
 
 completion_model = CompletionModel(
@@ -46,12 +49,12 @@ completion_model = CompletionModel(
 completion_model.response_format = LLMResponseFormat.TOOLS
 
 repository = create_repository(instance, repo_base_dir=repo_base_dir)
-# repository = create_repository(repo_path="/home/stu/Desktop/my_codeqa/codeqa", repo_base_dir=repo_base_dir)
+# repository = create_repository(repo_path="/data3/pwh/fineract", repo_base_dir=repo_base_dir)
 
 code_index = CodeIndex.from_index_name(
     instance["instance_id"], index_store_dir=index_store_dir, file_repo=repository
 )
-# code_index = CodeIndex.from_repository(repo_path="/home/stu/Desktop/my_codeqa/codeqa", index_store_dir=index_store_dir, file_repo=repository)
+# code_index = CodeIndex.from_repository(repo_path="/data3/pwh/fineract", index_store_dir=index_store_dir, file_repo=repository)
 
 file_context = FileContext(repo=repository)
 
@@ -75,7 +78,9 @@ feedback_generator = GroundTruthFeedbackGenerator(completion_model=agent.complet
 search_tree = CodeQASearchTree.create(
     # message="Where can i find the function `verify_needs_extensions` in the code base?",
     # message="Where can I find the `create_repository` function in the codebase?",
-    message="Where can I find the implementation of 'DataDeclarationDocumenter' in the codebase?",
+    # message="Where can I find the implementation of 'DataDeclarationDocumenter' in the codebase?",
+    message=" Sphinx 项目中哪些模块负责解析 reStructuredText 文档？它们之间是如何协作的？",
+    # message="Fineract 是如何设计“垂直切片”包结构的？其在 api、handler、service、domain、data、serialization 下的职责分别是什么？",
     agent=agent,
     file_context=file_context,
     selector=selector,
@@ -86,6 +91,5 @@ search_tree = CodeQASearchTree.create(
     max_depth=25,
     persist_path=persist_path,
 )
-print("finished")
 node = search_tree.run_search()
 print(node.observation.message)

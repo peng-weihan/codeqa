@@ -148,11 +148,13 @@ class CodeQASearchTree(BaseModel):
             )
             nodes = self.get_finished_nodes()
             for node in nodes:
-                while node != self.root:
-                    print(
-                        f"Node {node.node_id} with action steps: {node.action_steps[0]}\n"
-                    )
-                    node = node.parent
+                current = node
+                while True:
+                    if getattr(current, "action_steps", None):
+                        print(f"Node {current.node_id} with action steps: {current.action_steps[0]}\n")
+                    if current == self.root:
+                        break
+                    current = current.parent
 
         return self.get_all_trajectory()
         

@@ -1,0 +1,281 @@
+[
+  {
+    "name": "src",
+    "is_package": false,
+    "files": [],
+    "sub_modules": [
+      {
+        "name": "flask",
+        "is_package": true,
+        "files": [
+          "helpers.py",
+          "__init__.py",
+          "debughelpers.py",
+          "globals.py",
+          "typing.py",
+          "views.py",
+          "testing.py",
+          "blueprints.py",
+          "ctx.py",
+          "templating.py",
+          "__main__.py",
+          "logging.py",
+          "app.py",
+          "sessions.py",
+          "signals.py",
+          "cli.py",
+          "config.py",
+          "wrappers.py"
+        ],
+        "sub_modules": [
+          {
+            "name": "json",
+            "is_package": true,
+            "files": [
+              "__init__.py",
+              "provider.py",
+              "tag.py"
+            ],
+            "sub_modules": []
+          },
+          {
+            "name": "sansio",
+            "is_package": false,
+            "files": [
+              "blueprints.py",
+              "app.py",
+              "scaffold.py"
+            ],
+            "sub_modules": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "examples",
+    "is_package": false,
+    "files": [],
+    "sub_modules": [
+      {
+        "name": "javascript",
+        "is_package": false,
+        "files": [],
+        "sub_modules": [
+          {
+            "name": "tests",
+            "is_package": false,
+            "files": [
+              "conftest.py",
+              "test_js_example.py"
+            ],
+            "sub_modules": []
+          },
+          {
+            "name": "js_example",
+            "is_package": true,
+            "files": [
+              "__init__.py",
+              "views.py"
+            ],
+            "sub_modules": []
+          }
+        ]
+      },
+      {
+        "name": "tutorial",
+        "is_package": false,
+        "files": [],
+        "sub_modules": [
+          {
+            "name": "flaskr",
+            "is_package": true,
+            "files": [
+              "db.py",
+              "__init__.py",
+              "blog.py",
+              "auth.py"
+            ],
+            "sub_modules": []
+          },
+          {
+            "name": "tests",
+            "is_package": false,
+            "files": [
+              "test_auth.py",
+              "test_db.py",
+              "conftest.py",
+              "test_factory.py",
+              "test_blog.py"
+            ],
+            "sub_modules": []
+          }
+        ]
+      },
+      {
+        "name": "celery",
+        "is_package": false,
+        "files": [
+          "make_celery.py"
+        ],
+        "sub_modules": [
+          {
+            "name": "src",
+            "is_package": false,
+            "files": [],
+            "sub_modules": [
+              {
+                "name": "task_app",
+                "is_package": true,
+                "files": [
+                  "__init__.py",
+                  "views.py",
+                  "tasks.py"
+                ],
+                "sub_modules": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tests",
+    "is_package": false,
+    "files": [
+      "test_json.py",
+      "test_subclassing.py",
+      "test_json_tag.py",
+      "test_testing.py",
+      "test_request.py",
+      "test_session_interface.py",
+      "test_user_error_handler.py",
+      "test_reqctx.py",
+      "test_config.py",
+      "conftest.py",
+      "test_async.py",
+      "test_helpers.py",
+      "test_regression.py",
+      "test_signals.py",
+      "test_converters.py",
+      "test_appctx.py",
+      "test_instance_config.py",
+      "test_blueprints.py",
+      "test_logging.py",
+      "test_basic.py",
+      "test_templating.py",
+      "test_cli.py",
+      "test_views.py"
+    ],
+    "sub_modules": [
+      {
+        "name": "type_check",
+        "is_package": false,
+        "files": [
+          "typing_app_decorators.py",
+          "typing_error_handler.py",
+          "typing_route.py"
+        ],
+        "sub_modules": []
+      },
+      {
+        "name": "test_apps",
+        "is_package": false,
+        "files": [],
+        "sub_modules": [
+          {
+            "name": "blueprintapp",
+            "is_package": true,
+            "files": [
+              "__init__.py"
+            ],
+            "sub_modules": [
+              {
+                "name": "apps",
+                "is_package": true,
+                "files": [
+                  "__init__.py"
+                ],
+                "sub_modules": [
+                  {
+                    "name": "admin",
+                    "is_package": true,
+                    "files": [
+                      "__init__.py"
+                    ],
+                    "sub_modules": []
+                  },
+                  {
+                    "name": "frontend",
+                    "is_package": true,
+                    "files": [
+                      "__init__.py"
+                    ],
+                    "sub_modules": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "helloworld",
+            "is_package": false,
+            "files": [
+              "hello.py",
+              "wsgi.py"
+            ],
+            "sub_modules": []
+          },
+          {
+            "name": "subdomaintestmodule",
+            "is_package": true,
+            "files": [
+              "__init__.py"
+            ],
+            "sub_modules": []
+          },
+          {
+            "name": "cliapp",
+            "is_package": true,
+            "files": [
+              "factory.py",
+              "__init__.py",
+              "importerrorapp.py",
+              "app.py",
+              "multiapp.py"
+            ],
+            "sub_modules": [
+              {
+                "name": "inner1",
+                "is_package": true,
+                "files": [
+                  "__init__.py"
+                ],
+                "sub_modules": [
+                  {
+                    "name": "inner2",
+                    "is_package": true,
+                    "files": [
+                      "__init__.py",
+                      "flask.py"
+                    ],
+                    "sub_modules": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "docs",
+    "is_package": false,
+    "files": [
+      "conf.py"
+    ],
+    "sub_modules": []
+  }
+]

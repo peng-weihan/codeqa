@@ -1,0 +1,1285 @@
+[
+  {
+    "name": "UnexpectedUnicodeError",
+    "docstring": "Raised in places where we want some better error reporting for\nunexpected unicode or binary data.",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "debughelpers.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 17,
+      "end_line": 20
+    },
+    "code_snippet": "class UnexpectedUnicodeError(AssertionError, UnicodeError):\n    \"\"\"Raised in places where we want some better error reporting for\n    unexpected unicode or binary data.\n    \"\"\""
+  },
+  {
+    "name": "DebugFilesKeyError",
+    "docstring": "Raised from request.files during debugging.  The idea is that it can\nprovide a better error message than just a generic KeyError/BadRequest.",
+    "methods": [
+      "__init__",
+      "__str__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "debughelpers.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 23,
+      "end_line": 47
+    },
+    "code_snippet": "class DebugFilesKeyError(KeyError, AssertionError):\n    \"\"\"Raised from request.files during debugging.  The idea is that it can\n    provide a better error message than just a generic KeyError/BadRequest.\n    \"\"\"\n\n    def __init__(self, request: Request, key: str) -> None:\n        form_matches = request.form.getlist(key)\n        buf = [\n            f\"You tried to access the file {key!r} in the request.files\"\n            \" dictionary but it does not exist. The mimetype for the\"\n            f\" requ..."
+  },
+  {
+    "name": "FormDataRoutingRedirect",
+    "docstring": "This exception is raised in debug mode if a routing redirect\nwould cause the browser to drop the method or body. This happens\nwhen method is not GET, HEAD or OPTIONS and the status code is not\n307 or 308.",
+    "methods": [
+      "__init__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "debughelpers.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 50,
+      "end_line": 78
+    },
+    "code_snippet": "class FormDataRoutingRedirect(AssertionError):\n    \"\"\"This exception is raised in debug mode if a routing redirect\n    would cause the browser to drop the method or body. This happens\n    when method is not GET, HEAD or OPTIONS and the status code is not\n    307 or 308.\n    \"\"\"\n\n    def __init__(self, request: Request) -> None:\n        exc = request.routing_exception\n        assert isinstance(exc, RequestRedirect)\n        buf = [\n            f\"A request was sent to '{request.url}', but routing i..."
+  },
+  {
+    "name": "View",
+    "docstring": "Subclass this class and override :meth:`dispatch_request` to\ncreate a generic class-based view. Call :meth:`as_view` to create a\nview function that creates an instance of the class with the given\narguments and calls its ``dispatch_request`` method with any URL\nvariables.\n\nSee :doc:`views` for a detailed guide.\n\n.. code-block:: python\n\n    class Hello(View):\n        init_every_request = False\n\n        def dispatch_request(self, name):\n            return f\"Hello, {name}!\"\n\n    app.add_url_rule(\n        \"/hello/<name>\", view_func=Hello.as_view(\"hello\")\n    )\n\nSet :attr:`methods` on the class to change what methods the view\naccepts.\n\nSet :attr:`decorators` on the class to apply a list of decorators to\nthe generated view function. Decorators applied to the class itself\nwill not be applied to the generated view function!\n\nSet :attr:`init_every_request` to ``False`` for efficiency, unless\nyou need to store request-global data on ``self``.",
+    "methods": [
+      "dispatch_request",
+      "as_view"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "views.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 16,
+      "end_line": 135
+    },
+    "code_snippet": "class View:\n    \"\"\"Subclass this class and override :meth:`dispatch_request` to\n    create a generic class-based view. Call :meth:`as_view` to create a\n    view function that creates an instance of the class with the given\n    arguments and calls its ``dispatch_request`` method with any URL\n    variables.\n\n    See :doc:`views` for a detailed guide.\n\n    .. code-block:: python\n\n        class Hello(View):\n            init_every_request = False\n\n            def dispatch_request(self, name):\n       ..."
+  },
+  {
+    "name": "MethodView",
+    "docstring": "Dispatches request methods to the corresponding instance methods.\nFor example, if you implement a ``get`` method, it will be used to\nhandle ``GET`` requests.\n\nThis can be useful for defining a REST API.\n\n:attr:`methods` is automatically set based on the methods defined on\nthe class.\n\nSee :doc:`views` for a detailed guide.\n\n.. code-block:: python\n\n    class CounterAPI(MethodView):\n        def get(self):\n            return str(session.get(\"counter\", 0))\n\n        def post(self):\n            session[\"counter\"] = session.get(\"counter\", 0) + 1\n            return redirect(url_for(\"counter\"))\n\n    app.add_url_rule(\n        \"/counter\", view_func=CounterAPI.as_view(\"counter\")\n    )",
+    "methods": [
+      "__init_subclass__",
+      "dispatch_request"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "views.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 138,
+      "end_line": 191
+    },
+    "code_snippet": "class MethodView(View):\n    \"\"\"Dispatches request methods to the corresponding instance methods.\n    For example, if you implement a ``get`` method, it will be used to\n    handle ``GET`` requests.\n\n    This can be useful for defining a REST API.\n\n    :attr:`methods` is automatically set based on the methods defined on\n    the class.\n\n    See :doc:`views` for a detailed guide.\n\n    .. code-block:: python\n\n        class CounterAPI(MethodView):\n            def get(self):\n                return str(..."
+  },
+  {
+    "name": "EnvironBuilder",
+    "docstring": "An :class:`~werkzeug.test.EnvironBuilder`, that takes defaults from the\napplication.\n\n:param app: The Flask application to configure the environment from.\n:param path: URL path being requested.\n:param base_url: Base URL where the app is being served, which\n    ``path`` is relative to. If not given, built from\n    :data:`PREFERRED_URL_SCHEME`, ``subdomain``,\n    :data:`SERVER_NAME`, and :data:`APPLICATION_ROOT`.\n:param subdomain: Subdomain name to append to :data:`SERVER_NAME`.\n:param url_scheme: Scheme to use instead of\n    :data:`PREFERRED_URL_SCHEME`.\n:param json: If given, this is serialized as JSON and passed as\n    ``data``. Also defaults ``content_type`` to\n    ``application/json``.\n:param args: other positional arguments passed to\n    :class:`~werkzeug.test.EnvironBuilder`.\n:param kwargs: other keyword arguments passed to\n    :class:`~werkzeug.test.EnvironBuilder`.",
+    "methods": [
+      "__init__",
+      "json_dumps"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "testing.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 27,
+      "end_line": 94
+    },
+    "code_snippet": "class EnvironBuilder(werkzeug.test.EnvironBuilder):\n    \"\"\"An :class:`~werkzeug.test.EnvironBuilder`, that takes defaults from the\n    application.\n\n    :param app: The Flask application to configure the environment from.\n    :param path: URL path being requested.\n    :param base_url: Base URL where the app is being served, which\n        ``path`` is relative to. If not given, built from\n        :data:`PREFERRED_URL_SCHEME`, ``subdomain``,\n        :data:`SERVER_NAME`, and :data:`APPLICATION_ROOT`..."
+  },
+  {
+    "name": "FlaskClient",
+    "docstring": "Works like a regular Werkzeug test client but has knowledge about\nFlask's contexts to defer the cleanup of the request context until\nthe end of a ``with`` block. For general information about how to\nuse this class refer to :class:`werkzeug.test.Client`.\n\n.. versionchanged:: 0.12\n   `app.test_client()` includes preset default environment, which can be\n   set after instantiation of the `app.test_client()` object in\n   `client.environ_base`.\n\nBasic usage is outlined in the :doc:`/testing` chapter.",
+    "methods": [
+      "__init__",
+      "session_transaction",
+      "_copy_environ",
+      "_request_from_builder_args",
+      "open",
+      "__enter__",
+      "__exit__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "testing.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 109,
+      "end_line": 262
+    },
+    "code_snippet": "class FlaskClient(Client):\n    \"\"\"Works like a regular Werkzeug test client but has knowledge about\n    Flask's contexts to defer the cleanup of the request context until\n    the end of a ``with`` block. For general information about how to\n    use this class refer to :class:`werkzeug.test.Client`.\n\n    .. versionchanged:: 0.12\n       `app.test_client()` includes preset default environment, which can be\n       set after instantiation of the `app.test_client()` object in\n       `client.environ_ba..."
+  },
+  {
+    "name": "FlaskCliRunner",
+    "docstring": "A :class:`~click.testing.CliRunner` for testing a Flask app's\nCLI commands. Typically created using\n:meth:`~flask.Flask.test_cli_runner`. See :ref:`testing-cli`.",
+    "methods": [
+      "__init__",
+      "invoke"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "testing.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 265,
+      "end_line": 298
+    },
+    "code_snippet": "class FlaskCliRunner(CliRunner):\n    \"\"\"A :class:`~click.testing.CliRunner` for testing a Flask app's\n    CLI commands. Typically created using\n    :meth:`~flask.Flask.test_cli_runner`. See :ref:`testing-cli`.\n    \"\"\"\n\n    def __init__(self, app: Flask, **kwargs: t.Any) -> None:\n        self.app = app\n        super().__init__(**kwargs)\n\n    def invoke(  # type: ignore\n        self, cli: t.Any = None, args: t.Any = None, **kwargs: t.Any\n    ) -> Result:\n        \"\"\"Invokes a CLI command in an isol..."
+  },
+  {
+    "name": "Blueprint",
+    "docstring": "",
+    "methods": [
+      "__init__",
+      "get_send_file_max_age",
+      "send_static_file",
+      "open_resource",
+      "__init__",
+      "_check_setup_finished",
+      "record",
+      "record_once",
+      "make_setup_state",
+      "register_blueprint",
+      "register",
+      "_merge_blueprint_funcs",
+      "add_url_rule",
+      "app_template_filter",
+      "add_app_template_filter",
+      "app_template_test",
+      "add_app_template_test",
+      "app_template_global",
+      "add_app_template_global",
+      "before_app_request",
+      "after_app_request",
+      "teardown_app_request",
+      "app_context_processor",
+      "app_errorhandler",
+      "app_url_value_preprocessor",
+      "app_url_defaults"
+    ],
+    "attributes": [
+      "_got_registered_once"
+    ],
+    "code_location": {
+      "file": "blueprints.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 18,
+      "end_line": 128
+    },
+    "code_snippet": "class Blueprint(SansioBlueprint):\n    def __init__(\n        self,\n        name: str,\n        import_name: str,\n        static_folder: str | os.PathLike[str] | None = None,\n        static_url_path: str | None = None,\n        template_folder: str | os.PathLike[str] | None = None,\n        url_prefix: str | None = None,\n        subdomain: str | None = None,\n        url_defaults: dict[str, t.Any] | None = None,\n        root_path: str | None = None,\n        cli_group: str | None = _sentinel,  # type: ..."
+  },
+  {
+    "name": "_AppCtxGlobals",
+    "docstring": "A plain object. Used as a namespace for storing data during an\napplication context.\n\nCreating an app context automatically creates this object, which is\nmade available as the :data:`g` proxy.\n\n.. describe:: 'key' in g\n\n    Check whether an attribute is present.\n\n    .. versionadded:: 0.10\n\n.. describe:: iter(g)\n\n    Return an iterator over the attribute names.\n\n    .. versionadded:: 0.10",
+    "methods": [
+      "__getattr__",
+      "__setattr__",
+      "__delattr__",
+      "get",
+      "pop",
+      "setdefault",
+      "__contains__",
+      "__iter__",
+      "__repr__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "ctx.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 29,
+      "end_line": 114
+    },
+    "code_snippet": "class _AppCtxGlobals:\n    \"\"\"A plain object. Used as a namespace for storing data during an\n    application context.\n\n    Creating an app context automatically creates this object, which is\n    made available as the :data:`g` proxy.\n\n    .. describe:: 'key' in g\n\n        Check whether an attribute is present.\n\n        .. versionadded:: 0.10\n\n    .. describe:: iter(g)\n\n        Return an iterator over the attribute names.\n\n        .. versionadded:: 0.10\n    \"\"\"\n\n    # Define attr methods to let my..."
+  },
+  {
+    "name": "AppContext",
+    "docstring": "The app context contains application-specific information. An app\ncontext is created and pushed at the beginning of each request if\none is not already active. An app context is also pushed when\nrunning CLI commands.",
+    "methods": [
+      "__init__",
+      "push",
+      "pop",
+      "__enter__",
+      "__exit__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "ctx.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 238,
+      "end_line": 284
+    },
+    "code_snippet": "class AppContext:\n    \"\"\"The app context contains application-specific information. An app\n    context is created and pushed at the beginning of each request if\n    one is not already active. An app context is also pushed when\n    running CLI commands.\n    \"\"\"\n\n    def __init__(self, app: Flask) -> None:\n        self.app = app\n        self.url_adapter = app.create_url_adapter(None)\n        self.g: _AppCtxGlobals = app.app_ctx_globals_class()\n        self._cv_tokens: list[contextvars.Token[AppCon..."
+  },
+  {
+    "name": "RequestContext",
+    "docstring": "The request context contains per-request information. The Flask\napp creates and pushes it at the beginning of the request, then pops\nit at the end of the request. It will create the URL adapter and\nrequest object for the WSGI environment provided.\n\nDo not attempt to use this class directly, instead use\n:meth:`~flask.Flask.test_request_context` and\n:meth:`~flask.Flask.request_context` to create this object.\n\nWhen the request context is popped, it will evaluate all the\nfunctions registered on the application for teardown execution\n(:meth:`~flask.Flask.teardown_request`).\n\nThe request context is automatically popped at the end of the\nrequest. When using the interactive debugger, the context will be\nrestored so ``request`` is still accessible. Similarly, the test\nclient can preserve the context after the request ends. However,\nteardown functions may already have closed some resources such as\ndatabase connections.",
+    "methods": [
+      "__init__",
+      "copy",
+      "match_request",
+      "push",
+      "pop",
+      "__enter__",
+      "__exit__",
+      "__repr__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "ctx.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 287,
+      "end_line": 449
+    },
+    "code_snippet": "class RequestContext:\n    \"\"\"The request context contains per-request information. The Flask\n    app creates and pushes it at the beginning of the request, then pops\n    it at the end of the request. It will create the URL adapter and\n    request object for the WSGI environment provided.\n\n    Do not attempt to use this class directly, instead use\n    :meth:`~flask.Flask.test_request_context` and\n    :meth:`~flask.Flask.request_context` to create this object.\n\n    When the request context is popp..."
+  },
+  {
+    "name": "Environment",
+    "docstring": "Works like a regular Jinja2 environment but has some additional\nknowledge of how Flask's blueprint works so that it can prepend the\nname of the blueprint to referenced templates if necessary.",
+    "methods": [
+      "__init__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "templating.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 39,
+      "end_line": 49
+    },
+    "code_snippet": "class Environment(BaseEnvironment):\n    \"\"\"Works like a regular Jinja2 environment but has some additional\n    knowledge of how Flask's blueprint works so that it can prepend the\n    name of the blueprint to referenced templates if necessary.\n    \"\"\"\n\n    def __init__(self, app: App, **options: t.Any) -> None:\n        if \"loader\" not in options:\n            options[\"loader\"] = app.create_global_jinja_loader()\n        BaseEnvironment.__init__(self, **options)\n        self.app = app"
+  },
+  {
+    "name": "DispatchingJinjaLoader",
+    "docstring": "A loader that looks for templates in the application and all\nthe blueprint folders.",
+    "methods": [
+      "__init__",
+      "get_source",
+      "_get_source_explained",
+      "_get_source_fast",
+      "_iter_loaders",
+      "list_templates"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "templating.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 52,
+      "end_line": 123
+    },
+    "code_snippet": "class DispatchingJinjaLoader(BaseLoader):\n    \"\"\"A loader that looks for templates in the application and all\n    the blueprint folders.\n    \"\"\"\n\n    def __init__(self, app: App) -> None:\n        self.app = app\n\n    def get_source(\n        self, environment: BaseEnvironment, template: str\n    ) -> tuple[str, str | None, t.Callable[[], bool] | None]:\n        if self.app.config[\"EXPLAIN_TEMPLATE_LOADING\"]:\n            return self._get_source_explained(environment, template)\n        return self._ge..."
+  },
+  {
+    "name": "Flask",
+    "docstring": "The flask object implements a WSGI application and acts as the central\nobject.  It is passed the name of the module or package of the\napplication.  Once it is created it will act as a central registry for\nthe view functions, the URL rules, template configuration and much more.\n\nThe name of the package is used to resolve resources from inside the\npackage or the folder the module is contained in depending on if the\npackage parameter resolves to an actual python package (a folder with\nan :file:`__init__.py` file inside) or a standard module (just a ``.py`` file).\n\nFor more information about resource loading, see :func:`open_resource`.\n\nUsually you create a :class:`Flask` instance in your main module or\nin the :file:`__init__.py` file of your package like this::\n\n    from flask import Flask\n    app = Flask(__name__)\n\n.. admonition:: About the First Parameter\n\n    The idea of the first parameter is to give Flask an idea of what\n    belongs to your application.  This name is used to find resources\n    on the filesystem, can be used by extensions to improve debugging\n    information and a lot more.\n\n    So it's important what you provide there.  If you are using a single\n    module, `__name__` is always the correct value.  If you however are\n    using a package, it's usually recommended to hardcode the name of\n    your package there.\n\n    For example if your application is defined in :file:`yourapplication/app.py`\n    you should create it with one of the two versions below::\n\n        app = Flask('yourapplication')\n        app = Flask(__name__.split('.')[0])\n\n    Why is that?  The application will work even with `__name__`, thanks\n    to how resources are looked up.  However it will make debugging more\n    painful.  Certain extensions can make assumptions based on the\n    import name of your application.  For example the Flask-SQLAlchemy\n    extension will look for the code in your application that triggered\n    an SQL query in debug mode.  If the import name is not properly set\n    up, that debugging information is lost.  (For example it would only\n    pick up SQL queries in `yourapplication.app` and not\n    `yourapplication.views.frontend`)\n\n.. versionadded:: 0.7\n   The `static_url_path`, `static_folder`, and `template_folder`\n   parameters were added.\n\n.. versionadded:: 0.8\n   The `instance_path` and `instance_relative_config` parameters were\n   added.\n\n.. versionadded:: 0.11\n   The `root_path` parameter was added.\n\n.. versionadded:: 1.0\n   The ``host_matching`` and ``static_host`` parameters were added.\n\n.. versionadded:: 1.0\n   The ``subdomain_matching`` parameter was added. Subdomain\n   matching needs to be enabled manually now. Setting\n   :data:`SERVER_NAME` does not implicitly enable it.\n\n:param import_name: the name of the application package\n:param static_url_path: can be used to specify a different path for the\n                        static files on the web.  Defaults to the name\n                        of the `static_folder` folder.\n:param static_folder: The folder with static files that is served at\n    ``static_url_path``. Relative to the application ``root_path``\n    or an absolute path. Defaults to ``'static'``.\n:param static_host: the host to use when adding the static route.\n    Defaults to None. Required when using ``host_matching=True``\n    with a ``static_folder`` configured.\n:param host_matching: set ``url_map.host_matching`` attribute.\n    Defaults to False.\n:param subdomain_matching: consider the subdomain relative to\n    :data:`SERVER_NAME` when matching routes. Defaults to False.\n:param template_folder: the folder that contains the templates that should\n                        be used by the application.  Defaults to\n                        ``'templates'`` folder in the root path of the\n                        application.\n:param instance_path: An alternative instance path for the application.\n                      By default the folder ``'instance'`` next to the\n                      package or module is assumed to be the instance\n                      path.\n:param instance_relative_config: if set to ``True`` relative filenames\n                                 for loading the config are assumed to\n                                 be relative to the instance path instead\n                                 of the application root.\n:param root_path: The path to the root of the application files.\n    This should only be set manually when it can't be detected\n    automatically, such as for namespace packages.",
+    "methods": [
+      "__init__",
+      "get_send_file_max_age",
+      "send_static_file",
+      "open_resource",
+      "open_instance_resource",
+      "create_jinja_environment",
+      "create_url_adapter",
+      "raise_routing_exception",
+      "update_template_context",
+      "make_shell_context",
+      "run",
+      "test_client",
+      "test_cli_runner",
+      "handle_http_exception",
+      "handle_user_exception",
+      "handle_exception",
+      "log_exception",
+      "dispatch_request",
+      "full_dispatch_request",
+      "finalize_request",
+      "make_default_options_response",
+      "ensure_sync",
+      "async_to_sync",
+      "url_for",
+      "make_response",
+      "preprocess_request",
+      "process_response",
+      "do_teardown_request",
+      "do_teardown_appcontext",
+      "app_context",
+      "request_context",
+      "test_request_context",
+      "wsgi_app",
+      "__call__"
+    ],
+    "attributes": [
+      "default_config"
+    ],
+    "code_location": {
+      "file": "app.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 81,
+      "end_line": 1536
+    },
+    "code_snippet": "class Flask(App):\n    \"\"\"The flask object implements a WSGI application and acts as the central\n    object.  It is passed the name of the module or package of the\n    application.  Once it is created it will act as a central registry for\n    the view functions, the URL rules, template configuration and much more.\n\n    The name of the package is used to resolve resources from inside the\n    package or the folder the module is contained in depending on if the\n    package parameter resolves to an a..."
+  },
+  {
+    "name": "SessionMixin",
+    "docstring": "Expands a basic dictionary with session attributes.",
+    "methods": [
+      "permanent",
+      "permanent"
+    ],
+    "attributes": [
+      "new",
+      "modified",
+      "accessed"
+    ],
+    "code_location": {
+      "file": "sessions.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 24,
+      "end_line": 49
+    },
+    "code_snippet": "class SessionMixin(MutableMapping[str, t.Any]):\n    \"\"\"Expands a basic dictionary with session attributes.\"\"\"\n\n    @property\n    def permanent(self) -> bool:\n        \"\"\"This reflects the ``'_permanent'`` key in the dict.\"\"\"\n        return self.get(\"_permanent\", False)\n\n    @permanent.setter\n    def permanent(self, value: bool) -> None:\n        self[\"_permanent\"] = bool(value)\n\n    #: Some implementations can detect whether a session is newly\n    #: created, but that is not guaranteed. Use with c..."
+  },
+  {
+    "name": "SecureCookieSession",
+    "docstring": "Base class for sessions based on signed cookies.\n\nThis session backend will set the :attr:`modified` and\n:attr:`accessed` attributes. It cannot reliably track whether a\nsession is new (vs. empty), so :attr:`new` remains hard coded to\n``False``.",
+    "methods": [
+      "__init__",
+      "__getitem__",
+      "get",
+      "setdefault"
+    ],
+    "attributes": [
+      "modified",
+      "accessed"
+    ],
+    "code_location": {
+      "file": "sessions.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 52,
+      "end_line": 94
+    },
+    "code_snippet": "class SecureCookieSession(CallbackDict[str, t.Any], SessionMixin):\n    \"\"\"Base class for sessions based on signed cookies.\n\n    This session backend will set the :attr:`modified` and\n    :attr:`accessed` attributes. It cannot reliably track whether a\n    session is new (vs. empty), so :attr:`new` remains hard coded to\n    ``False``.\n    \"\"\"\n\n    #: When data is changed, this is set to ``True``. Only the session\n    #: dictionary itself is tracked; if the session contains mutable\n    #: data (for..."
+  },
+  {
+    "name": "NullSession",
+    "docstring": "Class used to generate nicer error messages if sessions are not\navailable.  Will still allow read-only access to the empty session\nbut fail on setting.",
+    "methods": [
+      "_fail"
+    ],
+    "attributes": [
+      "__setitem__",
+      "__delitem__",
+      "clear",
+      "pop",
+      "popitem",
+      "update",
+      "setdefault"
+    ],
+    "code_location": {
+      "file": "sessions.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 97,
+      "end_line": 111
+    },
+    "code_snippet": "class NullSession(SecureCookieSession):\n    \"\"\"Class used to generate nicer error messages if sessions are not\n    available.  Will still allow read-only access to the empty session\n    but fail on setting.\n    \"\"\"\n\n    def _fail(self, *args: t.Any, **kwargs: t.Any) -> t.NoReturn:\n        raise RuntimeError(\n            \"The session is unavailable because no secret \"\n            \"key was set.  Set the secret_key on the \"\n            \"application to something unique and secret.\"\n        )\n\n    __..."
+  },
+  {
+    "name": "SessionInterface",
+    "docstring": "The basic interface you have to implement in order to replace the\ndefault session interface which uses werkzeug's securecookie\nimplementation.  The only methods you have to implement are\n:meth:`open_session` and :meth:`save_session`, the others have\nuseful defaults which you don't need to change.\n\nThe session object returned by the :meth:`open_session` method has to\nprovide a dictionary like interface plus the properties and methods\nfrom the :class:`SessionMixin`.  We recommend just subclassing a dict\nand adding that mixin::\n\n    class Session(dict, SessionMixin):\n        pass\n\nIf :meth:`open_session` returns ``None`` Flask will call into\n:meth:`make_null_session` to create a session that acts as replacement\nif the session support cannot work because some requirement is not\nfulfilled.  The default :class:`NullSession` class that is created\nwill complain that the secret key was not set.\n\nTo replace the session interface on an application all you have to do\nis to assign :attr:`flask.Flask.session_interface`::\n\n    app = Flask(__name__)\n    app.session_interface = MySessionInterface()\n\nMultiple requests with the same session may be sent and handled\nconcurrently. When implementing a new session interface, consider\nwhether reads or writes to the backing store must be synchronized.\nThere is no guarantee on the order in which the session for each\nrequest is opened or saved, it will occur in the order that requests\nbegin and end processing.\n\n.. versionadded:: 0.8",
+    "methods": [
+      "make_null_session",
+      "is_null_session",
+      "get_cookie_name",
+      "get_cookie_domain",
+      "get_cookie_path",
+      "get_cookie_httponly",
+      "get_cookie_secure",
+      "get_cookie_samesite",
+      "get_cookie_partitioned",
+      "get_expiration_time",
+      "should_set_cookie",
+      "open_session",
+      "save_session"
+    ],
+    "attributes": [
+      "null_session_class",
+      "pickle_based"
+    ],
+    "code_location": {
+      "file": "sessions.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 114,
+      "end_line": 284
+    },
+    "code_snippet": "class SessionInterface:\n    \"\"\"The basic interface you have to implement in order to replace the\n    default session interface which uses werkzeug's securecookie\n    implementation.  The only methods you have to implement are\n    :meth:`open_session` and :meth:`save_session`, the others have\n    useful defaults which you don't need to change.\n\n    The session object returned by the :meth:`open_session` method has to\n    provide a dictionary like interface plus the properties and methods\n    from..."
+  },
+  {
+    "name": "SecureCookieSessionInterface",
+    "docstring": "The default session interface that stores sessions in signed cookies\nthrough the :mod:`itsdangerous` module.",
+    "methods": [
+      "get_signing_serializer",
+      "open_session",
+      "save_session"
+    ],
+    "attributes": [
+      "salt",
+      "digest_method",
+      "key_derivation",
+      "serializer",
+      "session_class"
+    ],
+    "code_location": {
+      "file": "sessions.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 298,
+      "end_line": 399
+    },
+    "code_snippet": "class SecureCookieSessionInterface(SessionInterface):\n    \"\"\"The default session interface that stores sessions in signed cookies\n    through the :mod:`itsdangerous` module.\n    \"\"\"\n\n    #: the salt that should be applied on top of the secret key for the\n    #: signing of cookie based sessions.\n    salt = \"cookie-session\"\n    #: the hash function to use for the signature.  The default is sha1\n    digest_method = staticmethod(_lazy_sha1)\n    #: the name of the itsdangerous supported key derivatio..."
+  },
+  {
+    "name": "NoAppException",
+    "docstring": "Raised if an application cannot be found or loaded.",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 37,
+      "end_line": 38
+    },
+    "code_snippet": "class NoAppException(click.UsageError):\n    \"\"\"Raised if an application cannot be found or loaded.\"\"\""
+  },
+  {
+    "name": "ScriptInfo",
+    "docstring": "Helper object to deal with Flask applications.  This is usually not\nnecessary to interface with as it's used internally in the dispatching\nto click.  In future versions of Flask this object will most likely play\na bigger role.  Typically it's created automatically by the\n:class:`FlaskGroup` but you can also manually create it and pass it\nonwards as click object.\n\n.. versionchanged:: 3.1\n    Added the ``load_dotenv_defaults`` parameter and attribute.",
+    "methods": [
+      "__init__",
+      "load_app"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 293,
+      "end_line": 372
+    },
+    "code_snippet": "class ScriptInfo:\n    \"\"\"Helper object to deal with Flask applications.  This is usually not\n    necessary to interface with as it's used internally in the dispatching\n    to click.  In future versions of Flask this object will most likely play\n    a bigger role.  Typically it's created automatically by the\n    :class:`FlaskGroup` but you can also manually create it and pass it\n    onwards as click object.\n\n    .. versionchanged:: 3.1\n        Added the ``load_dotenv_defaults`` parameter and attr..."
+  },
+  {
+    "name": "AppGroup",
+    "docstring": "This works similar to a regular click :class:`~click.Group` but it\nchanges the behavior of the :meth:`command` decorator so that it\nautomatically wraps the functions in :func:`with_appcontext`.\n\nNot to be confused with :class:`FlaskGroup`.",
+    "methods": [
+      "command",
+      "group"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 405,
+      "end_line": 437
+    },
+    "code_snippet": "class AppGroup(click.Group):\n    \"\"\"This works similar to a regular click :class:`~click.Group` but it\n    changes the behavior of the :meth:`command` decorator so that it\n    automatically wraps the functions in :func:`with_appcontext`.\n\n    Not to be confused with :class:`FlaskGroup`.\n    \"\"\"\n\n    def command(  # type: ignore[override]\n        self, *args: t.Any, **kwargs: t.Any\n    ) -> t.Callable[[t.Callable[..., t.Any]], click.Command]:\n        \"\"\"This works exactly like the method of the s..."
+  },
+  {
+    "name": "FlaskGroup",
+    "docstring": "Special subclass of the :class:`AppGroup` group that supports\nloading more commands from the configured Flask app.  Normally a\ndeveloper does not have to interface with this class but there are\nsome very advanced use cases for which it makes sense to create an\ninstance of this. see :ref:`custom-scripts`.\n\n:param add_default_commands: if this is True then the default run and\n    shell commands will be added.\n:param add_version_option: adds the ``--version`` option.\n:param create_app: an optional callback that is passed the script info and\n    returns the loaded app.\n:param load_dotenv: Load the nearest :file:`.env` and :file:`.flaskenv`\n    files to set environment variables. Will also change the working\n    directory to the directory containing the first file found.\n:param set_debug_flag: Set the app's debug flag.\n\n.. versionchanged:: 3.1\n    ``-e path`` takes precedence over default ``.env`` and ``.flaskenv`` files.\n\n.. versionchanged:: 2.2\n    Added the ``-A/--app``, ``--debug/--no-debug``, ``-e/--env-file`` options.\n\n.. versionchanged:: 2.2\n    An app context is pushed when running ``app.cli`` commands, so\n    ``@with_appcontext`` is no longer required for those commands.\n\n.. versionchanged:: 1.0\n    If installed, python-dotenv will be used to load environment variables\n    from :file:`.env` and :file:`.flaskenv` files.",
+    "methods": [
+      "__init__",
+      "_load_plugin_commands",
+      "get_command",
+      "list_commands",
+      "make_context",
+      "parse_args"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 531,
+      "end_line": 688
+    },
+    "code_snippet": "class FlaskGroup(AppGroup):\n    \"\"\"Special subclass of the :class:`AppGroup` group that supports\n    loading more commands from the configured Flask app.  Normally a\n    developer does not have to interface with this class but there are\n    some very advanced use cases for which it makes sense to create an\n    instance of this. see :ref:`custom-scripts`.\n\n    :param add_default_commands: if this is True then the default run and\n        shell commands will be added.\n    :param add_version_option:..."
+  },
+  {
+    "name": "CertParamType",
+    "docstring": "Click option type for the ``--cert`` option. Allows either an\nexisting file, the string ``'adhoc'``, or an import for a\n:class:`~ssl.SSLContext` object.",
+    "methods": [
+      "__init__",
+      "convert"
+    ],
+    "attributes": [
+      "name"
+    ],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 780,
+      "end_line": 825
+    },
+    "code_snippet": "class CertParamType(click.ParamType):\n    \"\"\"Click option type for the ``--cert`` option. Allows either an\n    existing file, the string ``'adhoc'``, or an import for a\n    :class:`~ssl.SSLContext` object.\n    \"\"\"\n\n    name = \"path\"\n\n    def __init__(self) -> None:\n        self.path_type = click.Path(exists=True, dir_okay=False, resolve_path=True)\n\n    def convert(\n        self, value: t.Any, param: click.Parameter | None, ctx: click.Context | None\n    ) -> t.Any:\n        try:\n            import..."
+  },
+  {
+    "name": "SeparatedPathType",
+    "docstring": "Click option type that accepts a list of values separated by the\nOS's path separator (``:``, ``;`` on Windows). Each value is\nvalidated as a :class:`click.Path` type.",
+    "methods": [
+      "convert"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "cli.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 867,
+      "end_line": 879
+    },
+    "code_snippet": "class SeparatedPathType(click.Path):\n    \"\"\"Click option type that accepts a list of values separated by the\n    OS's path separator (``:``, ``;`` on Windows). Each value is\n    validated as a :class:`click.Path` type.\n    \"\"\"\n\n    def convert(\n        self, value: t.Any, param: click.Parameter | None, ctx: click.Context | None\n    ) -> t.Any:\n        items = self.split_envvar_value(value)\n        # can't call no-arg super() inside list comprehension until Python 3.12\n        super_convert = sup..."
+  },
+  {
+    "name": "ConfigAttribute",
+    "docstring": "Makes an attribute forward to the config",
+    "methods": [
+      "__init__",
+      "__get__",
+      "__get__",
+      "__get__",
+      "__set__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "config.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 20,
+      "end_line": 47
+    },
+    "code_snippet": "class ConfigAttribute(t.Generic[T]):\n    \"\"\"Makes an attribute forward to the config\"\"\"\n\n    def __init__(\n        self, name: str, get_converter: t.Callable[[t.Any], T] | None = None\n    ) -> None:\n        self.__name__ = name\n        self.get_converter = get_converter\n\n    @t.overload\n    def __get__(self, obj: None, owner: None) -> te.Self: ...\n\n    @t.overload\n    def __get__(self, obj: App, owner: type[App]) -> T: ...\n\n    def __get__(self, obj: App | None, owner: type[App] | None = None) -..."
+  },
+  {
+    "name": "Config",
+    "docstring": "Works exactly like a dict but provides ways to fill it from files\nor special dictionaries.  There are two common patterns to populate the\nconfig.\n\nEither you can fill the config from a config file::\n\n    app.config.from_pyfile('yourconfig.cfg')\n\nOr alternatively you can define the configuration options in the\nmodule that calls :meth:`from_object` or provide an import path to\na module that should be loaded.  It is also possible to tell it to\nuse the same module and with that provide the configuration values\njust before the call::\n\n    DEBUG = True\n    SECRET_KEY = 'development key'\n    app.config.from_object(__name__)\n\nIn both cases (loading from any Python file or loading from modules),\nonly uppercase keys are added to the config.  This makes it possible to use\nlowercase values in the config file for temporary values that are not added\nto the config or to define the config keys in the same file that implements\nthe application.\n\nProbably the most interesting way to load configurations is from an\nenvironment variable pointing to a file::\n\n    app.config.from_envvar('YOURAPPLICATION_SETTINGS')\n\nIn this case before launching the application you have to set this\nenvironment variable to the file you want to use.  On Linux and OS X\nuse the export statement::\n\n    export YOURAPPLICATION_SETTINGS='/path/to/config/file'\n\nOn windows use `set` instead.\n\n:param root_path: path to which files are read relative from.  When the\n                  config object is created by the application, this is\n                  the application's :attr:`~flask.Flask.root_path`.\n:param defaults: an optional dictionary of default values",
+    "methods": [
+      "__init__",
+      "from_envvar",
+      "from_prefixed_env",
+      "from_pyfile",
+      "from_object",
+      "from_file",
+      "from_mapping",
+      "get_namespace",
+      "__repr__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "config.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 50,
+      "end_line": 367
+    },
+    "code_snippet": "class Config(dict):  # type: ignore[type-arg]\n    \"\"\"Works exactly like a dict but provides ways to fill it from files\n    or special dictionaries.  There are two common patterns to populate the\n    config.\n\n    Either you can fill the config from a config file::\n\n        app.config.from_pyfile('yourconfig.cfg')\n\n    Or alternatively you can define the configuration options in the\n    module that calls :meth:`from_object` or provide an import path to\n    a module that should be loaded.  It is al..."
+  },
+  {
+    "name": "Request",
+    "docstring": "The request object used by default in Flask.  Remembers the\nmatched endpoint and view arguments.\n\nIt is what ends up as :class:`~flask.request`.  If you want to replace\nthe request object used you can subclass this and set\n:attr:`~flask.Flask.request_class` to your subclass.\n\nThe request object is a :class:`~werkzeug.wrappers.Request` subclass and\nprovides all of the attributes Werkzeug defines plus a few Flask\nspecific ones.",
+    "methods": [
+      "max_content_length",
+      "max_content_length",
+      "max_form_memory_size",
+      "max_form_memory_size",
+      "max_form_parts",
+      "max_form_parts",
+      "endpoint",
+      "blueprint",
+      "blueprints",
+      "_load_form_data",
+      "on_json_loading_failed"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "wrappers.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 18,
+      "end_line": 219
+    },
+    "code_snippet": "class Request(RequestBase):\n    \"\"\"The request object used by default in Flask.  Remembers the\n    matched endpoint and view arguments.\n\n    It is what ends up as :class:`~flask.request`.  If you want to replace\n    the request object used you can subclass this and set\n    :attr:`~flask.Flask.request_class` to your subclass.\n\n    The request object is a :class:`~werkzeug.wrappers.Request` subclass and\n    provides all of the attributes Werkzeug defines plus a few Flask\n    specific ones.\n    \"\"\"..."
+  },
+  {
+    "name": "Response",
+    "docstring": "The response object that is used by default in Flask.  Works like the\nresponse object from Werkzeug but is set to have an HTML mimetype by\ndefault.  Quite often you don't have to create this object yourself because\n:meth:`~flask.Flask.make_response` will take care of that for you.\n\nIf you want to replace the response object used you can subclass this and\nset :attr:`~flask.Flask.response_class` to your subclass.\n\n.. versionchanged:: 1.0\n    JSON support is added to the response, like the request. This is useful\n    when testing to get the test client response data as JSON.\n\n.. versionchanged:: 1.0\n\n    Added :attr:`max_cookie_size`.",
+    "methods": [
+      "max_cookie_size"
+    ],
+    "attributes": [
+      "json_module",
+      "autocorrect_location_header"
+    ],
+    "code_location": {
+      "file": "wrappers.py",
+      "path": "/data3/pwh/flask/src/flask",
+      "start_line": 222,
+      "end_line": 257
+    },
+    "code_snippet": "class Response(ResponseBase):\n    \"\"\"The response object that is used by default in Flask.  Works like the\n    response object from Werkzeug but is set to have an HTML mimetype by\n    default.  Quite often you don't have to create this object yourself because\n    :meth:`~flask.Flask.make_response` will take care of that for you.\n\n    If you want to replace the response object used you can subclass this and\n    set :attr:`~flask.Flask.response_class` to your subclass.\n\n    .. versionchanged:: 1.0..."
+  },
+  {
+    "name": "JSONProvider",
+    "docstring": "A standard set of JSON operations for an application. Subclasses\nof this can be used to customize JSON behavior or use different\nJSON libraries.\n\nTo implement a provider for a specific library, subclass this base\nclass and implement at least :meth:`dumps` and :meth:`loads`. All\nother methods have default implementations.\n\nTo use a different provider, either subclass ``Flask`` and set\n:attr:`~flask.Flask.json_provider_class` to a provider class, or set\n:attr:`app.json <flask.Flask.json>` to an instance of the class.\n\n:param app: An application instance. This will be stored as a\n    :class:`weakref.proxy` on the :attr:`_app` attribute.\n\n.. versionadded:: 2.2",
+    "methods": [
+      "__init__",
+      "dumps",
+      "dump",
+      "loads",
+      "load",
+      "_prepare_response_obj",
+      "response"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "provider.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 19,
+      "end_line": 105
+    },
+    "code_snippet": "class JSONProvider:\n    \"\"\"A standard set of JSON operations for an application. Subclasses\n    of this can be used to customize JSON behavior or use different\n    JSON libraries.\n\n    To implement a provider for a specific library, subclass this base\n    class and implement at least :meth:`dumps` and :meth:`loads`. All\n    other methods have default implementations.\n\n    To use a different provider, either subclass ``Flask`` and set\n    :attr:`~flask.Flask.json_provider_class` to a provider cla..."
+  },
+  {
+    "name": "DefaultJSONProvider",
+    "docstring": "Provide JSON operations using Python's built-in :mod:`json`\nlibrary. Serializes the following additional data types:\n\n-   :class:`datetime.datetime` and :class:`datetime.date` are\n    serialized to :rfc:`822` strings. This is the same as the HTTP\n    date format.\n-   :class:`uuid.UUID` is serialized to a string.\n-   :class:`dataclasses.dataclass` is passed to\n    :func:`dataclasses.asdict`.\n-   :class:`~markupsafe.Markup` (or any object with a ``__html__``\n    method) will call the ``__html__`` method to get a string.",
+    "methods": [
+      "dumps",
+      "loads",
+      "response"
+    ],
+    "attributes": [
+      "ensure_ascii",
+      "sort_keys",
+      "mimetype"
+    ],
+    "code_location": {
+      "file": "provider.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 124,
+      "end_line": 215
+    },
+    "code_snippet": "class DefaultJSONProvider(JSONProvider):\n    \"\"\"Provide JSON operations using Python's built-in :mod:`json`\n    library. Serializes the following additional data types:\n\n    -   :class:`datetime.datetime` and :class:`datetime.date` are\n        serialized to :rfc:`822` strings. This is the same as the HTTP\n        date format.\n    -   :class:`uuid.UUID` is serialized to a string.\n    -   :class:`dataclasses.dataclass` is passed to\n        :func:`dataclasses.asdict`.\n    -   :class:`~markupsafe.Ma..."
+  },
+  {
+    "name": "JSONTag",
+    "docstring": "Base class for defining type tags for :class:`TaggedJSONSerializer`.",
+    "methods": [
+      "__init__",
+      "check",
+      "to_json",
+      "to_python",
+      "tag"
+    ],
+    "attributes": [
+      "__slots__"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 60,
+      "end_line": 90
+    },
+    "code_snippet": "class JSONTag:\n    \"\"\"Base class for defining type tags for :class:`TaggedJSONSerializer`.\"\"\"\n\n    __slots__ = (\"serializer\",)\n\n    #: The tag to mark the serialized object with. If empty, this tag is\n    #: only used as an intermediate step during tagging.\n    key: str = \"\"\n\n    def __init__(self, serializer: TaggedJSONSerializer) -> None:\n        \"\"\"Create a tagger for the given serializer.\"\"\"\n        self.serializer = serializer\n\n    def check(self, value: t.Any) -> bool:\n        \"\"\"Check if ..."
+  },
+  {
+    "name": "TagDict",
+    "docstring": "Tag for 1-item dicts whose only key matches a registered tag.\n\nInternally, the dict key is suffixed with `__`, and the suffix is removed\nwhen deserializing.",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 93,
+      "end_line": 116
+    },
+    "code_snippet": "class TagDict(JSONTag):\n    \"\"\"Tag for 1-item dicts whose only key matches a registered tag.\n\n    Internally, the dict key is suffixed with `__`, and the suffix is removed\n    when deserializing.\n    \"\"\"\n\n    __slots__ = ()\n    key = \" di\"\n\n    def check(self, value: t.Any) -> bool:\n        return (\n            isinstance(value, dict)\n            and len(value) == 1\n            and next(iter(value)) in self.serializer.tags\n        )\n\n    def to_json(self, value: t.Any) -> t.Any:\n        key = ne..."
+  },
+  {
+    "name": "PassDict",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json"
+    ],
+    "attributes": [
+      "__slots__",
+      "tag"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 119,
+      "end_line": 130
+    },
+    "code_snippet": "class PassDict(JSONTag):\n    __slots__ = ()\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, dict)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        # JSON objects may only have string keys, so don't bother tagging the\n        # key here.\n        return {k: self.serializer.tag(v) for k, v in value.items()}\n\n    tag = to_json"
+  },
+  {
+    "name": "TagTuple",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 133,
+      "end_line": 144
+    },
+    "code_snippet": "class TagTuple(JSONTag):\n    __slots__ = ()\n    key = \" t\"\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, tuple)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return [self.serializer.tag(item) for item in value]\n\n    def to_python(self, value: t.Any) -> t.Any:\n        return tuple(value)"
+  },
+  {
+    "name": "PassList",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json"
+    ],
+    "attributes": [
+      "__slots__",
+      "tag"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 147,
+      "end_line": 156
+    },
+    "code_snippet": "class PassList(JSONTag):\n    __slots__ = ()\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, list)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return [self.serializer.tag(item) for item in value]\n\n    tag = to_json"
+  },
+  {
+    "name": "TagBytes",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 159,
+      "end_line": 170
+    },
+    "code_snippet": "class TagBytes(JSONTag):\n    __slots__ = ()\n    key = \" b\"\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, bytes)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return b64encode(value).decode(\"ascii\")\n\n    def to_python(self, value: t.Any) -> t.Any:\n        return b64decode(value)"
+  },
+  {
+    "name": "TagMarkup",
+    "docstring": "Serialize anything matching the :class:`~markupsafe.Markup` API by\nhaving a ``__html__`` method to the result of that method. Always\ndeserializes to an instance of :class:`~markupsafe.Markup`.",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 173,
+      "end_line": 188
+    },
+    "code_snippet": "class TagMarkup(JSONTag):\n    \"\"\"Serialize anything matching the :class:`~markupsafe.Markup` API by\n    having a ``__html__`` method to the result of that method. Always\n    deserializes to an instance of :class:`~markupsafe.Markup`.\"\"\"\n\n    __slots__ = ()\n    key = \" m\"\n\n    def check(self, value: t.Any) -> bool:\n        return callable(getattr(value, \"__html__\", None))\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return str(value.__html__())\n\n    def to_python(self, value: t.Any) -> ..."
+  },
+  {
+    "name": "TagUUID",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 191,
+      "end_line": 202
+    },
+    "code_snippet": "class TagUUID(JSONTag):\n    __slots__ = ()\n    key = \" u\"\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, UUID)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return value.hex\n\n    def to_python(self, value: t.Any) -> t.Any:\n        return UUID(value)"
+  },
+  {
+    "name": "TagDateTime",
+    "docstring": "",
+    "methods": [
+      "check",
+      "to_json",
+      "to_python"
+    ],
+    "attributes": [
+      "__slots__",
+      "key"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 205,
+      "end_line": 216
+    },
+    "code_snippet": "class TagDateTime(JSONTag):\n    __slots__ = ()\n    key = \" d\"\n\n    def check(self, value: t.Any) -> bool:\n        return isinstance(value, datetime)\n\n    def to_json(self, value: t.Any) -> t.Any:\n        return http_date(value)\n\n    def to_python(self, value: t.Any) -> t.Any:\n        return parse_date(value)"
+  },
+  {
+    "name": "TaggedJSONSerializer",
+    "docstring": "Serializer that uses a tag system to compactly represent objects that\nare not JSON types. Passed as the intermediate serializer to\n:class:`itsdangerous.Serializer`.\n\nThe following extra types are supported:\n\n* :class:`dict`\n* :class:`tuple`\n* :class:`bytes`\n* :class:`~markupsafe.Markup`\n* :class:`~uuid.UUID`\n* :class:`~datetime.datetime`",
+    "methods": [
+      "__init__",
+      "register",
+      "tag",
+      "untag",
+      "_untag_scan",
+      "dumps",
+      "loads"
+    ],
+    "attributes": [
+      "__slots__",
+      "default_tags"
+    ],
+    "code_location": {
+      "file": "tag.py",
+      "path": "/data3/pwh/flask/src/flask/json",
+      "start_line": 219,
+      "end_line": 327
+    },
+    "code_snippet": "class TaggedJSONSerializer:\n    \"\"\"Serializer that uses a tag system to compactly represent objects that\n    are not JSON types. Passed as the intermediate serializer to\n    :class:`itsdangerous.Serializer`.\n\n    The following extra types are supported:\n\n    * :class:`dict`\n    * :class:`tuple`\n    * :class:`bytes`\n    * :class:`~markupsafe.Markup`\n    * :class:`~uuid.UUID`\n    * :class:`~datetime.datetime`\n    \"\"\"\n\n    __slots__ = (\"tags\", \"order\")\n\n    #: Tag classes to bind when creating the ..."
+  },
+  {
+    "name": "BlueprintSetupState",
+    "docstring": "Temporary holder object for registering a blueprint with the\napplication.  An instance of this class is created by the\n:meth:`~flask.Blueprint.make_setup_state` method and later passed\nto all register callback functions.",
+    "methods": [
+      "__init__",
+      "add_url_rule"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "blueprints.py",
+      "path": "/data3/pwh/flask/src/flask/sansio",
+      "start_line": 34,
+      "end_line": 116
+    },
+    "code_snippet": "class BlueprintSetupState:\n    \"\"\"Temporary holder object for registering a blueprint with the\n    application.  An instance of this class is created by the\n    :meth:`~flask.Blueprint.make_setup_state` method and later passed\n    to all register callback functions.\n    \"\"\"\n\n    def __init__(\n        self,\n        blueprint: Blueprint,\n        app: App,\n        options: t.Any,\n        first_registration: bool,\n    ) -> None:\n        #: a reference to the current application\n        self.app = ap..."
+  },
+  {
+    "name": "Blueprint",
+    "docstring": "Represents a blueprint, a collection of routes and other\napp-related functions that can be registered on a real application\nlater.\n\nA blueprint is an object that allows defining application functions\nwithout requiring an application object ahead of time. It uses the\nsame decorators as :class:`~flask.Flask`, but defers the need for an\napplication by recording them for later registration.\n\nDecorating a function with a blueprint creates a deferred function\nthat is called with :class:`~flask.blueprints.BlueprintSetupState`\nwhen the blueprint is registered on an application.\n\nSee :doc:`/blueprints` for more information.\n\n:param name: The name of the blueprint. Will be prepended to each\n    endpoint name.\n:param import_name: The name of the blueprint package, usually\n    ``__name__``. This helps locate the ``root_path`` for the\n    blueprint.\n:param static_folder: A folder with static files that should be\n    served by the blueprint's static route. The path is relative to\n    the blueprint's root path. Blueprint static files are disabled\n    by default.\n:param static_url_path: The url to serve static files from.\n    Defaults to ``static_folder``. If the blueprint does not have\n    a ``url_prefix``, the app's static route will take precedence,\n    and the blueprint's static files won't be accessible.\n:param template_folder: A folder with templates that should be added\n    to the app's template search path. The path is relative to the\n    blueprint's root path. Blueprint templates are disabled by\n    default. Blueprint templates have a lower precedence than those\n    in the app's templates folder.\n:param url_prefix: A path to prepend to all of the blueprint's URLs,\n    to make them distinct from the rest of the app's routes.\n:param subdomain: A subdomain that blueprint routes will match on by\n    default.\n:param url_defaults: A dict of default values that blueprint routes\n    will receive by default.\n:param root_path: By default, the blueprint will automatically set\n    this based on ``import_name``. In certain situations this\n    automatic detection can fail, so the path can be specified\n    manually instead.\n\n.. versionchanged:: 1.1.0\n    Blueprints have a ``cli`` group to register nested CLI commands.\n    The ``cli_group`` parameter controls the name of the group under\n    the ``flask`` command.\n\n.. versionadded:: 0.7",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "blueprints.py",
+      "path": "/data3/pwh/flask/src/flask/sansio",
+      "start_line": 119,
+      "end_line": 632
+    },
+    "code_snippet": "class Blueprint(Scaffold):\n    \"\"\"Represents a blueprint, a collection of routes and other\n    app-related functions that can be registered on a real application\n    later.\n\n    A blueprint is an object that allows defining application functions\n    without requiring an application object ahead of time. It uses the\n    same decorators as :class:`~flask.Flask`, but defers the need for an\n    application by recording them for later registration.\n\n    Decorating a function with a blueprint creates ..."
+  },
+  {
+    "name": "App",
+    "docstring": "The flask object implements a WSGI application and acts as the central\nobject.  It is passed the name of the module or package of the\napplication.  Once it is created it will act as a central registry for\nthe view functions, the URL rules, template configuration and much more.\n\nThe name of the package is used to resolve resources from inside the\npackage or the folder the module is contained in depending on if the\npackage parameter resolves to an actual python package (a folder with\nan :file:`__init__.py` file inside) or a standard module (just a ``.py`` file).\n\nFor more information about resource loading, see :func:`open_resource`.\n\nUsually you create a :class:`Flask` instance in your main module or\nin the :file:`__init__.py` file of your package like this::\n\n    from flask import Flask\n    app = Flask(__name__)\n\n.. admonition:: About the First Parameter\n\n    The idea of the first parameter is to give Flask an idea of what\n    belongs to your application.  This name is used to find resources\n    on the filesystem, can be used by extensions to improve debugging\n    information and a lot more.\n\n    So it's important what you provide there.  If you are using a single\n    module, `__name__` is always the correct value.  If you however are\n    using a package, it's usually recommended to hardcode the name of\n    your package there.\n\n    For example if your application is defined in :file:`yourapplication/app.py`\n    you should create it with one of the two versions below::\n\n        app = Flask('yourapplication')\n        app = Flask(__name__.split('.')[0])\n\n    Why is that?  The application will work even with `__name__`, thanks\n    to how resources are looked up.  However it will make debugging more\n    painful.  Certain extensions can make assumptions based on the\n    import name of your application.  For example the Flask-SQLAlchemy\n    extension will look for the code in your application that triggered\n    an SQL query in debug mode.  If the import name is not properly set\n    up, that debugging information is lost.  (For example it would only\n    pick up SQL queries in `yourapplication.app` and not\n    `yourapplication.views.frontend`)\n\n.. versionadded:: 0.7\n   The `static_url_path`, `static_folder`, and `template_folder`\n   parameters were added.\n\n.. versionadded:: 0.8\n   The `instance_path` and `instance_relative_config` parameters were\n   added.\n\n.. versionadded:: 0.11\n   The `root_path` parameter was added.\n\n.. versionadded:: 1.0\n   The ``host_matching`` and ``static_host`` parameters were added.\n\n.. versionadded:: 1.0\n   The ``subdomain_matching`` parameter was added. Subdomain\n   matching needs to be enabled manually now. Setting\n   :data:`SERVER_NAME` does not implicitly enable it.\n\n:param import_name: the name of the application package\n:param static_url_path: can be used to specify a different path for the\n                        static files on the web.  Defaults to the name\n                        of the `static_folder` folder.\n:param static_folder: The folder with static files that is served at\n    ``static_url_path``. Relative to the application ``root_path``\n    or an absolute path. Defaults to ``'static'``.\n:param static_host: the host to use when adding the static route.\n    Defaults to None. Required when using ``host_matching=True``\n    with a ``static_folder`` configured.\n:param host_matching: set ``url_map.host_matching`` attribute.\n    Defaults to False.\n:param subdomain_matching: consider the subdomain relative to\n    :data:`SERVER_NAME` when matching routes. Defaults to False.\n:param template_folder: the folder that contains the templates that should\n                        be used by the application.  Defaults to\n                        ``'templates'`` folder in the root path of the\n                        application.\n:param instance_path: An alternative instance path for the application.\n                      By default the folder ``'instance'`` next to the\n                      package or module is assumed to be the instance\n                      path.\n:param instance_relative_config: if set to ``True`` relative filenames\n                                 for loading the config are assumed to\n                                 be relative to the instance path instead\n                                 of the application root.\n:param root_path: The path to the root of the application files.\n    This should only be set manually when it can't be detected\n    automatically, such as for namespace packages.",
+    "methods": [
+      "__init__",
+      "_check_setup_finished",
+      "name",
+      "logger",
+      "jinja_env",
+      "create_jinja_environment",
+      "make_config",
+      "make_aborter",
+      "auto_find_instance_path",
+      "create_global_jinja_loader",
+      "select_jinja_autoescape",
+      "debug",
+      "debug",
+      "register_blueprint",
+      "iter_blueprints",
+      "add_url_rule",
+      "template_filter",
+      "add_template_filter",
+      "template_test",
+      "add_template_test",
+      "template_global",
+      "add_template_global",
+      "teardown_appcontext",
+      "shell_context_processor",
+      "_find_error_handler",
+      "trap_http_exception",
+      "should_ignore_error",
+      "redirect",
+      "inject_url_defaults",
+      "handle_url_build_error"
+    ],
+    "attributes": [
+      "aborter_class",
+      "jinja_environment",
+      "app_ctx_globals_class",
+      "config_class",
+      "testing",
+      "secret_key",
+      "permanent_session_lifetime",
+      "url_rule_class",
+      "url_map_class"
+    ],
+    "code_location": {
+      "file": "app.py",
+      "path": "/data3/pwh/flask/src/flask/sansio",
+      "start_line": 59,
+      "end_line": 964
+    },
+    "code_snippet": "class App(Scaffold):\n    \"\"\"The flask object implements a WSGI application and acts as the central\n    object.  It is passed the name of the module or package of the\n    application.  Once it is created it will act as a central registry for\n    the view functions, the URL rules, template configuration and much more.\n\n    The name of the package is used to resolve resources from inside the\n    package or the folder the module is contained in depending on if the\n    package parameter resolves to a..."
+  },
+  {
+    "name": "Scaffold",
+    "docstring": "Common behavior shared between :class:`~flask.Flask` and\n:class:`~flask.blueprints.Blueprint`.\n\n:param import_name: The import name of the module where this object\n    is defined. Usually :attr:`__name__` should be used.\n:param static_folder: Path to a folder of static files to serve.\n    If this is set, a static route will be added.\n:param static_url_path: URL prefix for the static route.\n:param template_folder: Path to a folder containing template files.\n    for rendering. If this is set, a Jinja loader will be added.\n:param root_path: The path that static, template, and resource files\n    are relative to. Typically not set, it is discovered based on\n    the ``import_name``.\n\n.. versionadded:: 2.0",
+    "methods": [
+      "__init__",
+      "__repr__",
+      "_check_setup_finished",
+      "static_folder",
+      "static_folder",
+      "has_static_folder",
+      "static_url_path",
+      "static_url_path",
+      "jinja_loader",
+      "_method_route",
+      "get",
+      "post",
+      "put",
+      "delete",
+      "patch",
+      "route",
+      "add_url_rule",
+      "endpoint",
+      "before_request",
+      "after_request",
+      "teardown_request",
+      "context_processor",
+      "url_value_preprocessor",
+      "url_defaults",
+      "errorhandler",
+      "register_error_handler",
+      "_get_exc_class_and_code"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "scaffold.py",
+      "path": "/data3/pwh/flask/src/flask/sansio",
+      "start_line": 52,
+      "end_line": 698
+    },
+    "code_snippet": "class Scaffold:\n    \"\"\"Common behavior shared between :class:`~flask.Flask` and\n    :class:`~flask.blueprints.Blueprint`.\n\n    :param import_name: The import name of the module where this object\n        is defined. Usually :attr:`__name__` should be used.\n    :param static_folder: Path to a folder of static files to serve.\n        If this is set, a static route will be added.\n    :param static_url_path: URL prefix for the static route.\n    :param template_folder: Path to a folder containing temp..."
+  },
+  {
+    "name": "AuthActions",
+    "docstring": "",
+    "methods": [
+      "__init__",
+      "login",
+      "logout"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "conftest.py",
+      "path": "/data3/pwh/flask/examples/tutorial/tests",
+      "start_line": 47,
+      "end_line": 57
+    },
+    "code_snippet": "class AuthActions:\n    def __init__(self, client):\n        self._client = client\n\n    def login(self, username=\"test\", password=\"test\"):\n        return self._client.post(\n            \"/auth/login\", data={\"username\": username, \"password\": password}\n        )\n\n    def logout(self):\n        return self._client.get(\"/auth/logout\")"
+  },
+  {
+    "name": "FixedOffset",
+    "docstring": "Fixed offset in hours east from UTC.\n\nThis is a slight adaptation of the ``FixedOffset`` example found in\nhttps://docs.python.org/2.7/library/datetime.html.",
+    "methods": [
+      "__init__",
+      "utcoffset",
+      "tzname",
+      "dst"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_json.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 145,
+      "end_line": 163
+    },
+    "code_snippet": "class FixedOffset(datetime.tzinfo):\n    \"\"\"Fixed offset in hours east from UTC.\n\n    This is a slight adaptation of the ``FixedOffset`` example found in\n    https://docs.python.org/2.7/library/datetime.html.\n    \"\"\"\n\n    def __init__(self, hours, name):\n        self.__offset = datetime.timedelta(hours=hours)\n        self.__name = name\n\n    def utcoffset(self, dt):\n        return self.__offset\n\n    def tzname(self, dt):\n        return self.__name\n\n    def dst(self, dt):\n        return datetime.ti..."
+  },
+  {
+    "name": "TestGenericHandlers",
+    "docstring": "Test how very generic handlers are dispatched to.",
+    "methods": [
+      "app",
+      "report_error",
+      "test_handle_class_or_code",
+      "test_handle_generic_http",
+      "test_handle_generic"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_user_error_handler.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 217,
+      "end_line": 295
+    },
+    "code_snippet": "class TestGenericHandlers:\n    \"\"\"Test how very generic handlers are dispatched to.\"\"\"\n\n    class Custom(Exception):\n        pass\n\n    @pytest.fixture()\n    def app(self, app):\n        @app.route(\"/custom\")\n        def do_custom():\n            raise self.Custom()\n\n        @app.route(\"/error\")\n        def do_error():\n            raise KeyError()\n\n        @app.route(\"/abort\")\n        def do_abort():\n            flask.abort(500)\n\n        @app.route(\"/raise\")\n        def do_raise():\n            rais..."
+  },
+  {
+    "name": "TestGreenletContextCopying",
+    "docstring": "",
+    "methods": [
+      "test_greenlet_context_copying",
+      "test_greenlet_context_copying_api"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_reqctx.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 149,
+      "end_line": 202
+    },
+    "code_snippet": "class TestGreenletContextCopying:\n    def test_greenlet_context_copying(self, app, client):\n        greenlets = []\n\n        @app.route(\"/\")\n        def index():\n            flask.session[\"fizz\"] = \"buzz\"\n            reqctx = request_ctx.copy()\n\n            def g():\n                assert not flask.request\n                assert not flask.current_app\n                with reqctx:\n                    assert flask.request\n                    assert flask.current_app == app\n                    assert..."
+  },
+  {
+    "name": "AppError",
+    "docstring": "",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "test_async.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 14,
+      "end_line": 15
+    },
+    "code_snippet": "class AppError(Exception):\n    pass"
+  },
+  {
+    "name": "BlueprintError",
+    "docstring": "",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "test_async.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 18,
+      "end_line": 19
+    },
+    "code_snippet": "class BlueprintError(Exception):\n    pass"
+  },
+  {
+    "name": "AsyncView",
+    "docstring": "",
+    "methods": [],
+    "attributes": [
+      "methods"
+    ],
+    "code_location": {
+      "file": "test_async.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 22,
+      "end_line": 27
+    },
+    "code_snippet": "class AsyncView(View):\n    methods = [\"GET\", \"POST\"]\n\n    async def dispatch_request(self):\n        await asyncio.sleep(0)\n        return request.method"
+  },
+  {
+    "name": "AsyncMethodView",
+    "docstring": "",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "test_async.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 30,
+      "end_line": 37
+    },
+    "code_snippet": "class AsyncMethodView(MethodView):\n    async def get(self):\n        await asyncio.sleep(0)\n        return \"GET\"\n\n    async def post(self):\n        await asyncio.sleep(0)\n        return \"POST\""
+  },
+  {
+    "name": "FakePath",
+    "docstring": "Fake object to represent a ``PathLike object``.\n\nThis represents a ``pathlib.Path`` object in python 3.\nSee: https://www.python.org/dev/peps/pep-0519/",
+    "methods": [
+      "__init__",
+      "__fspath__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 11,
+      "end_line": 22
+    },
+    "code_snippet": "class FakePath:\n    \"\"\"Fake object to represent a ``PathLike object``.\n\n    This represents a ``pathlib.Path`` object in python 3.\n    See: https://www.python.org/dev/peps/pep-0519/\n    \"\"\"\n\n    def __init__(self, path):\n        self.path = path\n\n    def __fspath__(self):\n        return self.path"
+  },
+  {
+    "name": "PyBytesIO",
+    "docstring": "",
+    "methods": [
+      "__init__",
+      "__getattr__"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 25,
+      "end_line": 30
+    },
+    "code_snippet": "class PyBytesIO:\n    def __init__(self, *args, **kwargs):\n        self._io = io.BytesIO(*args, **kwargs)\n\n    def __getattr__(self, name):\n        return getattr(self._io, name)"
+  },
+  {
+    "name": "TestSendfile",
+    "docstring": "",
+    "methods": [
+      "test_send_file",
+      "test_static_file",
+      "test_send_from_directory"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 33,
+      "end_line": 99
+    },
+    "code_snippet": "class TestSendfile:\n    def test_send_file(self, app, req_ctx):\n        rv = flask.send_file(\"static/index.html\")\n        assert rv.direct_passthrough\n        assert rv.mimetype == \"text/html\"\n\n        with app.open_resource(\"static/index.html\") as f:\n            rv.direct_passthrough = False\n            assert rv.data == f.read()\n\n        rv.close()\n\n    def test_static_file(self, app, req_ctx):\n        # Default max_age is None.\n\n        # Test with static file handler.\n        rv = app.send_s..."
+  },
+  {
+    "name": "TestUrlFor",
+    "docstring": "",
+    "methods": [
+      "test_url_for_with_anchor",
+      "test_url_for_with_scheme",
+      "test_url_for_with_scheme_not_external",
+      "test_url_for_with_alternating_schemes",
+      "test_url_with_method",
+      "test_url_for_with_self"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 102,
+      "end_line": 169
+    },
+    "code_snippet": "class TestUrlFor:\n    def test_url_for_with_anchor(self, app, req_ctx):\n        @app.route(\"/\")\n        def index():\n            return \"42\"\n\n        assert flask.url_for(\"index\", _anchor=\"x y\") == \"/#x%20y\"\n\n    def test_url_for_with_scheme(self, app, req_ctx):\n        @app.route(\"/\")\n        def index():\n            return \"42\"\n\n        assert (\n            flask.url_for(\"index\", _external=True, _scheme=\"https\")\n            == \"https://localhost/\"\n        )\n\n    def test_url_for_with_scheme_no..."
+  },
+  {
+    "name": "TestNoImports",
+    "docstring": "Test Flasks are created without import.\n\nAvoiding ``__import__`` helps create Flask instances where there are errors\nat import time.  Those runtime errors will be apparent to the user soon\nenough, but tools which build Flask instances meta-programmatically benefit\nfrom a Flask which does not ``__import__``.  Instead of importing to\nretrieve file paths or metadata on a module or package, use the pkgutil and\nimp modules in the Python standard library.",
+    "methods": [
+      "test_name_with_import_error"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 217,
+      "end_line": 233
+    },
+    "code_snippet": "class TestNoImports:\n    \"\"\"Test Flasks are created without import.\n\n    Avoiding ``__import__`` helps create Flask instances where there are errors\n    at import time.  Those runtime errors will be apparent to the user soon\n    enough, but tools which build Flask instances meta-programmatically benefit\n    from a Flask which does not ``__import__``.  Instead of importing to\n    retrieve file paths or metadata on a module or package, use the pkgutil and\n    imp modules in the Python standard lib..."
+  },
+  {
+    "name": "TestStreaming",
+    "docstring": "",
+    "methods": [
+      "test_streaming_with_context",
+      "test_streaming_with_context_as_decorator",
+      "test_streaming_with_context_and_custom_close",
+      "test_stream_keeps_session"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 236,
+      "end_line": 307
+    },
+    "code_snippet": "class TestStreaming:\n    def test_streaming_with_context(self, app, client):\n        @app.route(\"/\")\n        def index():\n            def generate():\n                yield \"Hello \"\n                yield flask.request.args[\"name\"]\n                yield \"!\"\n\n            return flask.Response(flask.stream_with_context(generate()))\n\n        rv = client.get(\"/?name=World\")\n        assert rv.data == b\"Hello World!\"\n\n    def test_streaming_with_context_as_decorator(self, app, client):\n        @app.rout..."
+  },
+  {
+    "name": "TestHelpers",
+    "docstring": "",
+    "methods": [
+      "test_get_debug_flag",
+      "test_make_response"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_helpers.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 310,
+      "end_line": 335
+    },
+    "code_snippet": "class TestHelpers:\n    @pytest.mark.parametrize(\n        (\"debug\", \"expect\"),\n        [\n            (\"\", False),\n            (\"0\", False),\n            (\"False\", False),\n            (\"No\", False),\n            (\"True\", True),\n        ],\n    )\n    def test_get_debug_flag(self, monkeypatch, debug, expect):\n        monkeypatch.setenv(\"FLASK_DEBUG\", debug)\n        assert get_debug_flag() == expect\n\n    def test_make_response(self):\n        app = flask.Flask(__name__)\n        with app.test_request_cont..."
+  },
+  {
+    "name": "TestRoutes",
+    "docstring": "",
+    "methods": [
+      "app",
+      "invoke",
+      "expect_order",
+      "test_simple",
+      "test_sort",
+      "test_all_methods",
+      "test_no_routes",
+      "test_subdomain",
+      "test_host"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "test_cli.py",
+      "path": "/data3/pwh/flask/tests",
+      "start_line": 446,
+      "end_line": 518
+    },
+    "code_snippet": "class TestRoutes:\n    @pytest.fixture\n    def app(self):\n        app = Flask(__name__)\n        app.add_url_rule(\n            \"/get_post/<int:x>/<int:y>\",\n            methods=[\"GET\", \"POST\"],\n            endpoint=\"yyy_get_post\",\n        )\n        app.add_url_rule(\"/zzz_post\", methods=[\"POST\"], endpoint=\"aaa_post\")\n        return app\n\n    @pytest.fixture\n    def invoke(self, app, runner):\n        cli = FlaskGroup(create_app=lambda: app)\n        return partial(runner.invoke, cli)\n\n    def expect_or..."
+  },
+  {
+    "name": "StatusJSON",
+    "docstring": "",
+    "methods": [],
+    "attributes": [],
+    "code_location": {
+      "file": "typing_route.py",
+      "path": "/data3/pwh/flask/tests/type_check",
+      "start_line": 41,
+      "end_line": 42
+    },
+    "code_snippet": "class StatusJSON(t.TypedDict):\n    status: str"
+  },
+  {
+    "name": "RenderTemplateView",
+    "docstring": "",
+    "methods": [
+      "__init__",
+      "dispatch_request"
+    ],
+    "attributes": [],
+    "code_location": {
+      "file": "typing_route.py",
+      "path": "/data3/pwh/flask/tests/type_check",
+      "start_line": 101,
+      "end_line": 106
+    },
+    "code_snippet": "class RenderTemplateView(View):\n    def __init__(self: RenderTemplateView, template_name: str) -> None:\n        self.template_name = template_name\n\n    def dispatch_request(self: RenderTemplateView) -> str:\n        return render_template(self.template_name)"
+  }
+]

@@ -1,0 +1,50 @@
+What is the role of the Basic class in SymPy's expression system?
+How does SymPy implement symbolic immutability and hashability in expressions?
+Why does SymPy centralize symbolic logic in the core module?
+Where are the major symbolic function classes defined in the SymPy source tree?
+What are the key architectural patterns used to decouple symbolic logic and evaluation?
+How are mathematical domains (e.g., real, integer, rational) managed across modules?
+Why does SymPy avoid inheritance from Python's built-in numeric types?
+Where does SymPy define its base object model and operator overloading?
+What strategies does SymPy use to simplify expressions?
+How does SymPy decide which solving strategy to use for a given equation?
+Why are assumptions like positive, real, integer crucial in symbolic simplification?
+Where is the solve function implemented, and how does it dispatch to internal solvers?
+What is the mechanism behind limit evaluation in SymPy?
+How does SymPy distinguish between symbolic and numerical limits?
+Why does SymPy include heuristic solvers alongside algebraic ones?
+Where is the integrate function defined, and what backend algorithms does it use?
+What internal data structure is used to represent symbolic expressions in SymPy?
+How does SymPy implement expression matching and pattern substitution?
+Why does SymPy use trees to represent expressions instead of graphs?
+Where are expression rewrite rules and transformation strategies stored?
+What is the purpose of Wild symbols in pattern matching?
+How are canonical forms enforced for expressions in SymPy?
+Why is the sympify function central to most symbolic operations?
+Where does SymPy handle automatic type promotion in expression trees?
+What types of edge cases are tested for symbolic simplification in SymPy?
+How does SymPy ensure correctness across different mathematical domains?
+Why is equality testing in SymPy non-trivial, and how is it implemented?
+Where are SymPy’s regression and doctest suites located?
+What strategies does SymPy use to validate symbolic-numeric consistency?
+How are floating-point inaccuracies avoided in symbolic tests?
+What are the inter-module dependencies between core, functions, and simplify?
+How does SymPy minimize circular dependencies between symbolic types?
+Why is the functions module separated from core?
+Where are common utility functions reused across modules like logic, series, calculus?
+What is the role of the assumptions system in connecting core symbolic types?
+How do different modules share expression trees without duplication?
+What mechanisms allow users to define custom symbolic functions?
+How can a user extend SymPy to support new mathematical functions or domains?
+Why does SymPy favor object-based symbolic functions over function handles?
+Where is the user-facing API for symbolic differentiation and integration located?
+What are the supported external code generation backends in SymPy?
+How does SymPy allow exporting expressions to LaTeX, MathML, and other formats?
+What optimizations are implemented for common subexpression elimination (CSE)?
+How does SymPy avoid recomputing hash values for expressions?
+Why does SymPy avoid automatic simplification on object creation?
+Where is the expression cache implemented in the core system?
+What bridges exist between SymPy and numerical libraries like NumPy or SciPy?
+How does SymPy handle mixed symbolic and numeric expressions?
+Why does SymPy provide a separate numerical evaluation interface (evalf)?
+Where can SymPy expressions be serialized or exported for use in external systems?

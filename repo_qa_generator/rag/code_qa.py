@@ -89,7 +89,8 @@ class RecordedRAGCodeQA(BaseGenerator):
                 
                 # 读取相关代码
                 try:
-                    with open(element.file_path, 'r', encoding='utf-8') as f:
+                    file_path = os.path.join(element.relative_code.belongs_to.upper_path, element.relative_code.belongs_to.file_name)
+                    with open(file_path, 'r', encoding='utf-8') as f:
                         content = f.read()
                         
                     # 提取相关代码段
@@ -99,22 +100,22 @@ class RecordedRAGCodeQA(BaseGenerator):
                     code_content = ""
                     
                     if element_type == 'class':
-                        start_line = element.start_line
-                        end_line = element.end_line
-                        code_content = '\n'.join(code_lines[element.start_line-1:element.end_line])
+                        start_line = element.relative_code.start_line
+                        end_line = element.relative_code.end_line
+                        code_content = '\n'.join(code_lines[start_line-1:end_line])
                     elif element_type == 'function':
-                        start_line = element.start_line
-                        end_line = element.end_line
-                        code_content = '\n'.join(code_lines[element.start_line-1:element.end_line])
+                        start_line = element.relative_code.start_line
+                        end_line = element.relative_code.end_line
+                        code_content = '\n'.join(code_lines[start_line-1:end_line])
                     else:  # attribute
-                        start_line = element.defined_line
-                        end_line = element.defined_line
-                        code_content = code_lines[element.defined_line-1]
+                        start_line = element.relative_code.defined_line
+                        end_line = element.relative_code.defined_line
+                        code_content = code_lines[start_line-1]
                     
                     # 创建文件节点
                     file_node = {
-                        "file_name": os.path.basename(element.file_path),
-                        "upper_path": os.path.dirname(element.file_path),
+                        "file_name": element.relative_code.belongs_to.file_name,
+                        "upper_path": element.relative_code.belongs_to.upper_path,
                         "module": element_type,
                         "define_class": [element.class_name] if hasattr(element, 'class_name') else [],
                         "imports": []
@@ -131,7 +132,7 @@ class RecordedRAGCodeQA(BaseGenerator):
                     
                     results.append(code_node)
                 except Exception as e:
-                    print(f"警告：读取文件 {element.file_path} 时发生错误：{str(e)}")
+                    print(f"警告：读取文件 {file_path} 时发生错误：{str(e)}")
                     continue
                     
             return results

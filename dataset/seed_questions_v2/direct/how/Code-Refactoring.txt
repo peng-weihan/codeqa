@@ -26,6 +26,8 @@ How to modularize shared behavior in <Function> into a decorator or middleware?
 How to rename <Function> to better reflect its purpose?
 How to remove inline duplication in <Function> through parameterized utilities?
 How to isolate logic from <Function> to follow the Single Responsibility Principle?
+How to refactor function <Function> to optimize performance?
+How to decouple part of <Function> to improve modularity and performance?
 
 //混合实体
 How to rename <Parameter> in <Function> to better reflect its purpose?

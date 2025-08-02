@@ -1,0 +1,60 @@
+{"question": "Django 项目的核心模块是如何组织的？它们之间的依赖关系如何？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "为什么 Django 使用 MTV（Model-Template-View）而非 MVC 架构？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`django.conf` 中的配置模块是如何设计以支持灵活的全局配置的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "为什么 `apps` 是 `AppConfig` 而不是简单的模块导入？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`INSTALLED_APPS` 加载顺序对应用初始化的影响机制是怎样的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的请求处理流程从 `WSGIHandler` 到 `View` 是如何传递的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "中间件（Middleware）是如何链式调用的？异常是怎么被捕获和处理的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`Request` 和 `Response` 对象是如何构造并在流程中传递的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 中的 `ExceptionMiddleware` 处理流程是怎样的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何优雅地自定义一个状态感知的中间件？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的 URL Dispatcher 是如何支持嵌套、命名空间、正则表达式匹配的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`path()` 和 `re_path()` 是如何编译并注册进 URL Resolver 的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的 `reverse()` 函数是如何实现的？如何支持动态参数回填？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "URL 路由在多应用系统中如何防止冲突？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django ORM 的查询语句是如何通过 QuerySet 转换为 SQL 的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`Model._meta` 是做什么用的？为何它如此核心？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django ORM 如何实现延迟查询（lazy evaluation）？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`select_related` 和 `prefetch_related` 的底层实现机制和区别？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 中 ORM 的多表继承是如何实现的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "字段的 `choices` 和 `validators` 是如何应用到数据库和表单验证的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 如何防御 CSRF 攻击？其 token 是如何生成和验证的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 中的用户认证系统如何与中间件交互？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Session 是如何实现跨请求状态保持的？默认使用什么后端？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的密码存储机制采用了哪些加密算法？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 如何检测和防止 SQL 注入？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 模板语言是如何编译为 Python 代码的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "模板上下文 `Context` 的变量解析顺序是怎样的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何调试模板渲染时的变量作用域？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`inclusion_tag` 和 `simple_tag` 在内部实现上有何不同？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 模板系统是否支持 AST 分析和自定义语法？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 表单是如何执行清洗和验证流程的？（clean\\_field -> clean -> is\\_valid）", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Form 和 ModelForm 的区别和底层实现对比？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Form.errors 是如何构造的？支持哪些格式化输出？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何扩展 Form 的内建校验器？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "表单文件上传的缓存策略是如何实现的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的 `makemigrations` 是如何比较模型变更并生成迁移文件的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`StateOperations` 与 `SchemaEditor` 是怎么交互以实现迁移操作的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`RunPython` 与 `RunSQL` 如何保证数据库可逆性？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 如何支持多数据库配置与路由？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`db.backends.postgresql` 与 `sqlite3` 的驱动层差异如何封装？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的测试客户端 `Client()` 是如何模拟请求和中间件流程的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "数据库测试隔离是如何实现的？事务策略如何控制？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "使用 `TestCase` 和 `TransactionTestCase` 有何不同？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何在不启动服务的前提下测试视图函数？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`manage.py` 的本质是什么？如何加载项目设置与命令？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何自定义一个子命令并添加到 `django-admin`？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`BaseCommand` 和 `AppCommand` 的使用场景和区别是什么？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`call_command()` 在内部如何构造执行环境？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的 `ugettext_lazy` 是如何实现懒加载翻译的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 如何支持基于请求语言自动切换语言环境？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 3.1+ 如何支持异步视图？其与中间件和 ORM 如何协同工作？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "在 Django 中异步中间件是如何注册并执行的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django ORM 目前为何不完全支持异步？有哪些设计挑战？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何在 Django 中正确处理异步上下文中的事务？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 的缓存框架 `django.core.cache` 是如何抽象支持多种后端的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "如何实现自定义 Cache Backend？有哪些接口需要实现？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "`per_view` 缓存和 `template fragment` 缓存的区别与适用场景？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "缓存失效策略在 Django 的系统设计中如何体现？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 仓库的测试用例为什么大量使用 `@override_settings`？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+{"question": "Django 如何维护主干与 LTS 版本的协同发展？社区是如何组织贡献者协作的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
