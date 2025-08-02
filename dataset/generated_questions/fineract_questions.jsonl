@@ -1,26 +1,3 @@
-{"question": "Fineract 是如何设计“垂直切片”包结构的？其在 api、handler、service、domain、data、serialization 下的职责分别是什么？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 如何实现 Command-Query 分离（CQRS）的？命令与查询分离对审计与 maker-checker 有什么帮助？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Maker‑Checker 工作流是怎样实现的？一个 POST 创建操作（例如创建用户）的处理流程是怎样的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 的 REST API 是如何定义的？XXXApiResource.java 在系统中扮演什么角色？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "在处理贷款申请流程时，调用者是如何构造 CommandWrapper 并通过 commandsSourceWritePlatformService.logCommandSource(...) 进入命令处理链的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "当发起 GET /clients 查询时，处理链里哪些组件参与权限校验、数据读取与 JSON 序列化？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 如何支持多租户（multi-tenancy）？租户之间如何隔离数据与 schema？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "默认数据库 migrations 使用 Liquibase 管理，如何配置与执行迁移？遇到权限错误时怎么诊断？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "data 包里的 DTO 和 domain 包里的实体类在工作中如何互相转换（序列化与反序列化流程）？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 在安全设计上有哪些关键模块，如用户管理、细粒度权限控制等？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "如果某个 API 存在 SQL 注入漏洞（如 CVE‑2024‑32838），应该如何定位并修复？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 默认使用数据库连接池（如 HikariCP）。通过哪些配置参数可以调优连接池性能？配置文件在哪？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "如何结合 Arthas、日志配置（logbackspring.xml）进行生产环境问题排查？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "本地快速启动 Fineract 的流程是什么？如何使用 Gradle 启动嵌入 Tomcat 的 ServerApplication？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "如果不安装 MySQL/MariaDB，可用哪种方式在 IDE 中调试 Fineract？怎样配置？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 在贡献流程中有哪些代码规范和提交标准？如何查看项目的 Coding Conventions？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "在 Apache 社区中提交 Pull Request 中应遵循哪些流程？如何签名、验证 release？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 内置了哪些标准报告（loan delinquency、savings balance、portfolio quality 等）？报表如何生成与导出？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "如果你需要实现一个自定义报表模块，流程应如何？例如导出某租户的贷款统计到 Excel。", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 的 scheduler jobs（如利息计算、定期还款任务）是在什么组件中定义与执行的？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 是如何对外提供第三方系统集成（API-first）能力的？如何调用它的 REST API？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "新增一个金融产品类型（如多种贷款组合）时，应在哪些模块注入业务逻辑？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "如果要支持 OAuth2 或第三方身份验证，默认的 Basic Auth 如何扩展？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "Fineract 对不同数据库（PostgreSQL vs MySQL）的兼容性问题需注意什么？存储行为或 SQL Dialect 有何异同？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "多租户切换过程中如何确保事务隔离与数据一致性？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
-{"question": "系统升级或版本迁移时，如何处理 schema 变更与数据迁移任务？", "answer": null, "relative_code_list": null, "ground_truth": null, "score": null}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ec2d02026b733a9a27725a70ef98c234c051450b76eafa1824b751e116cd39bb
+size 5430
