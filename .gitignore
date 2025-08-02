@@ -6,4 +6,4 @@ dataset/generated_qa/
 dataset/index_store/
 dataset/repos/
 data/
-examples/moatless_qa/tmp/
+examples/moatless_qa/tmp/dataset/generated_questions/generated_questions_moatless_direct_flask.jsonl
