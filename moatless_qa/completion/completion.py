@@ -211,7 +211,7 @@ class CompletionModel(BaseModel):
                 if not assistant_message:
                     raise CompletionRuntimeError("Empty response from model")
         
-                print(f'\nFeedback and value:\n {assistant_message}\n')
+                print(f'LLM Feedback:\n {assistant_message}\n')
                 messages.append({"role": "assistant", "content": assistant_message})
                 
                 response = response_model.model_validate_json(assistant_message)

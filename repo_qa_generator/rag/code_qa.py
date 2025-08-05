@@ -27,7 +27,6 @@ class RecordedRAGCodeQA(BaseGenerator):
         else:
             self.embed_model = None
         
-        
     def _build_embeddings(self):
         """构建所有代码元素的embeddings"""
         # 准备所有需要编码的文本

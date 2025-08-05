@@ -353,20 +353,20 @@ class CodeAnalyzer:
 
         max_workers = min(32, len(python_files))
 
-        # with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        #     # 提交所有任务
-        #     futures = {executor.submit(analyze_wrapper, file_path): file_path for file_path in python_files}
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # 提交所有任务
+            futures = {executor.submit(analyze_wrapper, file_path): file_path for file_path in python_files}
 
-        #     # 使用 tqdm 跟踪进度
-        #     for future in tqdm(as_completed(futures), total=len(futures), desc="Analyzing files (parallel)"):
-        #         try:
-        #             future.result()  # 如果你希望捕捉异常，可以在这里处理
-        #         except Exception as e:
-        #             print(f"Error analyzing {futures[future]}: {e}")
+            # 使用 tqdm 跟踪进度
+            for future in tqdm(as_completed(futures), total=len(futures), desc="analyze_repository: Analyzing files (parallel)"):
+                try:
+                    future.result()  # 如果你希望捕捉异常，可以在这里处理
+                except Exception as e:
+                    print(f"Error analyzing {futures[future]}: {e}")
 
-        # # 分析每个文件的代码结构
-        for file_path in tqdm(python_files, desc="Analyzing files"):
-            self._analyze_file_for_structure(file_path, repo_root)
+        # # # 分析每个文件的代码结构
+        # for file_path in tqdm(python_files, desc="Analyzing files"):
+        #     self._analyze_file_for_structure(file_path, repo_root)
         
         # 构建代码依赖图
         self.build_dependency_graph(python_files,repo_root)
@@ -380,9 +380,9 @@ class CodeAnalyzer:
         self._link_attributes_to_functions()
         print(f"类属性与函数的关系已链接，共有 {len(self.repository_structure.attributes)} 个属性\n")
 
-        # # 链接变量与引用它们的函数
-        # self._link_variables_to_references()
-        # print(f"变量与引用它们的函数的关系已链接，共有 {len(self.repository_structure.variables)} 个变量\n")
+        # 链接变量与引用它们的函数
+        self._link_variables_to_references()
+        print(f"变量与引用它们的函数的关系已链接，共有 {len(self.repository_structure.variables)} 个变量\n")
         
         # 生成仓库核心功能概述
         self._summarize_core_functionality()
@@ -407,33 +407,33 @@ class CodeAnalyzer:
         """分析单个文件，提取类定义、函数定义和类属性"""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
-                self.current_content = f.read()
-                # current_content = f.read()
+                # self.current_content = f.read()
+                current_content = f.read()
             
-            tree = ast.parse(self.current_content)
+            tree = ast.parse(current_content)
             
             # 提取顶级定义
             for node in tree.body:
                 if isinstance(node, ast.ClassDef):
                     # 处理类定义
-                    self._extract_class_definition(node, file_path, self.current_content,repo_root)                    # 处理类中的方法和属性
+                    self._extract_class_definition(node, file_path, current_content,repo_root)                    # 处理类中的方法和属性
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
-                            self._extract_function_definition(item, file_path,self.current_content, node,repo_root)
+                            self._extract_function_definition(item, file_path, current_content, node,repo_root)
                         elif isinstance(item, ast.Assign):
                             self._extract_class_attributes(item, file_path, node)
                             # 提取类变量
-                            self._extract_variables(item, file_path, scope="class", class_name=node.name, function_name=None, repo_root=repo_root)
+                            self._extract_variables(item, file_path, scope="class", class_name=node.name, function_name=None, repo_root=repo_root, content=current_content)
                 
                 elif isinstance(node, ast.FunctionDef):
                     # 处理函数
-                    self._extract_function_definition(node, file_path, self.current_content, None, repo_root)
+                    self._extract_function_definition(node, file_path, current_content, None, repo_root)
                     # 提取函数中的变量
-                    self._extract_function_variables(node, file_path, repo_root)
+                    self._extract_function_variables(node, file_path, repo_root, current_content)
                 
                 elif isinstance(node, ast.Assign):
                     # 提取全局变量
-                    self._extract_variables(node, file_path, scope="global", class_name=None, function_name=None, repo_root=repo_root)
+                    self._extract_variables(node, file_path, scope="global", class_name=None, function_name=None, repo_root=repo_root, content=current_content)
         except SyntaxError:
             print(f"警告：文件 {file_path} 存在语法错误，已跳过")
         except UnicodeDecodeError:
@@ -546,18 +546,34 @@ class CodeAnalyzer:
                         break
     
     def _link_attributes_to_functions(self):
-        """将类属性与维护它们的函数关联起来"""
-        for attr in self.repository_structure.attributes:
-            for func in self.repository_structure.functions:
-                if func.class_name == attr.class_name and func.relative_code:
-                    # 直接使用函数的代码内容，无需重新打开文件
-                    func_code = func.relative_code.code
-                    
-                    # 简单检查属性名是否在函数代码中出现
-                    # 未来可以使用更复杂的AST分析来精确判断属性访问
-                    if f"self.{attr.name}" in func_code:
-                        attr.related_functions.append(func.name)
+        class_func_map = {}
+        for func in self.repository_structure.functions:
+            if func.class_name not in class_func_map:
+                class_func_map[func.class_name] = []
+            class_func_map[func.class_name].append(func)
     
+        def process_attribute(attr):
+            attr_related = []
+            if attr.class_name in class_func_map:
+                for func in class_func_map[attr.class_name]:
+                    if func.relative_code:
+                        func_code = func.relative_code.code
+                        if f"self.{attr.name}" in func_code:
+                            attr_related.append(func.name)
+            return (attr, attr_related)
+
+        # 使用线程池并行处理
+        max_workers = min(32, len(self.repository_structure.attributes))
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # 提交所有属性处理任务
+            futures = [executor.submit(process_attribute, attr) 
+                for attr in self.repository_structure.attributes]
+        
+            # 使用tqdm显示进度并收集结果
+            for future in tqdm(as_completed(futures),total=len(futures),desc="_link_attributes_to_functions: Linking attributes to functions"):
+                attr, related_funcs = future.result()
+                attr.related_functions.extend(related_funcs)
+
     def _summarize_core_functionality(self):
         """根据函数注释和代码结构总结仓库核心功能"""
         # 这里是简化的实现，后期可能需要LLM总结
@@ -664,7 +680,9 @@ class CodeAnalyzer:
         relationships = []
         
         # 提取继承关系
-        for cls in tqdm(self.repository_structure.classes, desc="Analyzing class inheritance"):
+        # for cls in tqdm(self.repository_structure.classes, desc="_extract_code_relationships: Analyzing class inheritance"):
+        def process_class(cls):
+            cls_relationships = []
             # 使用类定义的代码节点中的内容，而不是重新打开文件
             if hasattr(cls, 'relative_code') and cls.relative_code:
                 try:
@@ -700,46 +718,18 @@ class CodeAnalyzer:
                                     relationships.append(relationship)
                 except Exception as e:
                     print(f"提取类 {cls.name} 继承关系时出错: {str(e)}")
-        # for cls in self.repository_structure.classes:
-        #     # 使用类定义的代码节点中的内容，而不是重新打开文件
-        #     if hasattr(cls, 'relative_code') and cls.relative_code:
-        #         try:
-        #             content = cls.relative_code.code
-        #             tree = ast.parse(content)
-                    
-        #             # 查找类定义节点
-        #             for node in ast.walk(tree):
-        #                 if isinstance(node, ast.ClassDef) and node.name == cls.name:
-        #                     # 提取父类
-        #                     for base in node.bases:
-        #                         if isinstance(base, ast.Name):
-        #                             # 简单的父类名称
-        #                             parent_class = base.id
-        #                             relationship = CodeRelationship(
-        #                                 source_type="class",
-        #                                 source_id=cls.name,
-        #                                 target_type="class",
-        #                                 target_id=parent_class,
-        #                                 relationship_type="inherits"
-        #                             )
-        #                             relationships.append(relationship)
-        #                         elif isinstance(base, ast.Attribute):
-        #                             # 复杂的父类引用，如module.Class
-        #                             parent_class = self._get_attribute_call(base)
-        #                             relationship = CodeRelationship(
-        #                                 source_type="class",
-        #                                 source_id=cls.name,
-        #                                 target_type="class",
-        #                                 target_id=parent_class,
-        #                                 relationship_type="inherits"
-        #                             )
-        #                             relationships.append(relationship)
-        #         except Exception as e:
-        #             print(f"提取类 {cls.name} 继承关系时出错: {str(e)}")
-                
-        # 提取函数调用关系
-        # for func in self.repository_structure.functions:
-        for func in tqdm(self.repository_structure.functions, desc="Analyzing function calls"):
+            return cls_relationships
+        
+        max_workers_class = min(32, len(self.repository_structure.classes))
+        with ThreadPoolExecutor(max_workers=max_workers_class) as executor:
+            # 使用列表推导式提交所有任务
+            futures = [executor.submit(process_class, cls) for cls in self.repository_structure.classes]
+            # 使用tqdm显示进度
+            for future in tqdm(as_completed(futures), total=len(futures),desc="_extract_code_relationships: Analyzing class inheritance"):
+                relationships.extend(future.result())
+       
+        def process_function(func):
+            func_relationships = []
             for call in func.calls:
                 # 查找调用的函数是否在已知函数列表中
                 target_func = next((f for f in self.repository_structure.functions if f.name == call), None)
@@ -751,12 +741,21 @@ class CodeAnalyzer:
                         target_id=call,
                         relationship_type="calls"
                     )
-                    relationships.append(relationship)
-                    
+                    func_relationships.append(relationship)
+            return func_relationships
+        
+        max_workers_function = min(32, len(self.repository_structure.functions))
+        with ThreadPoolExecutor(max_workers=max_workers_function) as executor:
+            # 使用列表推导式提交所有任务
+            futures = {executor.submit(process_function, func): func for func in self.repository_structure.functions}
+            # 使用tqdm显示进度
+            for future in tqdm(as_completed(futures), total=len(futures), desc="_extract_code_relationships: Analyzing function calls"):
+                relationships.extend(future.result())
+
         self.repository_structure.relationships = relationships
         return relationships
     
-    def _extract_variables(self, node: ast.Assign, file_path: str, scope: str, class_name: Optional[str], function_name: Optional[str], repo_root: str):
+    def _extract_variables(self, node: ast.Assign, file_path: str, scope: str, class_name: Optional[str], function_name: Optional[str], repo_root: str, content: str):
         """提取变量定义信息"""
         file_node = self.analyze_file(file_path, repo_root)
         
@@ -781,7 +780,7 @@ class CodeAnalyzer:
                 # 创建CodeNode
                 code_node = None
                 if file_node:
-                    code_segment = ast.get_source_segment(self.current_content, node)
+                    code_segment = ast.get_source_segment(content, node)
                     if code_segment:
                         code_node = CodeNode(
                             start_line=node.lineno,
@@ -825,7 +824,7 @@ class CodeAnalyzer:
                         # 创建CodeNode
                         code_node = None
                         if file_node:
-                            code_segment = ast.get_source_segment(self.current_content, node)
+                            code_segment = ast.get_source_segment(content, node)
                             if code_segment:
                                 code_node = CodeNode(
                                     start_line=node.lineno,
@@ -848,7 +847,7 @@ class CodeAnalyzer:
                         
                         self.repository_structure.variables.append(var_def)
 
-    def _extract_function_variables(self, node: ast.FunctionDef, file_path: str, repo_root: str):
+    def _extract_function_variables(self, node: ast.FunctionDef, file_path: str, repo_root: str, content:str):
         """提取函数中的所有变量"""
         function_name = node.name
         class_name = None
@@ -865,21 +864,21 @@ class CodeAnalyzer:
         # 递归遍历函数体以查找变量定义
         for item in node.body:
             if isinstance(item, ast.Assign):
-                self._extract_variables(item, file_path, "local", class_name, function_name, repo_root)
+                self._extract_variables(item, file_path, "local", class_name, function_name, repo_root, content)
             elif isinstance(item, ast.For):
                 # 处理for循环变量
                 if isinstance(item.target, ast.Name):
                     var_name = item.target.id
-                    self._add_for_loop_variable(var_name, item, file_path, class_name, function_name, repo_root)
+                    self._add_for_loop_variable(var_name, item, file_path, class_name, function_name, repo_root, content)
     
-    def _add_for_loop_variable(self, var_name: str, node: ast.For, file_path: str, class_name: Optional[str], function_name: str, repo_root: str):
+    def _add_for_loop_variable(self, var_name: str, node: ast.For, file_path: str, class_name: Optional[str], function_name: str, repo_root: str, content:str):
         """添加for循环中的变量"""
         file_node = self.analyze_file(file_path, repo_root)
         
         # 创建CodeNode
         code_node = None
         if file_node:
-            code_segment = ast.get_source_segment(self.current_content, node)
+            code_segment = ast.get_source_segment(content, node)
             if code_segment:
                 code_node = CodeNode(
                     start_line=node.lineno,
@@ -918,9 +917,10 @@ class CodeAnalyzer:
         variable_num = len(self.repository_structure.variables)
         print(f"链接变量与引用它们的函数，共有 { variable_num } 个变量，{len(self.repository_structure.functions)} 个函数")
 
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        max_workers = min(32, variable_num)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(self.process_variable, idx) for idx in range(variable_num)]
-            for future in tqdm(as_completed(futures), total=len(futures), desc="变量引用链接", unit="var"):
+            for future in tqdm(as_completed(futures), total=len(futures), desc="_link_variables_to_references: Linking variables to references"):
                 try:
                     _ = future.result()
                 except Exception as e:

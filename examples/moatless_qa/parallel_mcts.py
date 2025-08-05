@@ -30,6 +30,7 @@ from moatless_qa.completion.completion import (
     LLMResponseFormat,
     CompletionModel,
 )
+from moatless_qa.agent.agent import Setup_logging
 import threading
 lock = threading.Lock()  # 文件写入锁，防止并发写乱序
 import litellm
@@ -73,6 +74,7 @@ def append_data_to_jsonl(path, data):
             f.write('\n')
 
 def process_single_question(message: str):
+    Setup_logging(f"\nProcessing question: {message}")
     # 以下内容与你现有代码完全一致，只是将 message 替换为函数参数
     completion_model = CompletionModel(
         model="deepseek/deepseek-chat",
@@ -80,9 +82,9 @@ def process_single_question(message: str):
     )
     completion_model.response_format = LLMResponseFormat.TOOLS
 
-    repository = create_repository(repo_path="/data3/pwh/sympy", repo_base_dir=repo_base_dir)
+    repository = create_repository(repo_path="/data3/pwh/fineract", repo_base_dir=repo_base_dir)
 
-    code_index = CodeIndex.from_persist_dir(persist_dir="/data3/pwh/codeqa/dataset/index_store/sympy", file_repo=repository)
+    code_index = CodeIndex.from_persist_dir(persist_dir="/data3/pwh/codeqa/dataset/index_store/fineract", file_repo=repository)
 
     file_context = FileContext(repo=repository)
 
@@ -119,6 +121,7 @@ def process_single_question(message: str):
     )
 
     node = search_tree.run_search()
+    Setup_logging(f"\nQuestion Answer: {node.observation.message if node else '搜索失败'}")
     return {
         "question": message,
         "answer": node.observation.message if node else "搜索失败"
@@ -126,7 +129,7 @@ def process_single_question(message: str):
 
 import concurrent.futures
 
-def run_questions_concurrently(input_path, output_path, max_workers=16):
+def run_questions_concurrently(input_path, output_path, max_workers=1):
     data_list = load_data_from_jsonl(input_path)
     durations = []  # 存储每个任务的耗时
     results = []
@@ -164,10 +167,10 @@ def run_questions_concurrently(input_path, output_path, max_workers=16):
         print("[警告] 没有记录到任何任务耗时。")
 
 if __name__ == "__main__":
-    input_jsonl = "/data3/pwh/codeqa/dataset/generated_questions/sympy_questions.jsonl"
-    output_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/sympy_answers.jsonl"
+    input_jsonl = "/data3/pwh/codeqa/dataset/generated_questions/fineract_questions.jsonl"
+    output_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/fineract_answers_2.jsonl"
     start_time = time.time()
-    results = run_questions_concurrently(input_jsonl, output_jsonl, max_workers=16)
+    results = run_questions_concurrently(input_jsonl, output_jsonl, max_workers=1)
     end_time = time.time()
     total_time = end_time - start_time
     print(f"\n✨ 所有问题处理完成，全程总耗时：{total_time:.2f} 秒")

@@ -93,7 +93,7 @@ class SearchBaseAction(Action):
         description="The maximum number of tokens allowed in the search results.",
     )
     max_identify_tokens: int = Field(
-        8000,
+        16000,
         description="The maximum number of tokens allowed in the identified code sections.",
     )
     max_identify_prompt_tokens: int = Field(
@@ -295,6 +295,7 @@ class SearchBaseAction(Action):
 
         MAX_RETRIES = 3
         for retry_attempt in range(MAX_RETRIES):
+            print(f"\nAttempt {retry_attempt + 1}, Identify Code from Semantic Search Results: ")
             completion_response = self.completion_model.create_completion(
                 messages=messages,
                 system_prompt=IDENTIFY_SYSTEM_PROMPT,
@@ -303,7 +304,6 @@ class SearchBaseAction(Action):
             logger.info(
                 f"Identifying relevant code sections. Attempt {retry_attempt + 1} of {MAX_RETRIES}.{len(completion_response.structured_outputs)} identify requests."
             )
-
             view_context = FileContext(repo=self._repository)
             if not completion_response.structured_outputs:
                 logger.warning("No identified code in response")

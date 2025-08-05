@@ -214,12 +214,12 @@ def main():
     # 设置命令行参数
     parser = argparse.ArgumentParser(description="分析代码仓库结构")
     parser.add_argument("--repo_path","-r",default="/data3/pwh/sympy", help="代码仓库的路径")
-    parser.add_argument("--output-dir", "-o", default="repo_analysis", help="输出目录")
+    parser.add_argument("--output_dir", "-o", default="repo_analysis", help="输出目录")
     
     args = parser.parse_args()
     
     # 分析仓库
-    repository = analyze_repository(repo_path=args.repo_path,repo_root="/data3/pwh/sympy")
+    repository = analyze_repository(repo_path=args.repo_path, repo_root="/data3/pwh/sympy")
     
     # 打印摘要
     print_repository_summary(repository)

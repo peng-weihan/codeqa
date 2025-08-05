@@ -15,7 +15,7 @@ from moatless_qa.agent.agent import ActionAgent
 from moatless_qa.node import Node
 from moatless_qa.expander import Expander
 from moatless_qa.exceptions import RuntimeError, RejectError
-
+from moatless_qa.agent.agent import Setup_logging 
 
 class CodeQASearchTree(BaseModel):
     root: Node = Field(..., description="The root node of the search tree.")
@@ -236,6 +236,8 @@ class CodeQASearchTree(BaseModel):
 
         if self.value_function and not node.is_duplicate and node.observation:
             try:
+                # 这一步获得评分（explanation、feedback、value）
+                print(f"Node{node.node_id}: Evaluating node with value function.")
                 node.reward, completion_response = self.value_function.get_reward(
                     node=node
                 )
@@ -244,6 +246,8 @@ class CodeQASearchTree(BaseModel):
                 print(
                     f"Node{node.node_id}: The value function returned a reward of {node.reward.value}.\n",
                 )
+                Setup_logging(f"Node{node.node_id}: The value function returned a reward of {node.reward.value}.\n")
+
             except RejectError as e:
                 print(
                     f"Node{node.node_id}: Value function rejected: {e.message}\n",

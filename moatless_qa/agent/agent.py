@@ -23,6 +23,11 @@ from moatless_qa.agent.code_qa_prompts import RESPONSE_FORMAT
 
 logger = logging.getLogger(__name__)
 
+def Setup_logging(context: str):
+    # 将内容追加写入文件（如果文件不存在会自动创建）
+    with open("/data3/pwh/codeqa/dataset/log/fineract_record.txt", "a", encoding="utf-8") as f:
+        f.write(f"{context}\n")
+
 
 class ActionAgent(BaseModel):
     system_prompt: str = Field(
@@ -117,6 +122,7 @@ class ActionAgent(BaseModel):
                 messages, system_prompt=system_prompt, response_model=action_args
             )
             print('\nRecommended Action: \n', completion_response.structured_outputs,'\n')
+            Setup_logging(f"Node{node.node_id}: Recommended Action: {completion_response.structured_outputs}")
 
             if completion_response.structured_outputs:
                 node.action_steps = [
@@ -180,7 +186,7 @@ class ActionAgent(BaseModel):
                     f"Node{node.node_id}: Action {action_step.action.name} returned no observation"
                 )
             else:
-                print('Observation: ', action_step.observation)
+                # print('Observation: ', action_step.observation)
                 node.terminal = action_step.observation.terminal
                 if action_step.observation.execution_completion:
                     action_step.completion = (

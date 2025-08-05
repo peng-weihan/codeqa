@@ -1,6 +1,7 @@
 from typing import List, Dict, Optional, Tuple
 from pydantic import BaseModel, Field, validator
 from enum import IntEnum
+import json
 
 class EvaluationScore(IntEnum):
     """Evaluation score enum"""
@@ -167,6 +168,19 @@ class Repository(BaseModel):
                 "url": "https://github.com/user/example-repo"
             }
         } 
+
+def load_repository_from_json(file_path: str) -> Repository:
+    """从JSON文件加载并重建Repository实例"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    # 使用Pydantic的model_validate方法（v2）或parse_obj方法（v1）
+    try:
+        # Pydantic v2 方式（推荐）
+        return Repository.model_validate(data)
+    except AttributeError:
+        print("Unable to use model_validate, falling back to parse_obj")
+        return Repository.parse_obj(data)
 
 # class CodeReference(BaseModel):
 #     """代码引用模型"""
