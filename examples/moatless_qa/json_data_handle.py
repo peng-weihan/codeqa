@@ -63,14 +63,14 @@ def clean_mcts_answer(input_path, output_path):
             try:
                 data = json.loads(line)
 
-                mcts_raw = data.get("mcts_answer", "")
+                mcts_raw = data.get("answer", "")
                 if mcts_raw:
                     # 解析 mcts_answer 中的 JSON 字符串
                     mcts_obj = json.loads(mcts_raw)
                     # 只保留 answer 部分
-                    data["mcts_answer"] = mcts_obj.get("answer", "")
+                    data["answer"] = mcts_obj.get("answer", "")
                 else:
-                    data["mcts_answer"] = ""
+                    data["answer"] = ""
 
                 fout.write(json.dumps(data, ensure_ascii=False) + '\n')
             except Exception as e:
@@ -126,5 +126,7 @@ if __name__ == "__main__":
     #     input_path="/data3/pwh/codeqa/dataset/generated_answers/generated_answers_rag_agent_flask_2_rename.jsonl",
     #     output_path="/data3/pwh/codeqa/dataset/generated_answers/generated_answers_rag_agent_flask_2.jsonl"
     # )
-    build_jsonl_from_txt("/data3/pwh/codeqa/dataset/tmp.txt", "/data3/pwh/codeqa/dataset/generated_questions/sympy_questions.jsonl")
+    # build_jsonl_from_txt("/data3/pwh/codeqa/dataset/tmp.txt", "/data3/pwh/codeqa/dataset/generated_questions/sympy_questions.jsonl")
     # build_jsonl_from_django_md("/data3/pwh/codeqa/dataset/tmp.txt","/data3/pwh/codeqa/dataset/generated_questions/django_questions.jsonl")
+    # clean_mcts_answer("/data3/pwh/codeqa/dataset/generated_answers/django_answers_rag.jsonl","/data3/pwh/codeqa/dataset/generated_answers/django_answers_rag_light.jsonl")
+    rename_answer_to_mcts("/data3/pwh/codeqa/dataset/generated_answers/django_answers_rag.jsonl", "/data3/pwh/codeqa/dataset/generated_answers/django_answers_mcts.jsonl")

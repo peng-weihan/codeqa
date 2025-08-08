@@ -100,13 +100,38 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
-    sys.argv = [
-    'example_repo_index.py',
-    '--repo-path', '/data3/pwh/flask',
-    '--index-dir', '/data3/pwh/codeqa/dataset/index_store',
-    '--index-name', 'flask-2',
-    # '--query', 'get_connection',
+
+    repos = [
+    {'repo_path': '/data3/pwh/swebench-repos/astropy', 'index_name': 'astropy'},
+    {'repo_path': '/data3/pwh/swebench-repos/matplotlib', 'index_name': 'matplotlib'},
+    {'repo_path': '/data3/pwh/swebench-repos/pylint', 'index_name': 'pylint'},
+    {'repo_path': '/data3/pwh/swebench-repos/pytest', 'index_name': 'pytest'},
+    {'repo_path': '/data3/pwh/swebench-repos/requests', 'index_name': 'requests'},
+    {'repo_path': '/data3/pwh/swebench-repos/scikit-learn', 'index_name': 'scikit-learn'},
+    {'repo_path': '/data3/pwh/swebench-repos/sphinx', 'index_name': 'sphinx'},
+    {'repo_path': '/data3/pwh/swebench-repos/sqlfluff', 'index_name': 'sqlfluff'},
+    {'repo_path': '/data3/pwh/swebench-repos/xarray', 'index_name': 'xarray'},
+    # 继续添加其他仓库
     ]
+    index_dir = '/data3/pwh/codeqa/dataset/index_store'
+    
+    for r in repos:
+        sys.argv = [
+            'example_repo_index.py',
+            '--repo-path', r['repo_path'],
+            '--index-dir', index_dir,
+            '--index-name', r['index_name'],
+        ]
+        main()
+    # 运行索引脚本的主逻辑，假设是example_repo_index.py里定义的main()
+    # sys.argv = [
+    # sys.argv = [
+    # 'example_repo_index.py',
+    # '--repo-path', '/data3/pwh/flask',
+    # '--index-dir', '/data3/pwh/codeqa/dataset/index_store',
+    # '--index-name', 'flask-2',
+    # # '--query', 'get_connection',
+    # ]
     # sys.argv = [
     # 'example_repo_index.py',
     # '--index-dir', '/home/stu/Desktop/my_codeqa/codeqa/dataset/index_store',
@@ -115,4 +140,3 @@ if __name__ == "__main__":
     # '--flag', 'True',
     # '--query', 'verify_needs_extensions',
     # ]
-    main()

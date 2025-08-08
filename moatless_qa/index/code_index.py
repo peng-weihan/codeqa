@@ -888,10 +888,10 @@ class CodeIndex:
                 "category": category,
             }
 
-        if self._settings and self._settings.language == "java":
-            required_exts = [".java"]
-        else:
-            required_exts = [".py"]
+        # if self._settings and self._settings.language == "java":
+        required_exts = [".java"]
+        # else:
+            # required_exts = [".py"]
 
         if input_files:
             input_files = [

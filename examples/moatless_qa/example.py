@@ -8,6 +8,7 @@ project_root = os.path.abspath(os.path.join(os.getcwd(), ''))
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
     print(f"已添加 {project_root} 到Python路径")
@@ -53,6 +54,12 @@ completion_model = CompletionModel(
     model="deepseek/deepseek-chat",
     temperature=0.7,
 )
+
+# completion_model = CompletionModel(
+#     model="gpt-4-turbo",
+#     temperature=0.3,
+# )
+
 completion_model.response_format = LLMResponseFormat.TOOLS
 
 # repository = create_repository(instance, repo_base_dir=repo_base_dir)
@@ -104,3 +111,4 @@ search_tree = CodeQASearchTree.create(
 )
 node = search_tree.run_search()
 print(node.observation.message)
+

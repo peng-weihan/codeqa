@@ -53,4 +53,4 @@ def analyze_scores(jsonl_file_path):
     }
 
 # Run analysis on the provided file path
-print(analyze_scores('/data3/pwh/codeqa/dataset/score/result_2.jsonl'))
+print(analyze_scores('/data3/pwh/codeqa/dataset/score/django_result.jsonl'))

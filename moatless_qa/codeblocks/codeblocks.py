@@ -282,7 +282,7 @@ class ValidationError:
     error: str
 
 
-@dataclass(eq=False, repr=False, slots=True)
+@dataclass(eq=False, repr=False)
 class CodeBlock:
     type: CodeBlockType
     content: str

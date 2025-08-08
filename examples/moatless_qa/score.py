@@ -147,7 +147,7 @@ def evaluate_jsonl(input_jsonl_path, output_jsonl_path):
                 print(f"[跳过] 无效JSON行: {e}")
                 continue
 
-            reference = record.get("wiki_answer", "")
+            reference = record.get("ground_truth", "")
             rag = record.get("rag_answer", "")
             mcts = record.get("mcts_answer", "")
             question = record.get("question", "")
@@ -181,6 +181,6 @@ def evaluate_jsonl(input_jsonl_path, output_jsonl_path):
             print(f"已评分问题: {result['question']}, RAG分数: {rag_score}, MCTS分数: {mcts_score}")
 
 if __name__ == "__main__":
-    input_path = "/data3/pwh/codeqa/dataset/generated_answers/generated_answers_rag_agent_flask_new.jsonl"    # 你的输入jsonl文件路径
-    output_path = "/data3/pwh/codeqa/dataset/score/result.jsonl"  # 输出评分结果文件路径
+    input_path = "/data3/pwh/codeqa/dataset/generated_answers/django_answers_ref.jsonl"    # 你的输入jsonl文件路径
+    output_path = "/data3/pwh/codeqa/dataset/score/django_result.jsonl"  # 输出评分结果文件路径
     evaluate_jsonl(input_path, output_path)

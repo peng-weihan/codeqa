@@ -39,7 +39,7 @@ def analyze_repository(repo_path: str,repo_root: str):
     
     return repository
 
-def save_repository_data(repository: Repository, output_dir: str):
+def save_repository_data(repository: Repository, output_dir: str, repo_name: str | None):
     """
     将仓库数据保存为多种格式
     
@@ -51,8 +51,11 @@ def save_repository_data(repository: Repository, output_dir: str):
     os.makedirs(output_dir, exist_ok=True)
     
     # 当前时间作为文件名前缀
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    
+    if not repo_name:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    else:
+        timestamp = repo_name
+
     # 保存完整数据为JSON
     full_json_path = os.path.join(output_dir, f"{timestamp}_repo_full.json")
     with open(full_json_path, 'w', encoding='utf-8') as f:
@@ -211,21 +214,46 @@ def _print_module(module, indent=""):
         _print_module(sub_module, indent + "  ")
 
 def main():
-    # 设置命令行参数
-    parser = argparse.ArgumentParser(description="分析代码仓库结构")
-    parser.add_argument("--repo_path","-r",default="/data3/pwh/sympy", help="代码仓库的路径")
-    parser.add_argument("--output_dir", "-o", default="repo_analysis", help="输出目录")
+    repos = [
+    # "/data3/pwh/swebench-repos/pylint",
+    # "/data3/pwh/swebench-repos/pytest",
+    # "/data3/pwh/swebench-repos/requests",
+    # "/data3/pwh/swebench-repos/matplotlib", 
+    # "/data3/pwh/swebench-repos/sphinx",
+    # "/data3/pwh/swebench-repos/sqlfluff",
+    # "/data3/pwh/swebench-repos/xarray",
+    # "/data3/pwh/swebench-repos/scikit-learn",
+    "/data3/pwh/swebench-repos/flask",
+    # 添加更多路径
+    ]
+
+    output_base_dir = "repo_analysis"
+    for repo_path in repos:
+        print(f"开始分析：{repo_path}")
+        # 提取仓库名作为输出文件夹名
+        repo_name = repo_path.strip("/").split("/")[-1]
+        output_dir = f"{output_base_dir}/{repo_name}"
+        repository = analyze_repository(repo_path=repo_path, repo_root=repo_path)
+        print_repository_summary(repository)
+        # 保存分析结果
+        save_repository_data(repository, output_dir, repo_name)
+        print(f"完成分析：{repo_path}\n")
+
+    # # 设置命令行参数
+    # parser = argparse.ArgumentParser(description="分析代码仓库结构")
+    # parser.add_argument("--repo_path","-r",default="/data3/pwh/sympy", help="代码仓库的路径")
+    # parser.add_argument("--output_dir", "-o", default="repo_analysis", help="输出目录")
     
-    args = parser.parse_args()
+    # args = parser.parse_args()
     
-    # 分析仓库
-    repository = analyze_repository(repo_path=args.repo_path, repo_root="/data3/pwh/sympy")
+    # # 分析仓库
+    # repository = analyze_repository(repo_path=args.repo_path, repo_root="/data3/pwh/sympy")
     
-    # 打印摘要
-    print_repository_summary(repository)
+    # # 打印摘要
+    # print_repository_summary(repository)
     
-    # 保存数据
-    save_repository_data(repository, args.output_dir)
+    # # 保存数据
+    # save_repository_data(repository, args.output_dir)
 
 if __name__ == "__main__":
     main() 

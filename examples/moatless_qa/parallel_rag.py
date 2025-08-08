@@ -4,14 +4,17 @@ import time
 from dotenv import load_dotenv
 import sys
 import os
+
+
 project_root = os.path.abspath(os.path.join(os.getcwd(), ''))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
     print(f"已添加 {project_root} 到Python路径")
 
+from codeqa.examples.repo_parser.repo_reader import load_repository_from_json
 from codeqa.examples.repo_parser.repo_analyzer_example import analyze_repository
-from codeqa.repo_qa_generator.models.data_models import QAPair, ResultPair
+from codeqa.repo_qa_generator.models.data_models import QAPair, Repository, ResultPair
 from codeqa.repo_qa_generator.rag.code_qa import RecordedRAGCodeQA
 from moatless_qa.benchmark.utils import get_moatless_instance
 from moatless_qa.completion.completion import CompletionModel
@@ -94,19 +97,24 @@ def process_single_question(message: QAPair, rag: RecordedRAGCodeQA):
 
 import concurrent.futures
 
-def run_questions_concurrently(input_path, output_path, max_workers=16):
+def run_questions_concurrently(input_path, output_path, max_workers=32):
     repo_path = "/data3/pwh/sympy"
-    repository = analyze_repository(repo_path=repo_path, repo_root=repo_path)
-    
+    # repository = analyze_repository(repo_path=repo_path, repo_root=repo_path)
+ 
+    # 读取已经解析好的仓库
+    full_json_path = "/data3/pwh/repo_analysis/20250802_213947_repo_full.json"
+    repository =   load_repository_from_json(full_json_path, Repository)
+    print(f"已加载仓库: {repository.name} ({repository.id})")
+
     rag = RecordedRAGCodeQA(repo_structure=repository.structure,mode="external")
     data_list = load_data_from_jsonl(input_path)
     results = []
 
     def task(data):
         try:
+            data_json = data.model_dump()  # 转换为字典格式
             # 只用 question 调用接口，获得新的 answer
             res = process_single_question(data, rag)
-            data_json = data.model_dump()  # 转换为字典格式
             data_json["rag_answer"] = res.get("rag_answer", "无答案")  # 这里写回新的答案
             append_data_to_jsonl(output_path, data_json)  # 立即写入
             print(f"[完成] 问题: {data}\n新答案: {data_json['rag_answer']}\n")
@@ -117,11 +125,10 @@ def run_questions_concurrently(input_path, output_path, max_workers=16):
         executor.map(task, data_list)  # 并发执行，结果写入由task处理
 
 if __name__ == "__main__":
-    input_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/sympy_answers.jsonl"
-    output_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/sympy_answers_rag.jsonl"
+    input_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/django_answers.jsonl"
+    output_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/django_answers_rag.jsonl"
     start_time = time.time()
-    results = run_questions_concurrently(input_jsonl, output_jsonl, max_workers=16
-)
+    results = run_questions_concurrently(input_jsonl, output_jsonl, max_workers=32)
     end_time = time.time()
     total_time = end_time - start_time
     print(f"\n✨ 所有问题处理完成，总耗时：{total_time:.2f} 秒")

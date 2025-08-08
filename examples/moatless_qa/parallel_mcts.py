@@ -66,14 +66,13 @@ def load_data_from_jsonl(path, max_lines=150):
                 print(f"[跳过] 无效 JSON 行: {e}")
     return data_list
 
-
 def append_data_to_jsonl(path, data):
     with lock:
         with open(path, 'a', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False)
             f.write('\n')
 
-def process_single_question(message: str):
+def process_single_question(message: str, repo_path: str, index_persist_path: str):
     Setup_logging(f"\nProcessing question: {message}")
     # 以下内容与你现有代码完全一致，只是将 message 替换为函数参数
     completion_model = CompletionModel(
@@ -82,9 +81,9 @@ def process_single_question(message: str):
     )
     completion_model.response_format = LLMResponseFormat.TOOLS
 
-    repository = create_repository(repo_path="/data3/pwh/fineract", repo_base_dir=repo_base_dir)
+    repository = create_repository(repo_path=repo_path, repo_base_dir=repo_base_dir)
 
-    code_index = CodeIndex.from_persist_dir(persist_dir="/data3/pwh/codeqa/dataset/index_store/fineract", file_repo=repository)
+    code_index = CodeIndex.from_persist_dir(persist_dir=index_persist_path, file_repo=repository)
 
     file_context = FileContext(repo=repository)
 
@@ -129,7 +128,7 @@ def process_single_question(message: str):
 
 import concurrent.futures
 
-def run_questions_concurrently(input_path, output_path, max_workers=1):
+def run_questions_concurrently(input_path: str, output_path: str,  repo_path: str, index_persist_path: str, max_workers=64):
     data_list = load_data_from_jsonl(input_path)
     durations = []  # 存储每个任务的耗时
     results = []
@@ -143,14 +142,14 @@ def run_questions_concurrently(input_path, output_path, max_workers=1):
         start_time = time.perf_counter()  # 精确计时开始
         try:
             # 只用 question 调用接口，获得新的 answer
-            res = process_single_question(question)
-            data["answer"] = res.get("answer", "无答案")  # 这里写回新的答案
+            res = process_single_question(question, repo_path, index_persist_path)
+            data["mcts_answer"] = res.get("answer", "无答案")  # 这里写回新的答案
             append_data_to_jsonl(output_path, data)  # 立即写入
             end_time = time.perf_counter()
             duration = end_time - start_time
             durations.append(duration)
 
-            print(f"✔ [完成] 问题: {question}\n MCTS 答案: {data['answer']}\n")
+            print(f"✔ [完成] 问题: {question}\n MCTS 答案: {data['mcts_answer']}\n")
 
         except Exception as e:
             end_time = time.perf_counter()
@@ -167,10 +166,89 @@ def run_questions_concurrently(input_path, output_path, max_workers=1):
         print("[警告] 没有记录到任何任务耗时。")
 
 if __name__ == "__main__":
-    input_jsonl = "/data3/pwh/codeqa/dataset/generated_questions/fineract_questions.jsonl"
-    output_jsonl = "/data3/pwh/codeqa/dataset/generated_answers/fineract_answers_2.jsonl"
-    start_time = time.time()
-    results = run_questions_concurrently(input_jsonl, output_jsonl, max_workers=1)
-    end_time = time.time()
-    total_time = end_time - start_time
-    print(f"\n✨ 所有问题处理完成，全程总耗时：{total_time:.2f} 秒")
+    queue = [
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/astropy",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/astropy",
+        #     "input_jsonl": "/data3/pwh/questions/astropy.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/astropy_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/django",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/django",
+        #     "input_jsonl": "/data3/pwh/questions/django.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/django_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/flask",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/flask",
+        #     "input_jsonl": "/data3/pwh/questions/flask.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/flask_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/matplotlib",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/matplotlib",
+        #     "input_jsonl": "/data3/pwh/questions/matplotlib.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/matplotlib_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/pylint",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/pylint",
+        #     "input_jsonl": "/data3/pwh/questions/pylint.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/pylint_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/pytest",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/pytest",
+        #     "input_jsonl": "/data3/pwh/questions/pytest.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/pytest_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/requests",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/requests",
+        #     "input_jsonl": "/data3/pwh/questions/requests.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/requests_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/scikit-learn",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/scikit-learn",
+        #     "input_jsonl": "/data3/pwh/questions/scikit-learn.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/scikit-learn_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/sphinx",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sphinx",
+        #     "input_jsonl": "/data3/pwh/questions/sphinx.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/sphinx_mcts.jsonl"
+        # },
+        {
+            "repo_path": "/data3/pwh/swebench-repos/sqlfluff",
+            "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sqlfluff",
+            "input_jsonl": "/data3/pwh/questions/sqlfluff.jsonl",
+            "output_jsonl": "/data3/pwh/answers/sqlfluff_mcts.jsonl"
+        },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/sympy",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sympy",
+        #     "input_jsonl": "/data3/pwh/questions/sympy.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/sympy_mcts.jsonl"
+        # },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/xarray",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/xarray",
+        #     "input_jsonl": "/data3/pwh/questions/xarray.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/xarray_mcts.jsonl"
+        # }
+    ]
+    for item in queue:
+        start_time = time.time()
+        results = run_questions_concurrently(
+            input_path=item["input_jsonl"], 
+            output_path=item["output_jsonl"], 
+            repo_path=item["repo_path"], 
+            index_persist_path=item["index_persist_path"], 
+            max_workers=64
+        )
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(f"\n✨ 所有问题处理完成，全程总耗时：{total_time:.2f} 秒")
