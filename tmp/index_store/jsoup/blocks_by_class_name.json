@@ -1,0 +1,2380 @@
+{
+  "Method": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection",
+        "Method"
+      ]
+    ]
+  ],
+  "Base": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection",
+        "Base"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/helper/HttpConnection.java",
+      [
+        "HttpConnection",
+        "Base"
+      ]
+    ]
+  ],
+  "Request": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection",
+        "Request"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/helper/HttpConnection.java",
+      [
+        "HttpConnection",
+        "Request"
+      ]
+    ]
+  ],
+  "Response": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection",
+        "Response"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/helper/HttpConnection.java",
+      [
+        "HttpConnection",
+        "Response"
+      ]
+    ]
+  ],
+  "KeyVal": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection",
+        "KeyVal"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/helper/HttpConnection.java",
+      [
+        "HttpConnection",
+        "KeyVal"
+      ]
+    ]
+  ],
+  "Connection": [
+    [
+      "src/main/java/org/jsoup/Connection.java",
+      [
+        "Connection"
+      ]
+    ]
+  ],
+  "HttpStatusException": [
+    [
+      "src/main/java/org/jsoup/HttpStatusException.java",
+      [
+        "HttpStatusException"
+      ]
+    ]
+  ],
+  "Jsoup": [
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      [
+        "Jsoup"
+      ]
+    ]
+  ],
+  "Progress": [
+    [
+      "src/main/java/org/jsoup/Progress.java",
+      [
+        "Progress"
+      ]
+    ]
+  ],
+  "SerializationException": [
+    [
+      "src/main/java/org/jsoup/SerializationException.java",
+      [
+        "SerializationException"
+      ]
+    ]
+  ],
+  "UnsupportedMimeTypeException": [
+    [
+      "src/main/java/org/jsoup/UnsupportedMimeTypeException.java",
+      [
+        "UnsupportedMimeTypeException"
+      ]
+    ]
+  ],
+  "FormattingVisitor": [
+    [
+      "src/main/java/org/jsoup/examples/HtmlToPlainText.java",
+      [
+        "HtmlToPlainText",
+        "FormattingVisitor"
+      ]
+    ]
+  ],
+  "HtmlToPlainText": [
+    [
+      "src/main/java/org/jsoup/examples/HtmlToPlainText.java",
+      [
+        "HtmlToPlainText"
+      ]
+    ]
+  ],
+  "ListLinks": [
+    [
+      "src/main/java/org/jsoup/examples/ListLinks.java",
+      [
+        "ListLinks"
+      ]
+    ]
+  ],
+  "Wikipedia": [
+    [
+      "src/main/java/org/jsoup/examples/Wikipedia.java",
+      [
+        "Wikipedia"
+      ]
+    ]
+  ],
+  "AuthShim": [
+    [
+      "src/main/java/org/jsoup/helper/AuthenticationHandler.java",
+      [
+        "AuthenticationHandler",
+        "AuthShim"
+      ]
+    ]
+  ],
+  "GlobalHandler": [
+    [
+      "src/main/java/org/jsoup/helper/AuthenticationHandler.java",
+      [
+        "AuthenticationHandler",
+        "GlobalHandler"
+      ]
+    ]
+  ],
+  "AuthenticationHandler": [
+    [
+      "src/main/java/org/jsoup/helper/AuthenticationHandler.java",
+      [
+        "AuthenticationHandler"
+      ]
+    ]
+  ],
+  "CookieUtil": [
+    [
+      "src/main/java/org/jsoup/helper/CookieUtil.java",
+      [
+        "CookieUtil"
+      ]
+    ]
+  ],
+  "CharsetDoc": [
+    [
+      "src/main/java/org/jsoup/helper/DataUtil.java",
+      [
+        "DataUtil",
+        "CharsetDoc"
+      ]
+    ]
+  ],
+  "DataUtil": [
+    [
+      "src/main/java/org/jsoup/helper/DataUtil.java",
+      [
+        "DataUtil"
+      ]
+    ]
+  ],
+  "HttpConnection": [
+    [
+      "src/main/java/org/jsoup/helper/HttpConnection.java",
+      [
+        "HttpConnection"
+      ]
+    ]
+  ],
+  "Context": [
+    [
+      "src/main/java/org/jsoup/helper/RequestAuthenticator.java",
+      [
+        "RequestAuthenticator",
+        "Context"
+      ]
+    ]
+  ],
+  "RequestAuthenticator": [
+    [
+      "src/main/java/org/jsoup/helper/RequestAuthenticator.java",
+      [
+        "RequestAuthenticator"
+      ]
+    ]
+  ],
+  "RequestDispatch": [
+    [
+      "src/main/java/org/jsoup/helper/RequestDispatch.java",
+      [
+        "RequestDispatch"
+      ]
+    ]
+  ],
+  "RequestExecutor": [
+    [
+      "src/main/java/org/jsoup/helper/RequestExecutor.java",
+      [
+        "RequestExecutor"
+      ]
+    ]
+  ],
+  "UrlBuilder": [
+    [
+      "src/main/java/org/jsoup/helper/UrlBuilder.java",
+      [
+        "UrlBuilder"
+      ]
+    ]
+  ],
+  "UrlConnectionExecutor": [
+    [
+      "src/main/java/org/jsoup/helper/UrlConnectionExecutor.java",
+      [
+        "UrlConnectionExecutor"
+      ]
+    ]
+  ],
+  "Validate": [
+    [
+      "src/main/java/org/jsoup/helper/Validate.java",
+      [
+        "Validate"
+      ]
+    ]
+  ],
+  "ValidationException": [
+    [
+      "src/main/java/org/jsoup/helper/ValidationException.java",
+      [
+        "ValidationException"
+      ]
+    ]
+  ],
+  "W3CBuilder": [
+    [
+      "src/main/java/org/jsoup/helper/W3CDom.java",
+      [
+        "W3CDom",
+        "W3CBuilder"
+      ]
+    ]
+  ],
+  "W3CDom": [
+    [
+      "src/main/java/org/jsoup/helper/W3CDom.java",
+      [
+        "W3CDom"
+      ]
+    ]
+  ],
+  "ControllableInputStream": [
+    [
+      "src/main/java/org/jsoup/internal/ControllableInputStream.java",
+      [
+        "ControllableInputStream"
+      ]
+    ]
+  ],
+  "Functions": [
+    [
+      "src/main/java/org/jsoup/internal/Functions.java",
+      [
+        "Functions"
+      ]
+    ]
+  ],
+  "Normalizer": [
+    [
+      "src/main/java/org/jsoup/internal/Normalizer.java",
+      [
+        "Normalizer"
+      ]
+    ]
+  ],
+  "Action": [
+    [
+      "src/main/java/org/jsoup/internal/QuietAppendable.java",
+      [
+        "QuietAppendable",
+        "BaseAppendable",
+        "Action"
+      ]
+    ]
+  ],
+  "BaseAppendable": [
+    [
+      "src/main/java/org/jsoup/internal/QuietAppendable.java",
+      [
+        "QuietAppendable",
+        "BaseAppendable"
+      ]
+    ]
+  ],
+  "StringBuilderAppendable": [
+    [
+      "src/main/java/org/jsoup/internal/QuietAppendable.java",
+      [
+        "QuietAppendable",
+        "StringBuilderAppendable"
+      ]
+    ]
+  ],
+  "QuietAppendable": [
+    [
+      "src/main/java/org/jsoup/internal/QuietAppendable.java",
+      [
+        "QuietAppendable"
+      ]
+    ]
+  ],
+  "SharedConstants": [
+    [
+      "src/main/java/org/jsoup/internal/SharedConstants.java",
+      [
+        "SharedConstants"
+      ]
+    ]
+  ],
+  "SimpleBufferedInput": [
+    [
+      "src/main/java/org/jsoup/internal/SimpleBufferedInput.java",
+      [
+        "SimpleBufferedInput"
+      ]
+    ]
+  ],
+  "SimpleStreamReader": [
+    [
+      "src/main/java/org/jsoup/internal/SimpleStreamReader.java",
+      [
+        "SimpleStreamReader"
+      ]
+    ]
+  ],
+  "SoftPool": [
+    [
+      "src/main/java/org/jsoup/internal/SoftPool.java",
+      [
+        "SoftPool"
+      ]
+    ]
+  ],
+  "StringJoiner": [
+    [
+      "src/main/java/org/jsoup/internal/StringUtil.java",
+      [
+        "StringUtil",
+        "StringJoiner"
+      ]
+    ]
+  ],
+  "StringUtil": [
+    [
+      "src/main/java/org/jsoup/internal/StringUtil.java",
+      [
+        "StringUtil"
+      ]
+    ]
+  ],
+  "Attribute": [
+    [
+      "src/main/java/org/jsoup/nodes/Attribute.java",
+      [
+        "Attribute"
+      ]
+    ]
+  ],
+  "EntrySet": [
+    [
+      "src/main/java/org/jsoup/nodes/Attributes.java",
+      [
+        "Attributes",
+        "Dataset",
+        "EntrySet"
+      ]
+    ]
+  ],
+  "DatasetIterator": [
+    [
+      "src/main/java/org/jsoup/nodes/Attributes.java",
+      [
+        "Attributes",
+        "Dataset",
+        "DatasetIterator"
+      ]
+    ]
+  ],
+  "Dataset": [
+    [
+      "src/main/java/org/jsoup/nodes/Attributes.java",
+      [
+        "Attributes",
+        "Dataset"
+      ]
+    ]
+  ],
+  "Attributes": [
+    [
+      "src/main/java/org/jsoup/nodes/Attributes.java",
+      [
+        "Attributes"
+      ]
+    ]
+  ],
+  "CDataNode": [
+    [
+      "src/main/java/org/jsoup/nodes/CDataNode.java",
+      [
+        "CDataNode"
+      ]
+    ]
+  ],
+  "Comment": [
+    [
+      "src/main/java/org/jsoup/nodes/Comment.java",
+      [
+        "Comment"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "Comment"
+      ]
+    ]
+  ],
+  "DataNode": [
+    [
+      "src/main/java/org/jsoup/nodes/DataNode.java",
+      [
+        "DataNode"
+      ]
+    ]
+  ],
+  "Syntax": [
+    [
+      "src/main/java/org/jsoup/nodes/Document.java",
+      [
+        "Document",
+        "OutputSettings",
+        "Syntax"
+      ]
+    ]
+  ],
+  "OutputSettings": [
+    [
+      "src/main/java/org/jsoup/nodes/Document.java",
+      [
+        "Document",
+        "OutputSettings"
+      ]
+    ]
+  ],
+  "QuirksMode": [
+    [
+      "src/main/java/org/jsoup/nodes/Document.java",
+      [
+        "Document",
+        "QuirksMode"
+      ]
+    ]
+  ],
+  "Document": [
+    [
+      "src/main/java/org/jsoup/nodes/Document.java",
+      [
+        "Document"
+      ]
+    ]
+  ],
+  "DocumentType": [
+    [
+      "src/main/java/org/jsoup/nodes/DocumentType.java",
+      [
+        "DocumentType"
+      ]
+    ]
+  ],
+  "TextAccumulator": [
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      [
+        "Element",
+        "TextAccumulator"
+      ]
+    ]
+  ],
+  "NodeList": [
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      [
+        "Element",
+        "NodeList"
+      ]
+    ]
+  ],
+  "Element": [
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      [
+        "Element"
+      ]
+    ]
+  ],
+  "EscapeMode": [
+    [
+      "src/main/java/org/jsoup/nodes/Entities.java",
+      [
+        "Entities",
+        "EscapeMode"
+      ]
+    ]
+  ],
+  "CoreCharset": [
+    [
+      "src/main/java/org/jsoup/nodes/Entities.java",
+      [
+        "Entities",
+        "CoreCharset"
+      ]
+    ]
+  ],
+  "Entities": [
+    [
+      "src/main/java/org/jsoup/nodes/Entities.java",
+      [
+        "Entities"
+      ]
+    ]
+  ],
+  "EntitiesData": [
+    [
+      "src/main/java/org/jsoup/nodes/EntitiesData.java",
+      [
+        "EntitiesData"
+      ]
+    ]
+  ],
+  "FormElement": [
+    [
+      "src/main/java/org/jsoup/nodes/FormElement.java",
+      [
+        "FormElement"
+      ]
+    ]
+  ],
+  "LeafNode": [
+    [
+      "src/main/java/org/jsoup/nodes/LeafNode.java",
+      [
+        "LeafNode"
+      ]
+    ]
+  ],
+  "Node": [
+    [
+      "src/main/java/org/jsoup/nodes/Node.java",
+      [
+        "Node"
+      ]
+    ]
+  ],
+  "NodeIterator": [
+    [
+      "src/main/java/org/jsoup/nodes/NodeIterator.java",
+      [
+        "NodeIterator"
+      ]
+    ]
+  ],
+  "NodeUtils": [
+    [
+      "src/main/java/org/jsoup/nodes/NodeUtils.java",
+      [
+        "NodeUtils"
+      ]
+    ]
+  ],
+  "Pretty": [
+    [
+      "src/main/java/org/jsoup/nodes/Printer.java",
+      [
+        "Printer",
+        "Pretty"
+      ]
+    ]
+  ],
+  "Outline": [
+    [
+      "src/main/java/org/jsoup/nodes/Printer.java",
+      [
+        "Printer",
+        "Outline"
+      ]
+    ]
+  ],
+  "Printer": [
+    [
+      "src/main/java/org/jsoup/nodes/Printer.java",
+      [
+        "Printer"
+      ]
+    ]
+  ],
+  "PseudoTextElement": [
+    [
+      "src/main/java/org/jsoup/nodes/PseudoTextElement.java",
+      [
+        "PseudoTextElement"
+      ]
+    ]
+  ],
+  "Position": [
+    [
+      "src/main/java/org/jsoup/nodes/Range.java",
+      [
+        "Range",
+        "Position"
+      ]
+    ]
+  ],
+  "AttributeRange": [
+    [
+      "src/main/java/org/jsoup/nodes/Range.java",
+      [
+        "Range",
+        "AttributeRange"
+      ]
+    ]
+  ],
+  "Range": [
+    [
+      "src/main/java/org/jsoup/nodes/Range.java",
+      [
+        "Range"
+      ]
+    ]
+  ],
+  "TextNode": [
+    [
+      "src/main/java/org/jsoup/nodes/TextNode.java",
+      [
+        "TextNode"
+      ]
+    ]
+  ],
+  "XmlDeclaration": [
+    [
+      "src/main/java/org/jsoup/nodes/XmlDeclaration.java",
+      [
+        "XmlDeclaration"
+      ]
+    ]
+  ],
+  "CharPredicate": [
+    [
+      "src/main/java/org/jsoup/parser/CharacterReader.java",
+      [
+        "CharacterReader",
+        "CharPredicate"
+      ]
+    ]
+  ],
+  "CharacterReader": [
+    [
+      "src/main/java/org/jsoup/parser/CharacterReader.java",
+      [
+        "CharacterReader"
+      ]
+    ]
+  ],
+  "HtmlTreeBuilder": [
+    [
+      "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+      [
+        "HtmlTreeBuilder"
+      ]
+    ]
+  ],
+  "HtmlTreeBuilderState": [
+    [
+      "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+      [
+        "HtmlTreeBuilderState"
+      ]
+    ]
+  ],
+  "ParseError": [
+    [
+      "src/main/java/org/jsoup/parser/ParseError.java",
+      [
+        "ParseError"
+      ]
+    ]
+  ],
+  "ParseErrorList": [
+    [
+      "src/main/java/org/jsoup/parser/ParseErrorList.java",
+      [
+        "ParseErrorList"
+      ]
+    ]
+  ],
+  "ParseSettings": [
+    [
+      "src/main/java/org/jsoup/parser/ParseSettings.java",
+      [
+        "ParseSettings"
+      ]
+    ]
+  ],
+  "Parser": [
+    [
+      "src/main/java/org/jsoup/parser/Parser.java",
+      [
+        "Parser"
+      ]
+    ]
+  ],
+  "ElementIterator": [
+    [
+      "src/main/java/org/jsoup/parser/StreamParser.java",
+      [
+        "StreamParser",
+        "ElementIterator"
+      ]
+    ]
+  ],
+  "StreamParser": [
+    [
+      "src/main/java/org/jsoup/parser/StreamParser.java",
+      [
+        "StreamParser"
+      ]
+    ]
+  ],
+  "Tag": [
+    [
+      "src/main/java/org/jsoup/parser/Tag.java",
+      [
+        "Tag"
+      ]
+    ],
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "Tag"
+      ]
+    ]
+  ],
+  "TagSet": [
+    [
+      "src/main/java/org/jsoup/parser/TagSet.java",
+      [
+        "TagSet"
+      ]
+    ]
+  ],
+  "StartTag": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "StartTag"
+      ]
+    ]
+  ],
+  "EndTag": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "EndTag"
+      ]
+    ]
+  ],
+  "Character": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "Character"
+      ]
+    ]
+  ],
+  "CData": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "CData"
+      ]
+    ]
+  ],
+  "XmlDecl": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "XmlDecl"
+      ]
+    ]
+  ],
+  "EOF": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "EOF"
+      ]
+    ]
+  ],
+  "TokenType": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token",
+        "TokenType"
+      ]
+    ]
+  ],
+  "Token": [
+    [
+      "src/main/java/org/jsoup/parser/Token.java",
+      [
+        "Token"
+      ]
+    ]
+  ],
+  "TokenData": [
+    [
+      "src/main/java/org/jsoup/parser/TokenData.java",
+      [
+        "TokenData"
+      ]
+    ]
+  ],
+  "TokenQueue": [
+    [
+      "src/main/java/org/jsoup/parser/TokenQueue.java",
+      [
+        "TokenQueue"
+      ]
+    ]
+  ],
+  "Tokeniser": [
+    [
+      "src/main/java/org/jsoup/parser/Tokeniser.java",
+      [
+        "Tokeniser"
+      ]
+    ]
+  ],
+  "TokeniserState": [
+    [
+      "src/main/java/org/jsoup/parser/TokeniserState.java",
+      [
+        "TokeniserState"
+      ]
+    ]
+  ],
+  "TreeBuilder": [
+    [
+      "src/main/java/org/jsoup/parser/TreeBuilder.java",
+      [
+        "TreeBuilder"
+      ]
+    ]
+  ],
+  "XmlTreeBuilder": [
+    [
+      "src/main/java/org/jsoup/parser/XmlTreeBuilder.java",
+      [
+        "XmlTreeBuilder"
+      ]
+    ]
+  ],
+  "CleaningVisitor": [
+    [
+      "src/main/java/org/jsoup/safety/Cleaner.java",
+      [
+        "Cleaner",
+        "CleaningVisitor"
+      ]
+    ]
+  ],
+  "ElementMeta": [
+    [
+      "src/main/java/org/jsoup/safety/Cleaner.java",
+      [
+        "Cleaner",
+        "ElementMeta"
+      ]
+    ]
+  ],
+  "Cleaner": [
+    [
+      "src/main/java/org/jsoup/safety/Cleaner.java",
+      [
+        "Cleaner"
+      ]
+    ]
+  ],
+  "TagName": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist",
+        "TagName"
+      ]
+    ]
+  ],
+  "AttributeKey": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist",
+        "AttributeKey"
+      ]
+    ]
+  ],
+  "AttributeValue": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist",
+        "AttributeValue"
+      ]
+    ]
+  ],
+  "Protocol": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist",
+        "Protocol"
+      ]
+    ]
+  ],
+  "TypedValue": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist",
+        "TypedValue"
+      ]
+    ]
+  ],
+  "Safelist": [
+    [
+      "src/main/java/org/jsoup/safety/Safelist.java",
+      [
+        "Safelist"
+      ]
+    ]
+  ],
+  "Collector": [
+    [
+      "src/main/java/org/jsoup/select/Collector.java",
+      [
+        "Collector"
+      ]
+    ]
+  ],
+  "And": [
+    [
+      "src/main/java/org/jsoup/select/CombiningEvaluator.java",
+      [
+        "CombiningEvaluator",
+        "And"
+      ]
+    ]
+  ],
+  "Or": [
+    [
+      "src/main/java/org/jsoup/select/CombiningEvaluator.java",
+      [
+        "CombiningEvaluator",
+        "Or"
+      ]
+    ]
+  ],
+  "CombiningEvaluator": [
+    [
+      "src/main/java/org/jsoup/select/CombiningEvaluator.java",
+      [
+        "CombiningEvaluator"
+      ]
+    ]
+  ],
+  "Elements": [
+    [
+      "src/main/java/org/jsoup/select/Elements.java",
+      [
+        "Elements"
+      ]
+    ]
+  ],
+  "AttributeWithValueStarting": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AttributeWithValueStarting"
+      ]
+    ]
+  ],
+  "AttributeWithValueEnding": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AttributeWithValueEnding"
+      ]
+    ]
+  ],
+  "AttributeWithValueContaining": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AttributeWithValueContaining"
+      ]
+    ]
+  ],
+  "AttributeWithValueMatching": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AttributeWithValueMatching"
+      ]
+    ]
+  ],
+  "AttributeKeyPair": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AttributeKeyPair"
+      ]
+    ]
+  ],
+  "AllElements": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "AllElements"
+      ]
+    ]
+  ],
+  "IndexLessThan": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IndexLessThan"
+      ]
+    ]
+  ],
+  "IndexGreaterThan": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IndexGreaterThan"
+      ]
+    ]
+  ],
+  "IndexEquals": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IndexEquals"
+      ]
+    ]
+  ],
+  "IsLastChild": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsLastChild"
+      ]
+    ]
+  ],
+  "IsFirstOfType": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsFirstOfType"
+      ]
+    ]
+  ],
+  "IsLastOfType": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsLastOfType"
+      ]
+    ]
+  ],
+  "CssNthEvaluator": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "CssNthEvaluator"
+      ]
+    ]
+  ],
+  "IsNthChild": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsNthChild"
+      ]
+    ]
+  ],
+  "IsNthLastChild": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsNthLastChild"
+      ]
+    ]
+  ],
+  "IsNthOfType": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsNthOfType"
+      ]
+    ]
+  ],
+  "IsNthLastOfType": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsNthLastOfType"
+      ]
+    ]
+  ],
+  "IsFirstChild": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsFirstChild"
+      ]
+    ]
+  ],
+  "IsRoot": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsRoot"
+      ]
+    ]
+  ],
+  "IsOnlyChild": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsOnlyChild"
+      ]
+    ]
+  ],
+  "IsOnlyOfType": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsOnlyOfType"
+      ]
+    ]
+  ],
+  "IsEmpty": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IsEmpty"
+      ]
+    ]
+  ],
+  "IndexEvaluator": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "IndexEvaluator"
+      ]
+    ]
+  ],
+  "ContainsText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "ContainsText"
+      ]
+    ]
+  ],
+  "ContainsWholeText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "ContainsWholeText"
+      ]
+    ]
+  ],
+  "ContainsWholeOwnText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "ContainsWholeOwnText"
+      ]
+    ]
+  ],
+  "ContainsData": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "ContainsData"
+      ]
+    ]
+  ],
+  "ContainsOwnText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "ContainsOwnText"
+      ]
+    ]
+  ],
+  "Matches": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "Matches"
+      ]
+    ]
+  ],
+  "MatchesOwn": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "MatchesOwn"
+      ]
+    ]
+  ],
+  "MatchesWholeText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "MatchesWholeText"
+      ]
+    ]
+  ],
+  "MatchesWholeOwnText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "MatchesWholeOwnText"
+      ]
+    ]
+  ],
+  "MatchText": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class",
+        "MatchText"
+      ]
+    ]
+  ],
+  "Class": [
+    [
+      "src/main/java/org/jsoup/select/Evaluator.java",
+      [
+        "Class"
+      ]
+    ]
+  ],
+  "InstanceType": [
+    [
+      "src/main/java/org/jsoup/select/NodeEvaluator.java",
+      [
+        "NodeEvaluator",
+        "InstanceType"
+      ]
+    ]
+  ],
+  "ContainsValue": [
+    [
+      "src/main/java/org/jsoup/select/NodeEvaluator.java",
+      [
+        "NodeEvaluator",
+        "ContainsValue"
+      ]
+    ]
+  ],
+  "BlankValue": [
+    [
+      "src/main/java/org/jsoup/select/NodeEvaluator.java",
+      [
+        "NodeEvaluator",
+        "BlankValue"
+      ]
+    ]
+  ],
+  "MatchesValue": [
+    [
+      "src/main/java/org/jsoup/select/NodeEvaluator.java",
+      [
+        "NodeEvaluator",
+        "MatchesValue"
+      ]
+    ]
+  ],
+  "NodeEvaluator": [
+    [
+      "src/main/java/org/jsoup/select/NodeEvaluator.java",
+      [
+        "NodeEvaluator"
+      ]
+    ]
+  ],
+  "FilterResult": [
+    [
+      "src/main/java/org/jsoup/select/NodeFilter.java",
+      [
+        "NodeFilter",
+        "FilterResult"
+      ]
+    ]
+  ],
+  "NodeFilter": [
+    [
+      "src/main/java/org/jsoup/select/NodeFilter.java",
+      [
+        "NodeFilter"
+      ]
+    ]
+  ],
+  "NodeTraversor": [
+    [
+      "src/main/java/org/jsoup/select/NodeTraversor.java",
+      [
+        "NodeTraversor"
+      ]
+    ]
+  ],
+  "NodeVisitor": [
+    [
+      "src/main/java/org/jsoup/select/NodeVisitor.java",
+      [
+        "NodeVisitor"
+      ]
+    ]
+  ],
+  "Nodes": [
+    [
+      "src/main/java/org/jsoup/select/Nodes.java",
+      [
+        "Nodes"
+      ]
+    ]
+  ],
+  "QueryParser": [
+    [
+      "src/main/java/org/jsoup/select/QueryParser.java",
+      [
+        "QueryParser"
+      ]
+    ]
+  ],
+  "SelectorParseException": [
+    [
+      "src/main/java/org/jsoup/select/Selector.java",
+      [
+        "Selector",
+        "SelectorParseException"
+      ]
+    ]
+  ],
+  "Selector": [
+    [
+      "src/main/java/org/jsoup/select/Selector.java",
+      [
+        "Selector"
+      ]
+    ]
+  ],
+  "Root": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "Root"
+      ]
+    ]
+  ],
+  "Has": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "Has"
+      ]
+    ]
+  ],
+  "Is": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "Is"
+      ]
+    ]
+  ],
+  "Not": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "Not"
+      ]
+    ]
+  ],
+  "Ancestor": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "Ancestor"
+      ]
+    ]
+  ],
+  "ImmediateParentRun": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "ImmediateParentRun"
+      ]
+    ]
+  ],
+  "PreviousSibling": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "PreviousSibling"
+      ]
+    ]
+  ],
+  "ImmediatePreviousSibling": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator",
+        "ImmediatePreviousSibling"
+      ]
+    ]
+  ],
+  "StructuralEvaluator": [
+    [
+      "src/main/java/org/jsoup/select/StructuralEvaluator.java",
+      [
+        "StructuralEvaluator"
+      ]
+    ]
+  ],
+  "ProxyWrap": [
+    [
+      "src/main/java11/org/jsoup/helper/HttpClientExecutor.java",
+      [
+        "HttpClientExecutor",
+        "ProxyWrap"
+      ]
+    ]
+  ],
+  "HttpClientExecutor": [
+    [
+      "src/main/java11/org/jsoup/helper/HttpClientExecutor.java",
+      [
+        "HttpClientExecutor"
+      ]
+    ]
+  ],
+  "RequestAuthHandler": [
+    [
+      "src/main/java11/org/jsoup/helper/RequestAuthHandler.java",
+      [
+        "RequestAuthHandler"
+      ]
+    ]
+  ],
+  "JsoupTest": [
+    [
+      "src/test/java/org/jsoup/JsoupTest.java",
+      [
+        "JsoupTest"
+      ]
+    ]
+  ],
+  "MultiLocaleTest": [
+    [
+      "src/test/java/org/jsoup/MultiLocaleExtension.java",
+      [
+        "MultiLocaleExtension",
+        "MultiLocaleTest"
+      ]
+    ]
+  ],
+  "MultiLocaleExtension": [
+    [
+      "src/test/java/org/jsoup/MultiLocaleExtension.java",
+      [
+        "MultiLocaleExtension"
+      ]
+    ]
+  ],
+  "SerializationExceptionTest": [
+    [
+      "src/test/java/org/jsoup/SerializationExceptionTest.java",
+      [
+        "SerializationExceptionTest"
+      ]
+    ]
+  ],
+  "TextUtil": [
+    [
+      "src/test/java/org/jsoup/TextUtil.java",
+      [
+        "TextUtil"
+      ]
+    ]
+  ],
+  "AuthenticationHandlerTest": [
+    [
+      "src/test/java/org/jsoup/helper/AuthenticationHandlerTest.java",
+      [
+        "AuthenticationHandlerTest"
+      ]
+    ]
+  ],
+  "CookieUtilTest": [
+    [
+      "src/test/java/org/jsoup/helper/CookieUtilTest.java",
+      [
+        "CookieUtilTest"
+      ]
+    ]
+  ],
+  "VaryingReadInputStream": [
+    [
+      "src/test/java/org/jsoup/helper/DataUtilTest.java",
+      [
+        "DataUtilTest",
+        "VaryingReadInputStream"
+      ]
+    ]
+  ],
+  "DataUtilTest": [
+    [
+      "src/test/java/org/jsoup/helper/DataUtilTest.java",
+      [
+        "DataUtilTest"
+      ]
+    ]
+  ],
+  "HttpConnectionTest": [
+    [
+      "src/test/java/org/jsoup/helper/HttpConnectionTest.java",
+      [
+        "HttpConnectionTest"
+      ]
+    ]
+  ],
+  "ValidateTest": [
+    [
+      "src/test/java/org/jsoup/helper/ValidateTest.java",
+      [
+        "ValidateTest"
+      ]
+    ]
+  ],
+  "W3CDomTest": [
+    [
+      "src/test/java/org/jsoup/helper/W3CDomTest.java",
+      [
+        "W3CDomTest"
+      ]
+    ]
+  ],
+  "Benchmark": [
+    [
+      "src/test/java/org/jsoup/integration/Benchmark.java",
+      [
+        "Benchmark"
+      ]
+    ]
+  ],
+  "ConnectIT": [
+    [
+      "src/test/java/org/jsoup/integration/ConnectIT.java",
+      [
+        "ConnectIT"
+      ]
+    ]
+  ],
+  "ConnectTest": [
+    [
+      "src/test/java/org/jsoup/integration/ConnectTest.java",
+      [
+        "ConnectTest"
+      ]
+    ]
+  ],
+  "FuzzFixesIT": [
+    [
+      "src/test/java/org/jsoup/integration/FuzzFixesIT.java",
+      [
+        "FuzzFixesIT"
+      ]
+    ]
+  ],
+  "FuzzFixesTest": [
+    [
+      "src/test/java/org/jsoup/integration/FuzzFixesTest.java",
+      [
+        "FuzzFixesTest"
+      ]
+    ]
+  ],
+  "ParseTest": [
+    [
+      "src/test/java/org/jsoup/integration/ParseTest.java",
+      [
+        "ParseTest"
+      ]
+    ]
+  ],
+  "ProxyTest": [
+    [
+      "src/test/java/org/jsoup/integration/ProxyTest.java",
+      [
+        "ProxyTest"
+      ]
+    ]
+  ],
+  "OpenSafelist": [
+    [
+      "src/test/java/org/jsoup/integration/SafelistExtensionTest.java",
+      [
+        "SafelistExtensionTest",
+        "OpenSafelist"
+      ]
+    ]
+  ],
+  "SafelistExtensionTest": [
+    [
+      "src/test/java/org/jsoup/integration/SafelistExtensionTest.java",
+      [
+        "SafelistExtensionTest"
+      ]
+    ]
+  ],
+  "ThreadCatcher": [
+    [
+      "src/test/java/org/jsoup/integration/SessionIT.java",
+      [
+        "SessionIT",
+        "ThreadCatcher"
+      ]
+    ],
+    [
+      "src/test/java/org/jsoup/select/SelectorIT.java",
+      [
+        "SelectorIT",
+        "ThreadCatcher"
+      ]
+    ]
+  ],
+  "SessionIT": [
+    [
+      "src/test/java/org/jsoup/integration/SessionIT.java",
+      [
+        "SessionIT"
+      ]
+    ]
+  ],
+  "SessionTest": [
+    [
+      "src/test/java/org/jsoup/integration/SessionTest.java",
+      [
+        "SessionTest"
+      ]
+    ]
+  ],
+  "ServletUrls": [
+    [
+      "src/test/java/org/jsoup/integration/TestServer.java",
+      [
+        "TestServer",
+        "ServletUrls"
+      ]
+    ]
+  ],
+  "ProxySettings": [
+    [
+      "src/test/java/org/jsoup/integration/TestServer.java",
+      [
+        "TestServer",
+        "ProxySettings"
+      ]
+    ]
+  ],
+  "TestServer": [
+    [
+      "src/test/java/org/jsoup/integration/TestServer.java",
+      [
+        "TestServer"
+      ]
+    ]
+  ],
+  "AuthFilter": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/AuthFilter.java",
+      [
+        "AuthFilter"
+      ]
+    ]
+  ],
+  "BaseServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/BaseServlet.java",
+      [
+        "BaseServlet"
+      ]
+    ]
+  ],
+  "CookieServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/CookieServlet.java",
+      [
+        "CookieServlet"
+      ]
+    ]
+  ],
+  "DeflateServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/DeflateServlet.java",
+      [
+        "DeflateServlet"
+      ]
+    ]
+  ],
+  "EchoServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/EchoServlet.java",
+      [
+        "EchoServlet"
+      ]
+    ]
+  ],
+  "FileServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/FileServlet.java",
+      [
+        "FileServlet"
+      ]
+    ]
+  ],
+  "HelloServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/HelloServlet.java",
+      [
+        "HelloServlet"
+      ]
+    ]
+  ],
+  "InterruptedServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/InterruptedServlet.java",
+      [
+        "InterruptedServlet"
+      ]
+    ]
+  ],
+  "ConnectProxy": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/ProxyServlet.java",
+      [
+        "ProxyServlet",
+        "ConnectProxy"
+      ]
+    ]
+  ],
+  "ProxyServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/ProxyServlet.java",
+      [
+        "ProxyServlet"
+      ]
+    ]
+  ],
+  "RedirectServlet": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/RedirectServlet.java",
+      [
+        "RedirectServlet"
+      ]
+    ]
+  ],
+  "SlowRider": [
+    [
+      "src/test/java/org/jsoup/integration/servlets/SlowRider.java",
+      [
+        "SlowRider"
+      ]
+    ]
+  ],
+  "QuietAppendableTest": [
+    [
+      "src/test/java/org/jsoup/internal/QuietAppendableTest.java",
+      [
+        "QuietAppendableTest"
+      ]
+    ]
+  ],
+  "ReaderTest": [
+    [
+      "src/test/java/org/jsoup/internal/ReaderTest.java",
+      [
+        "ReaderTest"
+      ]
+    ]
+  ],
+  "SoftPoolTest": [
+    [
+      "src/test/java/org/jsoup/internal/SoftPoolTest.java",
+      [
+        "SoftPoolTest"
+      ]
+    ]
+  ],
+  "StringUtilTest": [
+    [
+      "src/test/java/org/jsoup/internal/StringUtilTest.java",
+      [
+        "StringUtilTest"
+      ]
+    ]
+  ],
+  "AttributeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/AttributeTest.java",
+      [
+        "AttributeTest"
+      ]
+    ]
+  ],
+  "AttributesTest": [
+    [
+      "src/test/java/org/jsoup/nodes/AttributesTest.java",
+      [
+        "AttributesTest"
+      ]
+    ]
+  ],
+  "CharacterRef": [
+    [
+      "src/test/java/org/jsoup/nodes/BuildEntities.java",
+      [
+        "BuildEntities",
+        "CharacterRef"
+      ]
+    ]
+  ],
+  "ByCode": [
+    [
+      "src/test/java/org/jsoup/nodes/BuildEntities.java",
+      [
+        "BuildEntities",
+        "ByCode"
+      ]
+    ]
+  ],
+  "BuildEntities": [
+    [
+      "src/test/java/org/jsoup/nodes/BuildEntities.java",
+      [
+        "BuildEntities"
+      ]
+    ]
+  ],
+  "CommentTest": [
+    [
+      "src/test/java/org/jsoup/nodes/CommentTest.java",
+      [
+        "CommentTest"
+      ]
+    ]
+  ],
+  "DataNodeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/DataNodeTest.java",
+      [
+        "DataNodeTest"
+      ]
+    ]
+  ],
+  "DocumentTest": [
+    [
+      "src/test/java/org/jsoup/nodes/DocumentTest.java",
+      [
+        "DocumentTest"
+      ]
+    ]
+  ],
+  "DocumentTypeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/DocumentTypeTest.java",
+      [
+        "DocumentTypeTest"
+      ]
+    ]
+  ],
+  "TemplateMerger": [
+    [
+      "src/test/java/org/jsoup/nodes/ElementIT.java",
+      [
+        "ElementIT",
+        "testConcurrentMerge",
+        "TemplateMerger"
+      ]
+    ]
+  ],
+  "ElementIT": [
+    [
+      "src/test/java/org/jsoup/nodes/ElementIT.java",
+      [
+        "ElementIT"
+      ]
+    ]
+  ],
+  "ElementTest": [
+    [
+      "src/test/java/org/jsoup/nodes/ElementTest.java",
+      [
+        "ElementTest"
+      ]
+    ]
+  ],
+  "EntitiesTest": [
+    [
+      "src/test/java/org/jsoup/nodes/EntitiesTest.java",
+      [
+        "EntitiesTest"
+      ]
+    ]
+  ],
+  "FormElementTest": [
+    [
+      "src/test/java/org/jsoup/nodes/FormElementTest.java",
+      [
+        "FormElementTest"
+      ]
+    ]
+  ],
+  "LeafNodeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/LeafNodeTest.java",
+      [
+        "LeafNodeTest"
+      ]
+    ]
+  ],
+  "NodeIteratorTest": [
+    [
+      "src/test/java/org/jsoup/nodes/NodeIteratorTest.java",
+      [
+        "NodeIteratorTest"
+      ]
+    ]
+  ],
+  "NodeStreamTest": [
+    [
+      "src/test/java/org/jsoup/nodes/NodeStreamTest.java",
+      [
+        "NodeStreamTest"
+      ]
+    ]
+  ],
+  "NodeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/NodeTest.java",
+      [
+        "NodeTest"
+      ]
+    ]
+  ],
+  "PrinterTest": [
+    [
+      "src/test/java/org/jsoup/nodes/PrinterTest.java",
+      [
+        "PrinterTest"
+      ]
+    ]
+  ],
+  "TextNodeTest": [
+    [
+      "src/test/java/org/jsoup/nodes/TextNodeTest.java",
+      [
+        "TextNodeTest"
+      ]
+    ]
+  ],
+  "AttributeParseTest": [
+    [
+      "src/test/java/org/jsoup/parser/AttributeParseTest.java",
+      [
+        "AttributeParseTest"
+      ]
+    ]
+  ],
+  "CharacterReaderTest": [
+    [
+      "src/test/java/org/jsoup/parser/CharacterReaderTest.java",
+      [
+        "CharacterReaderTest"
+      ]
+    ]
+  ],
+  "HtmlParserTest": [
+    [
+      "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+      [
+        "HtmlParserTest"
+      ]
+    ]
+  ],
+  "HtmlTreeBuilderStateTest": [
+    [
+      "src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java",
+      [
+        "HtmlTreeBuilderStateTest"
+      ]
+    ]
+  ],
+  "HtmlTreeBuilderTest": [
+    [
+      "src/test/java/org/jsoup/parser/HtmlTreeBuilderTest.java",
+      [
+        "HtmlTreeBuilderTest"
+      ]
+    ]
+  ],
+  "ParserIT": [
+    [
+      "src/test/java/org/jsoup/parser/ParserIT.java",
+      [
+        "ParserIT"
+      ]
+    ]
+  ],
+  "ParserSettingsTest": [
+    [
+      "src/test/java/org/jsoup/parser/ParserSettingsTest.java",
+      [
+        "ParserSettingsTest"
+      ]
+    ]
+  ],
+  "ParserTest": [
+    [
+      "src/test/java/org/jsoup/parser/ParserTest.java",
+      [
+        "ParserTest"
+      ]
+    ]
+  ],
+  "PositionTest": [
+    [
+      "src/test/java/org/jsoup/parser/PositionTest.java",
+      [
+        "PositionTest"
+      ]
+    ]
+  ],
+  "StreamParserTest": [
+    [
+      "src/test/java/org/jsoup/parser/StreamParserTest.java",
+      [
+        "StreamParserTest"
+      ]
+    ]
+  ],
+  "TagSetTest": [
+    [
+      "src/test/java/org/jsoup/parser/TagSetTest.java",
+      [
+        "TagSetTest"
+      ]
+    ]
+  ],
+  "TagTest": [
+    [
+      "src/test/java/org/jsoup/parser/TagTest.java",
+      [
+        "TagTest"
+      ]
+    ]
+  ],
+  "TokenQueueTest": [
+    [
+      "src/test/java/org/jsoup/parser/TokenQueueTest.java",
+      [
+        "TokenQueueTest"
+      ]
+    ]
+  ],
+  "TokeniserStateTest": [
+    [
+      "src/test/java/org/jsoup/parser/TokeniserStateTest.java",
+      [
+        "TokeniserStateTest"
+      ]
+    ]
+  ],
+  "TokeniserTest": [
+    [
+      "src/test/java/org/jsoup/parser/TokeniserTest.java",
+      [
+        "TokeniserTest"
+      ]
+    ]
+  ],
+  "XmlTreeBuilderTest": [
+    [
+      "src/test/java/org/jsoup/parser/XmlTreeBuilderTest.java",
+      [
+        "XmlTreeBuilderTest"
+      ]
+    ]
+  ],
+  "CleanerTest": [
+    [
+      "src/test/java/org/jsoup/safety/CleanerTest.java",
+      [
+        "CleanerTest"
+      ]
+    ]
+  ],
+  "SafelistTest": [
+    [
+      "src/test/java/org/jsoup/safety/SafelistTest.java",
+      [
+        "SafelistTest"
+      ]
+    ]
+  ],
+  "CssTest": [
+    [
+      "src/test/java/org/jsoup/select/CssTest.java",
+      [
+        "CssTest"
+      ]
+    ]
+  ],
+  "ElementsTest": [
+    [
+      "src/test/java/org/jsoup/select/ElementsTest.java",
+      [
+        "ElementsTest"
+      ]
+    ]
+  ],
+  "SexprVisitor": [
+    [
+      "src/test/java/org/jsoup/select/EvaluatorDebug.java",
+      [
+        "EvaluatorDebug",
+        "SexprVisitor"
+      ]
+    ]
+  ],
+  "EvaluatorDebug": [
+    [
+      "src/test/java/org/jsoup/select/EvaluatorDebug.java",
+      [
+        "EvaluatorDebug"
+      ]
+    ]
+  ],
+  "EvaluatorTest": [
+    [
+      "src/test/java/org/jsoup/select/EvaluatorTest.java",
+      [
+        "EvaluatorTest"
+      ]
+    ]
+  ],
+  "NodesTest": [
+    [
+      "src/test/java/org/jsoup/select/NodesTest.java",
+      [
+        "NodesTest"
+      ]
+    ]
+  ],
+  "QueryParserTest": [
+    [
+      "src/test/java/org/jsoup/select/QueryParserTest.java",
+      [
+        "QueryParserTest"
+      ]
+    ]
+  ],
+  "SelectorIT": [
+    [
+      "src/test/java/org/jsoup/select/SelectorIT.java",
+      [
+        "SelectorIT"
+      ]
+    ]
+  ],
+  "ResetTracker": [
+    [
+      "src/test/java/org/jsoup/select/SelectorTest.java",
+      [
+        "SelectorTest",
+        "ResetTracker"
+      ]
+    ]
+  ],
+  "SelectorTest": [
+    [
+      "src/test/java/org/jsoup/select/SelectorTest.java",
+      [
+        "SelectorTest"
+      ]
+    ]
+  ],
+  "TraversorTest": [
+    [
+      "src/test/java/org/jsoup/select/TraversorTest.java",
+      [
+        "TraversorTest"
+      ]
+    ]
+  ],
+  "AlternateXpathFactory": [
+    [
+      "src/test/java/org/jsoup/select/XpathTest.java",
+      [
+        "XpathTest",
+        "AlternateXpathFactory"
+      ]
+    ]
+  ],
+  "XpathTest": [
+    [
+      "src/test/java/org/jsoup/select/XpathTest.java",
+      [
+        "XpathTest"
+      ]
+    ]
+  ],
+  "HttpClientExecutorTest": [
+    [
+      "src/test/java11/org/jsoup/helper/HttpClientExecutorTest.java",
+      [
+        "HttpClientExecutorTest"
+      ]
+    ]
+  ],
+  "HttpClientConnectIT": [
+    [
+      "src/test/java11/org/jsoup/integration/HttpClientConnectIT.java",
+      [
+        "HttpClientConnectIT"
+      ]
+    ]
+  ],
+  "HttpClientConnectTest": [
+    [
+      "src/test/java11/org/jsoup/integration/HttpClientConnectTest.java",
+      [
+        "HttpClientConnectTest"
+      ]
+    ]
+  ],
+  "HttpClientSessionIT": [
+    [
+      "src/test/java11/org/jsoup/integration/HttpClientSessionIT.java",
+      [
+        "HttpClientSessionIT"
+      ]
+    ]
+  ],
+  "HttpClientSessionTest": [
+    [
+      "src/test/java11/org/jsoup/integration/HttpClientSessionTest.java",
+      [
+        "HttpClientSessionTest"
+      ]
+    ]
+  ]
+}

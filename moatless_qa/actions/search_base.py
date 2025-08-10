@@ -295,7 +295,7 @@ class SearchBaseAction(Action):
 
         MAX_RETRIES = 3
         for retry_attempt in range(MAX_RETRIES):
-            print(f"\nAttempt {retry_attempt + 1}, Identify Code from Semantic Search Results: ")
+            print(f"\nAttempt {retry_attempt + 1}, Identify Code from Search Results: ")
             completion_response = self.completion_model.create_completion(
                 messages=messages,
                 system_prompt=IDENTIFY_SYSTEM_PROMPT,

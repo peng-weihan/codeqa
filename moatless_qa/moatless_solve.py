@@ -1,4 +1,3 @@
-from repo_qa_generator.models.data_models import QAPair
 from moatless_qa.agent.code_qa_agent import CodeQAAgent
 from moatless_qa.completion import CompletionModel
 from moatless_qa.actions import FindClass, FindFunction, FindCodeSnippet, SemanticSearch, ViewCode, Finish, FindCalledObject

@@ -18,13 +18,13 @@ class CommentStrategy(Enum):
 
 class IndexSettings(BaseModel):
     embed_model: str = Field(
-        default="text-embedding-3-small", description="The embedding model to use."
+        default="voyage-code-2", description="The embedding model to use."
     )
     dimensions: int = Field(
         default=1536, description="The number of dimensions of the vectors."
     )
 
-    language: str = Field(default="python", description="The language of the code.")
+    language: str = Field(default="java", description="The language of the code.")
     min_chunk_size: int = Field(default=100, description="The minimum chunk size.")
     chunk_size: int = Field(default=750, description="The soft max chunk size.")
     hard_token_limit: int = Field(default=2000, description="The hard token limit.")

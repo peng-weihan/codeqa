@@ -121,6 +121,10 @@ class ActionAgent(BaseModel):
             completion_response = self._completion.create_completion(
                 messages, system_prompt=system_prompt, response_model=action_args
             )
+            if not completion_response.structured_outputs or len(completion_response.structured_outputs) == 0:
+                print(f"Node{node.node_id}: No recommended action found")
+                print(completion_response.text_response)
+
             print('\nRecommended Action: \n', completion_response.structured_outputs,'\n')
             Setup_logging(f"Node{node.node_id}: Recommended Action: {completion_response.structured_outputs}")
 
