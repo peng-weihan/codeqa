@@ -3,6 +3,7 @@ from typing import List, Dict, Optional, Tuple
 from pathlib import Path
 import numpy as np
 from sentence_transformers import SentenceTransformer
+import torch
 from repo_qa_generator.models.data_models import RepositoryStructure, QAPair
 import os
 from openai import OpenAI
@@ -20,9 +21,16 @@ class RecordedRAGCodeQA(BaseGenerator):
     def __init__(self, repo_structure: RepositoryStructure = None, mode = "internel"):
         super().__init__()
         
+        if torch.cuda.is_available():
+            print("当前使用的 GPU：", torch.cuda.get_device_name(0))
+            print("CUDA 设备数量：", torch.cuda.device_count())
+            print("当前 CUDA 设备 ID：", torch.cuda.current_device())
+        else:
+            print("未检测到可用的 GPU，正在使用 CPU")
+
         self.repo_structure = repo_structure
         if mode == "external":
-            self.embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+            self.embed_model = SentenceTransformer("Qwen/Qwen3-Embedding-8B")
             self._build_embeddings()
         else:
             self.embed_model = None
@@ -41,21 +49,38 @@ class RecordedRAGCodeQA(BaseGenerator):
             
         # 处理函数
         for func in self.repo_structure.functions:
-            prefix = "method" if func.is_method else "函数"
+            prefix = "method" if func.is_method else "function"
             class_prefix = f"{func.class_name}." if func.is_method else ""
             text = f"{prefix} {class_prefix}{func.name}: {func.docstring}"
             self.elements.append(text)
             self.element_types.append(('function', func))
+        
+        # # 处理属性
+        # for attr in self.repo_structure.attributes:
+        #     text = f"attribute {attr.class_name}.{attr.name}"
+        #     self.elements.append(text)
+        #     self.element_types.append(('attribute', attr))
             
-        # 处理属性
-        for attr in self.repo_structure.attributes:
-            text = f"attribute {attr.class_name}.{attr.name}"
-            self.elements.append(text)
-            self.element_types.append(('attribute', attr))
-            
+        print(f"len(self.elements): {len(self.elements)}")
         # 计算embeddings
+
+        def encode_with_fallback(embed_model, elements, batch_sizes=[16, 12, 8, 4]):
+            if not elements:
+                return np.array([])
+
+            for batch_size in batch_sizes:
+                try:
+                    embeddings = embed_model.encode(elements, batch_size=batch_size, show_progress_bar=True)
+                    print(f"成功使用 batch_size={batch_size}")
+                    return embeddings
+                except Exception as e:
+                    print(f"batch_size={batch_size} 出错，准备降批次重试，错误信息：{e}")
+
+            raise RuntimeError("所有 batch_size 尝试均失败，无法编码。")
+        
+
         if self.elements:
-            self.embeddings = self.embed_model.encode(self.elements)
+            self.embeddings = encode_with_fallback(self.embed_model, self.elements)
         else:
             self.embeddings = np.array([])
             
@@ -106,17 +131,13 @@ class RecordedRAGCodeQA(BaseGenerator):
                         start_line = element.relative_code.start_line
                         end_line = element.relative_code.end_line
                         code_content = '\n'.join(code_lines[start_line-1:end_line])
-                    else:  # attribute
-                        start_line = element.relative_code.defined_line
-                        end_line = element.relative_code.defined_line
-                        code_content = code_lines[start_line-1]
                     
                     # 创建文件节点
                     file_node = {
                         "file_name": element.relative_code.belongs_to.file_name,
                         "upper_path": element.relative_code.belongs_to.upper_path,
                         "module": element_type,
-                        "define_class": [element.class_name] if hasattr(element, 'class_name') else [],
+                        "define_class": [],
                         "imports": []
                     }
                     
@@ -200,6 +221,7 @@ class RecordedRAGCodeQA(BaseGenerator):
         
         # 3. 调用LLM获取回答
         answer = self._call_llm(system_prompt=SYSTEM_PROMPT, user_prompt=prompt)
+        print(f"llm response answer: {answer}")
         return answer
 
     def _build_llm_prompt(self, question: str, relevant_code_list: List[CodeNode]) -> str:
@@ -235,3 +257,5 @@ class RecordedRAGCodeQA(BaseGenerator):
             updated_pair = self.process_qa_pair(qa_pair)
             updated_pairs.append(updated_pair)
         return updated_pairs 
+
+    

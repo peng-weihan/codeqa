@@ -183,62 +183,62 @@ if __name__ == "__main__":
         #     "repo_path": "/data3/pwh/swebench-repos/flask",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/flask",
         #     "input_jsonl": "/data3/pwh/questions/flask.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/flask_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/flask_mcts.jsonl"
         # },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/matplotlib",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/matplotlib",
         #     "input_jsonl": "/data3/pwh/questions/matplotlib.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/matplotlib_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/matplotlib_mcts.jsonl"
         # },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/pylint",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/pylint",
         #     "input_jsonl": "/data3/pwh/questions/pylint.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/pylint_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/pylint_mcts.jsonl"
         # },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/pytest",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/pytest",
         #     "input_jsonl": "/data3/pwh/questions/pytest.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/pytest_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/pytest_mcts.jsonl"
         # },
-        # {
-        #     "repo_path": "/data3/pwh/swebench-repos/requests",
-        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/requests",
-        #     "input_jsonl": "/data3/pwh/questions/requests.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/requests_mcts.jsonl"
-        # },
+        {
+            "repo_path": "/data3/pwh/swebench-repos/requests",
+            "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/requests",
+            "input_jsonl": "/data3/pwh/questions/requests.jsonl",
+            "output_jsonl": "/data3/pwh/answers/mcts/requests_mcts.jsonl"
+        },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/scikit-learn",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/scikit-learn",
         #     "input_jsonl": "/data3/pwh/questions/scikit-learn.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/scikit-learn_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/scikit-learn_mcts.jsonl"
         # },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/sphinx",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sphinx",
         #     "input_jsonl": "/data3/pwh/questions/sphinx.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/sphinx_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/sphinx_mcts.jsonl"
         # },
-        {
-            "repo_path": "/data3/pwh/swebench-repos/sqlfluff",
-            "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sqlfluff",
-            "input_jsonl": "/data3/pwh/questions/sqlfluff.jsonl",
-            "output_jsonl": "/data3/pwh/answers/sqlfluff_mcts.jsonl"
-        },
+        # {
+        #     "repo_path": "/data3/pwh/swebench-repos/sqlfluff",
+        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sqlfluff",
+        #     "input_jsonl": "/data3/pwh/questions/sqlfluff.jsonl",
+        #     "output_jsonl": "/data3/pwh/answers/mcts/sqlfluff_mcts.jsonl"
+        # },
         # {
         #     "repo_path": "/data3/pwh/swebench-repos/sympy",
         #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/sympy",
         #     "input_jsonl": "/data3/pwh/questions/sympy.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/sympy_mcts.jsonl"
+        #     "output_jsonl": "/data3/pwh/answers/mcts/sympy_mcts.jsonl"
         # },
-        # {
-        #     "repo_path": "/data3/pwh/swebench-repos/xarray",
-        #     "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/xarray",
-        #     "input_jsonl": "/data3/pwh/questions/xarray.jsonl",
-        #     "output_jsonl": "/data3/pwh/answers/xarray_mcts.jsonl"
-        # }
+        {
+            "repo_path": "/data3/pwh/swebench-repos/xarray",
+            "index_persist_path": "/data3/pwh/codeqa/dataset/index_store/xarray",
+            "input_jsonl": "/data3/pwh/questions/xarray.jsonl",
+            "output_jsonl": "/data3/pwh/answers/mcts/xarray_mcts.jsonl"
+        }
     ]
     for item in queue:
         start_time = time.time()

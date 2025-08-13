@@ -7,17 +7,16 @@ import os
 
 
 
-
 project_root = os.path.abspath(os.path.join(os.getcwd(), ''))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
     print(f"已添加 {project_root} 到Python路径")
 
-from codeqa.repo_qa_generator.rag.docstring_rag import RecordedRAGCodeQA
-# from codeqa.examples.repo_parser.repo_reader import load_repository_from_json
-from codeqa.examples.repo_parser.repo_analyzer_example import analyze_repository
-from codeqa.repo_qa_generator.models.data_models import QAPair, Repository, ResultPair, load_repository_from_json
+
+from codeqa.repo_qa_generator.rag.func_chunk_rag import RAGFullContextCodeQA
+from examples.repo_parser.repo_analyzer_example import analyze_repository
+from repo_qa_generator.models.data_models import QAPair, Repository, ResultPair, load_repository_from_json
 from moatless_qa.benchmark.utils import get_moatless_instance
 from moatless_qa.completion.completion import CompletionModel
 from moatless_qa.completion.completion import LLMResponseFormat
@@ -77,7 +76,7 @@ def append_data_to_jsonl(path, data):
             json.dump(data, f, ensure_ascii=False)
             f.write('\n')
 
-def process_single_question(message: QAPair, rag: RecordedRAGCodeQA):
+def process_single_question(message: QAPair, rag: RAGFullContextCodeQA):
     """
     处理单个问题，使用RAG模型获取答案
     """
@@ -99,17 +98,13 @@ def process_single_question(message: QAPair, rag: RecordedRAGCodeQA):
 
 import concurrent.futures
 
-def run_questions_concurrently(input_path: str, output_path: str, full_json_path: str, max_workers=32):
+def run_questions_concurrently(input_path: str, output_path: str, code_nodes_json_path: str, embeddings_save_path: str, max_workers=32):
     # repo_path = "/data3/pwh/sympy"
     # repository = analyze_repository(repo_path=repo_path, repo_root=repo_path)
  
-    repository =   load_repository_from_json(full_json_path)
-    print(f"已加载仓库: {repository.name} ({repository.id})")
-
-    rag = RecordedRAGCodeQA(repo_structure=repository.structure,mode="external")
+    rag = RAGFullContextCodeQA(filepath=code_nodes_json_path, save_path=embeddings_save_path)
     data_list = load_data_from_jsonl(input_path)
     print(f"len(data_list): {len(data_list)}")
-    results = []
 
     def task(data):
         try:
@@ -130,64 +125,76 @@ if __name__ == "__main__":
     queue = [
     #   {
     #       "input_jsonl": "/data3/pwh/questions/flask.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/flask_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/flask/flask_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/astropy.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/astropy_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/astropy/astropy_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/matplotlib.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/matplotlib_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/matplotlib/matplotlib_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/pylint.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/pylint_rag.jsonl",    
-    #       "full_json_path": "/data3/pwh/repo_analysis/pylint/pylint_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/pytest.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/pytest_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/pytest/pytest_repo_full.json"
+    #       "output_jsonl": "/data3/pwh/answers/rag_func/flask_rag.jsonl",
+    #       "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/flask/flask_code_nodes.json",
+    #       "save_path": "/data3/pwh/voyage_faiss/flask_embeddings.json"
     #   },
       {
-          "input_jsonl": "/data3/pwh/questions/requests.jsonl",
-          "output_jsonl": "/data3/pwh/answers/rag_doc/requests_rag.jsonl",
-          "full_json_path": "/data3/pwh/repo_analysis/requests/requests_repo_full.json"
+          "input_jsonl": "/data3/pwh/questions/astropy.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/astropy_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/astropy/astropy_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/astropy_embeddings.json"
       },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/scikit-learn.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/scikit-learn_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/scikit-learn/scikit-learn_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/sphinx.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/sphinx_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/sphinx/sphinx_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/sqlfluff.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/sqlfluff_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/sqlfluff/sqlfluff_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/sympy.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/sympy_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/sympy/sympy_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/xarray.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/xarray_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/xarray/xarray_repo_full.json"
-    #   },
-    #   {
-    #       "input_jsonl": "/data3/pwh/questions/django.jsonl",
-    #       "output_jsonl": "/data3/pwh/answers/rag_doc/django_rag.jsonl",
-    #       "full_json_path": "/data3/pwh/repo_analysis/django/django_repo_full.json",
-    #   }
+      {
+          "input_jsonl": "/data3/pwh/questions/matplotlib.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/matplotlib_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/matplotlib/matplotlib_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/matplotlib_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/pylint.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/pylint_rag.jsonl",    
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/pylint/pylint_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/pylint_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/pytest.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/pytest_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/pytest/pytest_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/pytest_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/requests.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/requests_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/requests/requests_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/requests_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/scikit-learn.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/scikit-learn_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/scikit-learn/scikit-learn_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/scikit-learn_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/sphinx.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/sphinx_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/sphinx/sphinx_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/sphinx_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/sqlfluff.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/sqlfluff_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/sqlfluff/sqlfluff_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/sqlfluff_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/sympy.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/sympy_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/sympy/sympy_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/sympy_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/xarray.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/xarray_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/xarray/xarray_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/xarray_embeddings.json"
+      },
+      {
+          "input_jsonl": "/data3/pwh/questions/django.jsonl",
+          "output_jsonl": "/data3/pwh/answers/rag_func/django_rag.jsonl",
+          "full_json_path": "/data3/pwh/repo_analysis/full_code_for_embedding/django/django_code_nodes.json",
+          "save_path": "/data3/pwh/voyage_faiss/django_embeddings.json"
+      }
     ]
     for item in queue:
         try:
@@ -195,7 +202,8 @@ if __name__ == "__main__":
             results = run_questions_concurrently(
                 input_path=item["input_jsonl"], 
                 output_path=item["output_jsonl"], 
-                full_json_path=item["full_json_path"],
+                code_nodes_json_path=item["full_json_path"],
+                embeddings_save_path=item["save_path"],
                 max_workers=32
             )
             end_time = time.time()

@@ -1026,7 +1026,6 @@ def _rerank_files(file_paths: list[str], file_pattern: str):
 
     return sorted_file_paths
 
-
 def is_string_in(s1, s2):
     s1_clean = s1.replace(" ", "").replace("\t", "").replace("\n", "")
     s2_clean = s2.replace(" ", "").replace("\t", "").replace("\n", "")
